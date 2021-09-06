@@ -1,0 +1,103 @@
+map [normal] o scroll up
+map [normal] e scroll down
+map [normal] a scroll left
+map [normal] i scroll right
+map [normal] O navigate previous
+map [normal] E navigate next
+map [normal] A navigate previous
+map [normal] I navigate next
+
+map [fullscreen] o scroll up
+map [fullscreen] e scroll down
+map [fullscreen] a scroll left
+map [fullscreen] i scroll right
+map [fullscreen] O navigate previous
+map [fullscreen] E navigate next
+map [fullscreen] A navigate previous
+map [fullscreen] I navigate next
+
+map [presentation] o navigate previous
+map [presentation] e navigate next
+map [presentation] a navigate previous 
+map [presentation] i navigate next 
+map [presentation] O navigate previous
+map [presentation] E navigate next
+map [presentation] A navigate previous
+map [presentation] I navigate next
+
+map [index] o navigate_index up
+map [index] e navigate_index down
+map [index] a navigate_index collapse
+map [index] i navigate_index expand
+map [index] O navigate_index up
+map [index] E navigate_index down
+map [index] A navigate_index collapse-all
+map [index] I navigate_index expand-all
+
+map [normal] , zoom out
+map [normal] y zoom in
+map [normal] u adjust_window best-fit
+map [normal] . adjust_window width
+
+map [fullscreen] , zoom out
+map [fullscreen] y zoom in
+map [fullscreen] u adjust_window best-fit
+map [fullscreen] . adjust_window width
+
+map [normal] c follow
+map [normal] C display_link
+map [normal] j search forward
+map [normal] J search backward
+map [normal] r recolor
+map [normal] <C-r> rotate
+map [normal] p print
+map [normal] k mark_evaluate
+
+map [normal] s exec zathura-inverse-search
+
+set selection-clipboard clipboard
+set synctex true
+set synctex-editor-command "vim --remote-silent +%{line} %{input}"
+set highlight-transparency 0.15
+
+# gruvbox dark theme from https://github.com/eastack/zathura-gruvbox
+set notification-error-bg       "#282828" # bg
+set notification-error-fg       "#fb4934" # bright:red
+set notification-warning-bg     "#282828" # bg
+set notification-warning-fg     "#fabd2f" # bright:yellow
+set notification-bg             "#282828" # bg
+set notification-fg             "#b8bb26" # bright:green
+
+set completion-bg               "#504945" # bg2
+set completion-fg               "#ebdbb2" # fg
+set completion-group-bg         "#3c3836" # bg1
+set completion-group-fg         "#928374" # gray
+set completion-highlight-bg     "#83a598" # bright:blue
+set completion-highlight-fg     "#504945" # bg2
+
+# Define the color in index mode
+set index-bg                    "#504945" # bg2
+set index-fg                    "#ebdbb2" # fg
+set index-active-bg             "#83a598" # bright:blue
+set index-active-fg             "#504945" # bg2
+
+set inputbar-bg                 "#282828" # bg
+set inputbar-fg                 "#ebdbb2" # fg
+
+set statusbar-bg                "#504945" # bg2
+set statusbar-fg                "#ebdbb2" # fg
+
+set highlight-color             "#fabd2f" # bright:yellow
+set highlight-active-color      "#fe8019" # bright:orange
+
+set default-bg                  "#282828" # bg
+set default-fg                  "#ebdbb2" # fg
+set render-loading              true
+set render-loading-bg           "#282828" # bg
+set render-loading-fg           "#ebdbb2" # fg
+
+# Recolor book content's color
+set recolor-lightcolor          "#282828" # bg
+set recolor-darkcolor           "#ebdbb2" # fg
+set recolor                     "true"
+# set recolor-keephue             true      # keep original color
