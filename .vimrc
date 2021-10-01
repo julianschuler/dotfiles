@@ -99,7 +99,6 @@ set scrolloff=3                 " always show at least 3 lines above and below t
 set wrap linebreak              " wrap long lines without splitting words
 set directory=/tmp              " write swap files to /tmp
 
-
 " enable number hybrid mode with focus
 :set number relativenumber
 
@@ -123,7 +122,7 @@ vnoremap ö R
 nnoremap r i
 nnoremap w A
 nnoremap l o
-nnoremap h O
+nnoremap L O
 vnoremap r I
 vnoremap w A
 vnoremap l o
@@ -158,11 +157,12 @@ nnoremap q :q<cr>
 " searching and jumping
 nmap ß :
 nnoremap j /
+nnoremap J :Rg 
 nnoremap k `
 nnoremap kk ``
 nnoremap <leader>j :noh<cr>
-nnoremap b *
-nnoremap B :%s/\<<C-r><C-w>\>//g<Left><Left>
+nnoremap h *
+nnoremap H :%s/\<<C-r><C-w>\>//g<Left><Left>
 
 " yank to end of line
 nnoremap Y y$
@@ -224,7 +224,7 @@ nnoremap <leader>n :YcmCompleter GoToDefinition<cr>
 " switching between buffers
 nnoremap <c-v> :bp<cr>
 nnoremap <c-u> :bn<cr>
-nnoremap <leader>b :Buffers<cr>
+nnoremap b :Buffers<cr>
 
 " window management
 nnoremap <c-a> <c-w>h
