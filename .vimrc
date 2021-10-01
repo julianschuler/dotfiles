@@ -99,6 +99,23 @@ set scrolloff=3                 " always show at least 3 lines above and below t
 set wrap linebreak              " wrap long lines without splitting words
 set directory=/tmp              " write swap files to /tmp
 
+set laststatus=2
+set statusline=
+set statusline+=
+set statusline+=%{FugitiveStatusline()}
+set statusline+=%#CursorColumn#
+set statusline+=\ %f
+set statusline+=\ %m
+set statusline+=\ %r
+set statusline+=%=
+" set statusline+=\ %y  
+set statusline+=\ Line:\ %l/%L
+set statusline+=\ (%p%%)
+set statusline+=\ Col:\ %c
+set statusline+=\ %y
+set statusline+=\ %{&fileencoding?&fileencoding:&encoding}
+set statusline+=\ 
+
 " enable number hybrid mode with focus
 :set number relativenumber
 
