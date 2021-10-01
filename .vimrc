@@ -26,6 +26,9 @@ Plug 'ycm-core/YouCompleteMe'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
+Plug 'dense-analysis/ale'
+Plug 'maxmellon/vim-jsx-pretty'
+Plug 'pangloss/vim-javascript'
 call plug#end()
 
 " vimtex settings
@@ -45,6 +48,24 @@ let g:vimtex_quickfix_ignore_filters = [ 'Warning: You have requested package' ]
 if empty(v:servername) && exists('*remote_startserver')
   call remote_startserver('VIM')
 endif
+
+let g:ale_linters = {
+    \ 'javascriptreact': ['eslint'],
+    \ 'python': ['flake8'],
+    \}
+let g:ale_fixers = {
+    \ 'javascriptreact': ['eslint'],
+    \ 'python': ['black', 'isort'],
+    \ }
+let g:ale_sign_error = '✘'
+let g:ale_sign_warning = '⚠'
+highlight ALEErrorSign ctermbg=NONE ctermfg=red
+highlight ALEWarningSign ctermbg=NONE ctermfg=yellow
+let g:ale_lint_on_enter = 0
+let g:ale_lint_on_text_change = 'never'
+let g:ale_linters_explicit = 1
+let g:ale_lint_on_save = 1
+let g:ale_fix_on_save = 1
 
 " Open markdown preview when entering markdown buffer
 let g:mkdp_auto_start = 1
@@ -199,6 +220,11 @@ nnoremap <leader>t :YcmCompleter GoTo<cr>
 nnoremap <leader>r :YcmCompleter GoToReferences<cr>
 nnoremap <leader>n :YcmCompleter GoToDefinition<cr>
 " nnoremap <leader>f :YcmCompleter FixIt<cr>
+
+" switching between buffers
+nnoremap <c-v> :bp<cr>
+nnoremap <c-u> :bn<cr>
+nnoremap <leader>b :Buffers<cr>
 
 " window management
 nnoremap <c-a> <c-w>h
