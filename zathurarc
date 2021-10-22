@@ -46,8 +46,7 @@ map [fullscreen] . adjust_window width
 
 map [normal] c follow
 map [normal] C display_link
-map [normal] j search forward
-map [normal] J search backward
+map [normal] j feedkeys /
 map [normal] r recolor
 map [normal] <C-r> rotate
 map [normal] p print

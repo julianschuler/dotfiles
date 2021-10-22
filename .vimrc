@@ -172,7 +172,7 @@ nnoremap <leader>s :update<cr>
 nnoremap q :q<cr>
 
 " searching and jumping
-nmap ß :
+nmap _ :
 nnoremap j /
 nnoremap J :Rg 
 nnoremap k `
