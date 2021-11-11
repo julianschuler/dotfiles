@@ -20,6 +20,7 @@ This repository contains configuration files for most of the programs I use.
 * Browser: [Firefox](https://www.mozilla.org/de/firefox/new)
 * Addons: [Surfingkeys](https://github.com/brookhong/Surfingkeys), [Dark Reader](https://github.com/darkreader/darkreader)
 
-#### Other programs
+#### Desktop
 * Window manager: [spectrwm](https://github.com/conformal/spectrwm)
+* Status bar: [conky](https://github.com/brndnmtthws/conky) using [Nerd Fonts](https://www.nerdfonts.com) for symbols
 * Password manager: [KeePassXC](https://keepassxc.org)
