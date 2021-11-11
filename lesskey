@@ -1,0 +1,13 @@
+#command
+a   back-line
+o   back-line
+e   forw-line
+i   forw-line
+A   back-scroll
+O   back-scroll
+E   forw-scroll
+I   forw-scroll
+
+j   forw-search
+J   back-search
+k   goto-mark
