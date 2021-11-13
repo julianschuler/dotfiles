@@ -20,20 +20,30 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
-Plug 'justinmk/vim-sneak'
-Plug 'lervag/vimtex'
-Plug 'ycm-core/YouCompleteMe'
+Plug 'easymotion/vim-easymotion'
+Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+Plug 'ycm-core/YouCompleteMe'
+Plug 'lervag/vimtex'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 Plug 'dense-analysis/ale'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'pangloss/vim-javascript'
 call plug#end()
 
+" easymotion settings
+let g:EasyMotion_do_mapping = 0
+let g:EasyMotion_smartcase = 1
+let g:EasyMotion_keys = "caeitrnsouglhydwm"
+
+" Gruvbox settings
+let g:gruvbox_guisp_fallback = "bg"
+autocmd vimenter * ++nested colorscheme gruvbox
+
 " vimtex settings
-let g:vimtex_compiler_latexmk = { 
-    \ 'build_dir' : '/tmp', 
+let g:vimtex_compiler_latexmk = {
+    \ 'build_dir' : '/tmp',
     \ 'options' : [
     \   '-pdf',
     \   '-shell-escape',
@@ -49,6 +59,7 @@ if empty(v:servername) && exists('*remote_startserver')
   call remote_startserver('VIM')
 endif
 
+" ale settings
 let g:ale_linters = {
     \ 'javascriptreact': ['eslint'],
     \ 'python': ['flake8'],
@@ -69,10 +80,6 @@ let g:ale_fix_on_save = 1
 
 " Open markdown preview when entering markdown buffer
 let g:mkdp_auto_start = 1
-
-" Gruvbox settings
-let g:gruvbox_guisp_fallback = "bg"
-autocmd vimenter * ++nested colorscheme gruvbox
 
 set showcmd                     " show command in bottom bar
 set cursorline                  " highlight current line
@@ -108,13 +115,13 @@ set statusline+=\ %f
 set statusline+=\ %m
 set statusline+=\ %r
 set statusline+=%=
-" set statusline+=\ %y  
+" set statusline+=\ %y
 set statusline+=\ Line:\ %l/%L
 set statusline+=\ (%p%%)
 set statusline+=\ Col:\ %c
 set statusline+=\ %y
 set statusline+=\ %{&fileencoding?&fileencoding:&encoding}
-set statusline+=\ 
+set statusline+=\
 
 " enable number hybrid mode with focus
 :set number relativenumber
@@ -126,7 +133,7 @@ set statusline+=\
 :augroup END
 
 
-" The following keybindings are adapted to a modified VOU keyboard layout
+" The following keybindings are adapted to a modified VOU layout
 " and mostly won't make sense on a default QWERTY/QWERTZ keyboard
 
 " replacing
@@ -146,22 +153,22 @@ vnoremap l o
 vnoremap h O
 
 " delete last word using <C-BS>
-noremap! <c-bs> <c-w>
+noremap! <s-bs> <c-w>
 noremap! <c-h> <c-w>
 
 " movement
 nnoremap A b
 nnoremap I w
-nnoremap O 7gk
-nnoremap E 7gj
+" nnoremap O 7gk
+" nnoremap E 7gj
 nnoremap a h
 nnoremap e gj
 nnoremap o gk
 nnoremap i l
-vnoremap A b
-vnoremap I w
-vnoremap O 7gk 
-vnoremap E 7gj
+" vnoremap A b
+" vnoremap I w
+" vnoremap O 7gk
+" vnoremap E 7gj
 vnoremap a h
 vnoremap e gj
 vnoremap o gk
@@ -172,7 +179,7 @@ nnoremap <leader>s :update<cr>
 nnoremap q :q<cr>
 
 " searching and jumping
-nmap _ :
+nnoremap _ :
 nnoremap j /
 nnoremap J :Rg 
 nnoremap k `
@@ -206,22 +213,35 @@ nnoremap , ;
 vnoremap ; ,
 vnoremap , ;
 
-" swap ; and , (next/previous match after s, S)
-nmap ; <plug>SneakPrevious
-nmap , <plug>SneakNext
-vmap ; <plug>SneakPrevious
-vmap , <plug>SneakNext
+" easymotion bindings
+nmap s <Plug>(easymotion-s)
+nmap W <Plug>(easymotion-w)
+map j <Plug>(easymotion-sn)
+omap j <Plug>(easymotion-tn)
+map n <Plug>(easymotion-next)
+map N <Plug>(easymotion-prev)
+
+map I <Plug>(easymotion-lineforward)
+map A <Plug>(easymotion-linebackward)
+map O <Plug>(easymotion-k)
+map E <Plug>(easymotion-j)
+
+" nmap j <Plug>(easymotion-f)
 
 " find files with fzf
 nnoremap f :GFiles<cr>
 nnoremap F :Files<cr>
 nnoremap <leader>f :Files $HOME<cr>
 
+" switching between buffers
+nnoremap <c-v> :bp<cr>
+nnoremap <c-u> :bn<cr>
+nnoremap b :Buffers<cr>
+
 " Open :Git
-nnoremap <leader>g :Git 
+nnoremap <leader>g :Git
 
 " yank, delete or select line without line break
-" (replaces plugins vim-textobj-line and vim-textobj-user)
 nnoremap yal 0y$
 nnoremap yil ^yg_
 nnoremap dal 0d$
@@ -237,11 +257,6 @@ nnoremap <leader>t :YcmCompleter GoTo<cr>
 nnoremap <leader>r :YcmCompleter GoToReferences<cr>
 nnoremap <leader>n :YcmCompleter GoToDefinition<cr>
 " nnoremap <leader>f :YcmCompleter FixIt<cr>
-
-" switching between buffers
-nnoremap <c-v> :bp<cr>
-nnoremap <c-u> :bn<cr>
-nnoremap b :Buffers<cr>
 
 " window management
 nnoremap <c-a> <c-w>h
