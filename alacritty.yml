@@ -1,5 +1,5 @@
-font:
-  size: 13
+import:
+  - ~/.alacritty-config.yml
 
 selection:
   save_to_clipboard: true
