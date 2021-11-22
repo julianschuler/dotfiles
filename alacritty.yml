@@ -1,6 +1,10 @@
 import:
   - ~/.alacritty-config.yml
 
+font:
+  normal:
+    family: Sauce Code Pro Nerd Font
+
 selection:
   save_to_clipboard: true
 
