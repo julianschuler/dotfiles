@@ -31,5 +31,8 @@ set -U fish_pager_color_progress brwhite\x1e\x2d\x2dbackground\x3dcyan
 # disable greeting
 set -U fish_greeting
 
+# generate zoxide config
+zoxide init fish > "$HOME/.config/fish/conf.d/zoxide.fish"
+
 # install plugins listed in fish_plugins
 curl -sL https://git.io/fisher | source && fisher update
