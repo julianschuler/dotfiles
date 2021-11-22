@@ -11,3 +11,6 @@ I   forw-scroll
 j   forw-search
 J   back-search
 k   goto-mark
+
+q   quit
+x   quit
