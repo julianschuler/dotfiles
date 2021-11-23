@@ -68,12 +68,12 @@ key_bindings:
   - { key: R,                           mode: Vi|~Search, action: ToggleViMode            }
   - { key: R,                           mode: Vi|~Search, action: ScrollToBottom          }
   - { key: C,      mods: Control,       mode: Vi|~Search, action: ToggleViMode            }
-  - { key: O,      mods: Shift,         mode: Vi|~Search, action: ScrollLineUp            }
-  - { key: E,      mods: Shift,         mode: Vi|~Search, action: ScrollLineDown          }
+  - { key: O,                           mode: Vi|~Search, action: ScrollLineUp            }
+  - { key: E,                           mode: Vi|~Search, action: ScrollLineDown          }
   - { key: G,                           mode: Vi|~Search, action: ScrollToTop             }
   - { key: G,      mods: Shift,         mode: Vi|~Search, action: ScrollToBottom          }
-  - { key: O,      mods: Control,       mode: Vi|~Search, action: ScrollHalfPageUp        }
-  - { key: E,      mods: Control,       mode: Vi|~Search, action: ScrollHalfPageDown      }
+  - { key: O,      mods: Shift,         mode: Vi|~Search, action: ScrollHalfPageUp        }
+  - { key: E,      mods: Shift,         mode: Vi|~Search, action: ScrollHalfPageDown      }
   - { key: Y,                           mode: Vi|~Search, action: Copy                    }
   - { key: Y,                           mode: Vi|~Search, action: ClearSelection          }
   - { key: Copy,                        mode: Vi|~Search, action: ClearSelection          }
@@ -81,8 +81,8 @@ key_bindings:
   - { key: V,      mods: Shift,         mode: Vi|~Search, action: ToggleLineSelection     }
   - { key: V,      mods: Alt,           mode: Vi|~Search, action: ToggleSemanticSelection }
   - { key: Return,                      mode: Vi|~Search, action: Open                    }
-  - { key: O,                           mode: Vi|~Search, action: Up                      }
-  - { key: E,                           mode: Vi|~Search, action: Down                    }
+  - { key: O,      mods: Control,       mode: Vi|~Search, action: Up                      }
+  - { key: E,      mods: Control,       mode: Vi|~Search, action: Down                    }
   - { key: A,                           mode: Vi|~Search, action: Left                    }
   - { key: I,                           mode: Vi|~Search, action: Right                   }
   - { key: Up,                          mode: Vi|~Search, action: Up                      }
