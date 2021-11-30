@@ -121,7 +121,7 @@ set statusline+=\ (%p%%)
 set statusline+=\ Col:\ %c
 set statusline+=\ %y
 set statusline+=\ %{&fileencoding?&fileencoding:&encoding}
-set statusline+=\
+set statusline+=\ 
 
 " enable number hybrid mode with focus
 :set number relativenumber
@@ -153,7 +153,7 @@ vnoremap l o
 vnoremap h O
 
 " delete last word using <C-BS>
-noremap! <s-bs> <c-w>
+noremap! <c-bs> <c-w>
 noremap! <c-h> <c-w>
 
 " movement
@@ -216,17 +216,11 @@ vnoremap , ;
 " easymotion bindings
 nmap s <Plug>(easymotion-s)
 nmap W <Plug>(easymotion-w)
-map j <Plug>(easymotion-sn)
-omap j <Plug>(easymotion-tn)
-map n <Plug>(easymotion-next)
-map N <Plug>(easymotion-prev)
 
 map I <Plug>(easymotion-lineforward)
 map A <Plug>(easymotion-linebackward)
 map O <Plug>(easymotion-k)
 map E <Plug>(easymotion-j)
-
-" nmap j <Plug>(easymotion-f)
 
 " find files with fzf
 nnoremap f :GFiles<cr>
