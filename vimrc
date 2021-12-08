@@ -21,7 +21,7 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'easymotion/vim-easymotion'
-Plug 'jiangmiao/auto-pairs'
+Plug 'Raimondi/delimitMate'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'ycm-core/YouCompleteMe'
@@ -32,10 +32,16 @@ Plug 'maxmellon/vim-jsx-pretty'
 Plug 'pangloss/vim-javascript'
 call plug#end()
 
+" delimitMate settings
+let g:delimitMate_expand_cr = 1
+let g:delimitMate_expand_space = 1
+let g:delimitMate_jump_expansion = 1
+
 " easymotion settings
 let g:EasyMotion_do_mapping = 0
 let g:EasyMotion_smartcase = 1
-let g:EasyMotion_keys = "caeitrnsouglhydwm"
+let g:EasyMotion_use_upper = 1
+let g:EasyMotion_keys = "EITRNSOUGLHYDWMAC"
 
 " Gruvbox settings
 let g:gruvbox_guisp_fallback = "bg"
@@ -85,6 +91,7 @@ set showcmd                     " show command in bottom bar
 set cursorline                  " highlight current line
 set showmatch                   " highlight matching [{()}]
 set wildmenu                    " visual autocomplete for command menu
+set clipboard=unnamedplus       " copy to system clipboard
 
 set tabstop=4                   " number of visual spaces per TAB
 set softtabstop=4               " number of spaces in tab when editing
@@ -159,16 +166,18 @@ noremap! <c-h> <c-w>
 " movement
 nnoremap A b
 nnoremap I w
+nnoremap O 7<c-y>
+nnoremap E 7<c-e>
 " nnoremap O 7gk
 " nnoremap E 7gj
 nnoremap a h
 nnoremap e gj
 nnoremap o gk
 nnoremap i l
-" vnoremap A b
-" vnoremap I w
-" vnoremap O 7gk
-" vnoremap E 7gj
+vnoremap A b
+vnoremap I w
+vnoremap O 7<c-y>
+vnoremap E 7<c-e>
 vnoremap a h
 vnoremap e gj
 vnoremap o gk
@@ -191,11 +200,7 @@ nnoremap H :%s/\<<C-r><C-w>\>//g<Left><Left>
 " yank to end of line
 nnoremap Y y$
 
-" yank/cut/paste to/from system clipboard
-nnoremap <leader>y "+y
-nnoremap <leader>d "+d
-nnoremap <leader>p "+p
-nnoremap <leader>P "+P
+" yank file to system clipboard
 nnoremap <leader>c :w !xclip -selection c<cr><cr>
 
 " delete not into register with x (use dl for cutting one character into register)
@@ -217,10 +222,10 @@ vnoremap , ;
 nmap s <Plug>(easymotion-s)
 nmap W <Plug>(easymotion-w)
 
-map I <Plug>(easymotion-lineforward)
-map A <Plug>(easymotion-linebackward)
-map O <Plug>(easymotion-k)
-map E <Plug>(easymotion-j)
+map <c-i> <Plug>(easymotion-lineforward)
+map <c-a> <Plug>(easymotion-linebackward)
+map <c-o> <Plug>(easymotion-k)
+map <c-e> <Plug>(easymotion-j)
 
 " find files with fzf
 nnoremap f :GFiles<cr>
@@ -253,14 +258,14 @@ nnoremap <leader>n :YcmCompleter GoToDefinition<cr>
 " nnoremap <leader>f :YcmCompleter FixIt<cr>
 
 " window management
-nnoremap <c-a> <c-w>h
-nnoremap <c-e> <c-w>j
-nnoremap <c-o> <c-w>k
-nnoremap <c-i> <c-w>l
-nnoremap <leader>a :to vs %<cr>
-nnoremap <leader>e :sp<cr>
-nnoremap <leader>o :to sp %<cr>
-nnoremap <leader>i :vs<cr>
+nnoremap <leader>a <c-w>h
+nnoremap <leader>e <c-w>j
+nnoremap <leader>o <c-w>k
+nnoremap <leader>i <c-w>l
+nnoremap <leader>A :to vs %<cr>
+nnoremap <leader>E :sp<cr>
+nnoremap <leader>O :to sp %<cr>
+nnoremap <leader>I :vs<cr>
 
 " terminal management
 nnoremap <leader>u :vert term<cr>
