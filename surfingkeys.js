@@ -8,10 +8,6 @@ settings.defaultSearchEngine = 'c';
 // editing
 map('r', 'i');
 
-// clicking links
-map('c', 'f');
-map('C', 'af');
-
 // tab switching
 map('i', 'R');
 map('a', 'E');
@@ -24,6 +20,10 @@ map(',', 'cs');
 // moving in history
 map('.', 'S');
 map('u', 'D');
+
+// clicking links
+map('c', 'f');
+map('C', 'af');
 
 // caret control
 vmap('a', 'h');
