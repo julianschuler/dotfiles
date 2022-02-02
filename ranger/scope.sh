@@ -43,7 +43,6 @@ HIGHLIGHT_SIZE_MAX=262143  # 256KiB
 HIGHLIGHT_TABWIDTH=${HIGHLIGHT_TABWIDTH:-8}
 HIGHLIGHT_STYLE=${HIGHLIGHT_STYLE:-pablo}
 HIGHLIGHT_OPTIONS="--replace-tabs=${HIGHLIGHT_TABWIDTH} --style=${HIGHLIGHT_STYLE} ${HIGHLIGHT_OPTIONS:-}"
-PYGMENTIZE_STYLE=${PYGMENTIZE_STYLE:-autumn}
 OPENSCAD_IMGSIZE=${RNGR_OPENSCAD_IMGSIZE:-1000,1000}
 OPENSCAD_COLORSCHEME=${RNGR_OPENSCAD_COLORSCHEME:-Tomorrow Night}
 
@@ -101,12 +100,6 @@ handle_extension() {
             lynx -dump -- "${FILE_PATH}" && exit 5
             elinks -dump "${FILE_PATH}" && exit 5
             pandoc -s -t markdown -- "${FILE_PATH}" && exit 5
-            ;;
-
-        ## JSON
-        json)
-            jq --color-output . "${FILE_PATH}" && exit 5
-            python -m json.tool -- "${FILE_PATH}" && exit 5
             ;;
 
         ## Direct Stream Digital/Transfer (DSDIFF) and wavpack aren't detected
@@ -200,43 +193,6 @@ handle_image() {
                 exit 1
             fi
             ;;
-
-        ## Preview archives using the first image inside.
-        ## (Very useful for comic book collections for example.)
-        # application/zip|application/x-rar|application/x-7z-compressed|\
-        #     application/x-xz|application/x-bzip2|application/x-gzip|application/x-tar)
-        #     local fn=""; local fe=""
-        #     local zip=""; local rar=""; local tar=""; local bsd=""
-        #     case "${mimetype}" in
-        #         application/zip) zip=1 ;;
-        #         application/x-rar) rar=1 ;;
-        #         application/x-7z-compressed) ;;
-        #         *) tar=1 ;;
-        #     esac
-        #     { [ "$tar" ] && fn=$(tar --list --file "${FILE_PATH}"); } || \
-        #     { fn=$(bsdtar --list --file "${FILE_PATH}") && bsd=1 && tar=""; } || \
-        #     { [ "$rar" ] && fn=$(unrar lb -p- -- "${FILE_PATH}"); } || \
-        #     { [ "$zip" ] && fn=$(zipinfo -1 -- "${FILE_PATH}"); } || return
-        #
-        #     fn=$(echo "$fn" | python -c "import sys; import mimetypes as m; \
-        #             [ print(l, end='') for l in sys.stdin if \
-        #               (m.guess_type(l[:-1])[0] or '').startswith('image/') ]" |\
-        #         sort -V | head -n 1)
-        #     [ "$fn" = "" ] && return
-        #     [ "$bsd" ] && fn=$(printf '%b' "$fn")
-        #
-        #     [ "$tar" ] && tar --extract --to-stdout \
-        #         --file "${FILE_PATH}" -- "$fn" > "${IMAGE_CACHE_PATH}" && exit 6
-        #     fe=$(echo -n "$fn" | sed 's/[][*?\]/\\\0/g')
-        #     [ "$bsd" ] && bsdtar --extract --to-stdout \
-        #         --file "${FILE_PATH}" -- "$fe" > "${IMAGE_CACHE_PATH}" && exit 6
-        #     [ "$bsd" ] || [ "$tar" ] && rm -- "${IMAGE_CACHE_PATH}"
-        #     [ "$rar" ] && unrar p -p- -inul -- "${FILE_PATH}" "$fn" > \
-        #         "${IMAGE_CACHE_PATH}" && exit 6
-        #     [ "$zip" ] && unzip -pP "" -- "${FILE_PATH}" "$fe" > \
-        #         "${IMAGE_CACHE_PATH}" && exit 6
-        #     [ "$rar" ] || [ "$zip" ] && rm -- "${IMAGE_CACHE_PATH}"
-        #     ;;
     esac
 
     openscad_image() {
@@ -298,24 +254,9 @@ handle_mime() {
             exit 1;;
 
         ## Text
-        text/* | */xml)
+        text/* | */xml | */json)
             ## Syntax highlight
-            if [[ "$( stat --printf='%s' -- "${FILE_PATH}" )" -gt "${HIGHLIGHT_SIZE_MAX}" ]]; then
-                exit 2
-            fi
-            if [[ "$( tput colors )" -ge 256 ]]; then
-                local pygmentize_format='terminal256'
-                local highlight_format='xterm256'
-            else
-                local pygmentize_format='terminal'
-                local highlight_format='ansi'
-            fi
-            env HIGHLIGHT_OPTIONS="${HIGHLIGHT_OPTIONS}" highlight \
-                --out-format="${highlight_format}" \
-                --force -- "${FILE_PATH}" && exit 5
             env COLORTERM=8bit bat --color=always --style="plain" \
-                -- "${FILE_PATH}" && exit 5
-            pygmentize -f "${pygmentize_format}" -O "style=${PYGMENTIZE_STYLE}"\
                 -- "${FILE_PATH}" && exit 5
             exit 2;;
 
