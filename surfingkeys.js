@@ -1,51 +1,57 @@
 // general settings
-Hints.characters = 'aeitrnsouglhdwm';
-Hints.scrollKeys = '';
 settings.tabsMRUOrder = false;
 settings.focusFirstCandidate = true;
 settings.defaultSearchEngine = 'c';
 
 // editing
-map('r', 'i');
+api.map('r', 'i');
 
 // tab switching
-map('i', 'R');
-map('a', 'E');
+api.map('i', 'R');
+api.map('a', 'E');
 // scrolling
-map('O', 'e');
-map('E', 'd');
-map('o', 'k');
-map('e', 'j');
-map(',', 'cs');
+api.map('O', 'e');
+api.map('E', 'd');
+api.map(',', 'cs');
+// simple map won't work as 'e' and 'o' are also used in hints
+api.mapkey('o', "Scroll down", function() {
+    api.Normal.scroll("up");
+});
+api.mapkey('e', "Scroll down", function() {
+    api.Normal.scroll("down");
+});
 // moving in history
-map('.', 'S');
-map('u', 'D');
+api.map('.', 'S');
+api.map('u', 'D');
 
 // clicking links
-map('c', 'f');
-map('C', 'af');
+api.map('c', 'f');
+api.map('C', 'af');
 
 // caret control
-vmap('a', 'h');
-vmap('e', 'j');
-vmap('o', 'k');
-vmap('i', 'l');
+api.vmap('a', 'h');
+api.vmap('e', 'j');
+api.vmap('o', 'k');
+api.vmap('i', 'l');
 
 // disable emojis
-iunmap(":");
+api.iunmap(":");
 
 
 // searching
-addSearchAliasX('c', 'Ecosia', 'https://www.ecosia.org/search?q=');
-addSearchAliasX('w', 'wikipedia', 'https://de.wikipedia.org/wiki/', 's', 'https://de.wikipedia.org/w/api.php?action=opensearch&format=json&formatversion=2&namespace=0&limit=40&search=', function(response) {
+api.addSearchAlias('c', 'Ecosia', 'https://www.ecosia.org/search?q=');
+api.addSearchAlias('w', 'wikipedia', 'https://de.wikipedia.org/wiki/', 's', 'https://de.wikipedia.org/w/api.php?action=opensearch&format=json&formatversion=2&namespace=0&limit=40&search=', function(response) {
     return JSON.parse(response.text)[1];
 });
-mapkey('l', '#8Open Search with Ecosia', function() {
-    Front.openOmnibar({type: "SearchEngine", extra: "c"});
+api.mapkey('l', '#8Open Search with Ecosia', function() {
+    api.Front.openOmnibar({type: "SearchEngine", extra: "c"});
 });
-mapkey('h', '#8Open Search with Wikipedia (DE)', function() {
-    Front.openOmnibar({type: "SearchEngine", extra: "w"});
+api.mapkey('h', '#8Open Search with Wikipedia (DE)', function() {
+    api.Front.openOmnibar({type: "SearchEngine", extra: "w"});
 });
-mapkey('f', '#8Open Search with Wikipedia (EN)', function() {
-    Front.openOmnibar({type: "SearchEngine", extra: "e"});
+api.mapkey('f', '#8Open Search with Wikipedia (EN)', function() {
+    api.Front.openOmnibar({type: "SearchEngine", extra: "e"});
 });
+
+// set hints at last to prevent scroll key conflicts
+api.Hints.setCharacters('aeitrnsouglhdwm');
