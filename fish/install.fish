@@ -35,7 +35,7 @@ set -U fish_greeting
 zoxide init fish > "$HOME/.config/fish/conf.d/zoxide.fish"
 
 # generate abbreviations
-source abbreviations.fish
+source fish/abbreviations.fish
 
 # install plugins listed in fish_plugins
 curl -sL https://git.io/fisher | source && fisher update
