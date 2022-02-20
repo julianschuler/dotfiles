@@ -10,3 +10,6 @@ fish/fish_variables
 
 # exclude alacritty symlink
 alacritty/alacritty.yml
+
+# exclude aerc account information
+aerc/accounts.conf
