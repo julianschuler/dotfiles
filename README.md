@@ -4,13 +4,17 @@ This repository contains configuration files for most of the programs I use.
 ### Development setup
 #### Keyboard
 * Hardware: [Ergomin](https://github.com/julianschuler/keyboards/tree/master/ergomin), custom designed ergonomic keyboard
-* Layout: [modified VOU layout]( https://github.com/julianschuler/keyboards/blob/master/ergomin/qmk/keymaps/julianschuler/keymap.c#L62) (optimized for German and English)
+* Layout: [modified VOU layout](https://github.com/julianschuler/keyboards/blob/master/ergomin/qmk/keymaps/julianschuler/keymap.c#L52) (optimized for German and English)
 
 #### Terminal
 * Terminal emulator: [Alacritty](https://alacritty.org/)
 * Shell: [fish](https://github.com/fish-shell/fish-shell)
 * File manager: [ranger](https://github.com/ranger/ranger)
-* Other useful programs: [fzf](https://github.com/junegunn/fzf), [ripgrep](https://github.com/BurntSushi/ripgrep)
+* Smart directory switching: [zoxide](https://github.com/ajeetdsouza/zoxide)
+* Cat with syntax highlighting: [bat](https://github.com/sharkdp/bat)
+* Faster grep alternative: [ripgrep](https://github.com/BurntSushi/ripgrep)
+* Improved diffs: [delta](https://github.com/dandavison/delta)
+* Fuzzy finder: [fzf](https://github.com/junegunn/fzf)
 
 #### Editor
 * Editor: [Vim](https://github.com/vim/vim)
