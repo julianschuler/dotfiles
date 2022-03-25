@@ -15,6 +15,7 @@ This repository contains configuration files for most of the programs I use.
 * Faster grep alternative: [ripgrep](https://github.com/BurntSushi/ripgrep)
 * Improved diffs: [delta](https://github.com/dandavison/delta)
 * Fuzzy finder: [fzf](https://github.com/junegunn/fzf)
+* Improved ls: [exa](https://github.com/ogham/exa)
 
 #### Editor
 * Editor: [Vim](https://github.com/vim/vim)

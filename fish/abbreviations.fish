@@ -3,7 +3,9 @@ abbr -a -U -- c z
 abbr -a -U -- d 'zathura --fork'
 abbr -a -U -- e vim
 abbr -a -U -- f fd
-abbr -a -U -- l ls
+abbr -a -U -- l exa
+abbr -a -U -- ll exa --long --git --header
+abbr -a -U -- m man
 abbr -a -U -- r ranger
 abbr -a -U -- s sudo
 abbr -a -U -- t bat
