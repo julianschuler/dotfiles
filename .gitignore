@@ -1,11 +1,10 @@
 # fish excludes
 fish/completions
 fish/conf.d
-fish/functions
+fish/functions/**
 fish/fish_variables
 
 # include certain fish functions
-!fish/functions/fish_prompt.fish
 !fish/functions/fish_user_key_bindings.fish
 
 # exclude alacritty symlink
