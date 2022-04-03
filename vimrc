@@ -157,7 +157,6 @@ nnoremap L O
 vnoremap r I
 vnoremap w A
 vnoremap l o
-vnoremap h O
 
 " delete last word using <C-BS>
 noremap! <c-bs> <c-w>
@@ -168,8 +167,6 @@ nnoremap A b
 nnoremap I w
 nnoremap O 7<c-y>
 nnoremap E 7<c-e>
-" nnoremap O 7gk
-" nnoremap E 7gj
 nnoremap a h
 nnoremap e gj
 nnoremap o gk
@@ -194,8 +191,12 @@ nnoremap J :Rg
 nnoremap k `
 nnoremap kk ``
 nnoremap <leader>j :noh<cr>
+
+" search/replace word under cursor/selection
 nnoremap h *
-nnoremap H :%s/\<<C-r><C-w>\>//g<Left><Left>
+nnoremap H :%s/\<<c-r><c-w>\>//g<left><left>
+vnoremap h "hy/<c-r>h<cr>
+vnoremap H "hy:%s/<c-r>h//g<left><left>
 
 " yank to end of line
 nnoremap Y y$
@@ -255,7 +256,6 @@ nnoremap z z=
 nnoremap <leader>t :YcmCompleter GoTo<cr>
 nnoremap <leader>r :YcmCompleter GoToReferences<cr>
 nnoremap <leader>n :YcmCompleter GoToDefinition<cr>
-" nnoremap <leader>f :YcmCompleter FixIt<cr>
 
 " window management
 nnoremap <leader>a <c-w>h
