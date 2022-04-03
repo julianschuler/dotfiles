@@ -9,6 +9,7 @@ This repository contains configuration files for most of the programs I use.
 #### Terminal
 * Terminal emulator: [Alacritty](https://alacritty.org/)
 * Shell: [fish](https://github.com/fish-shell/fish-shell)
+* Prompt: [starship](https://github.com/starship/starship)
 * File manager: [ranger](https://github.com/ranger/ranger)
 * Smart directory switching: [zoxide](https://github.com/ajeetdsouza/zoxide)
 * Cat with syntax highlighting: [bat](https://github.com/sharkdp/bat)
@@ -28,4 +29,6 @@ This repository contains configuration files for most of the programs I use.
 #### Desktop
 * Window manager: [spectrwm](https://github.com/conformal/spectrwm)
 * Status bar: [conky](https://github.com/brndnmtthws/conky) using [Nerd Fonts](https://www.nerdfonts.com) for symbols
+* Email client: [aerc](https://git.sr.ht/~rjarry/aerc)
+* PDF viewer: [zathura](https://pwmt.org/projects/zathura)
 * Password manager: [KeePassXC](https://keepassxc.org)
