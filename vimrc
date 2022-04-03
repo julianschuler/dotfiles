@@ -251,6 +251,7 @@ nnoremap vil ^vg_
 
 " spell checking
 nnoremap z z=
+nnoremap Z :setlocal invspell<cr>
 
 " YCM bindings
 nnoremap <leader>t :YcmCompleter GoTo<cr>
