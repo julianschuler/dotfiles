@@ -32,3 +32,6 @@ This repository contains configuration files for most of the programs I use.
 * Email client: [aerc](https://git.sr.ht/~rjarry/aerc)
 * PDF viewer: [zathura](https://pwmt.org/projects/zathura)
 * Password manager: [KeePassXC](https://keepassxc.org)
+
+## License
+This repository is licensed under the MIT license, see [`LICENSE.txt`](LICENSE.txt) for further information.
