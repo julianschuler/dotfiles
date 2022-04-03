@@ -1,0 +1,37 @@
+format = """
+$directory\
+$git_branch\
+$git_commit\
+$git_status\
+$git_state\
+$git_metrics\
+$docker_context\
+$package\
+$custom\
+$sudo\
+$cmd_duration\
+$line_break\
+$jobs\
+$character"""
+
+
+[directory]
+read_only = " "
+style = "bold bright-blue"
+repo_root_style = "bold bright-green"
+repo_root_format = """
+[$before_root_path]($style)\
+[$repo_root$path]($repo_root_style)\
+[$read_only]($read_only_style) """
+truncation_length = 8
+truncate_to_repo = false
+
+[git_branch]
+symbol = " "
+style = "bold bright-red"
+
+[git_metrics]
+disabled = false
+
+[git_status]
+style = "bold bright-yellow"

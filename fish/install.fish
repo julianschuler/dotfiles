@@ -37,5 +37,9 @@ zoxide init fish > "$HOME/.config/fish/conf.d/zoxide.fish"
 # generate abbreviations
 source fish/abbreviations.fish
 
+# use starship as prompt
+starship init fish | source
+funcsave fish_prompt
+
 # install plugins listed in fish_plugins
 curl -sL https://git.io/fisher | source && fisher update
