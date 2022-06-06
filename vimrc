@@ -15,21 +15,42 @@ let maplocalleader="\<space>"
 
 " plugins
 call plug#begin()
+
+" colorscheme
 Plug 'morhetz/gruvbox'
+
+" utility
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'easymotion/vim-easymotion'
-Plug 'Raimondi/delimitMate'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-Plug 'ycm-core/YouCompleteMe'
+
+" latex and markdown
 Plug 'lervag/vimtex'
-Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug'] }
+
+" linting and lsp
 Plug 'dense-analysis/ale'
-Plug 'maxmellon/vim-jsx-pretty'
-Plug 'pangloss/vim-javascript'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'mattn/vim-lsp-settings'
+Plug 'rhysd/vim-lsp-ale'
+
+" autocompletion
+Plug 'Raimondi/delimitMate'
+Plug 'Shougo/ddc.vim'
+Plug 'vim-denops/denops.vim'
+
+" autocompletion sources
+Plug 'matsui54/ddc-buffer'
+Plug 'LumaKernel/ddc-file'
+Plug 'shun/ddc-vim-lsp'
+
+" autocompletion filters
+Plug 'tani/ddc-fuzzy'
+
 call plug#end()
 
 " delimitMate settings
@@ -73,14 +94,19 @@ if empty(v:servername) && exists('*remote_startserver')
   call remote_startserver('VIM')
 endif
 
+" open markdown preview when entering markdown buffer
+let g:mkdp_auto_start = 1
+
 " ale settings
 let g:ale_linters = {
     \ 'javascriptreact': ['eslint'],
     \ 'python': ['flake8'],
     \}
 let g:ale_fixers = {
+    \ '*' : ['remove_trailing_lines', 'trim_whitespace'],
     \ 'javascriptreact': ['eslint'],
     \ 'python': ['black', 'isort'],
+    \ 'vim': ['remove_trailing_lines'],
     \ }
 let g:ale_sign_error = '✘'
 let g:ale_sign_warning = '⚠'
@@ -88,12 +114,42 @@ highlight ALEErrorSign ctermbg=NONE ctermfg=red
 highlight ALEWarningSign ctermbg=NONE ctermfg=yellow
 let g:ale_lint_on_enter = 0
 let g:ale_lint_on_text_change = 'never'
-let g:ale_linters_explicit = 1
 let g:ale_lint_on_save = 1
 let g:ale_fix_on_save = 1
 
-" Open markdown preview when entering markdown buffer
-let g:mkdp_auto_start = 1
+" lsp settings
+let g:lsp_peek_alignment = 'top'
+
+" set ddc sources
+call ddc#custom#patch_global('sources', ['buffer', 'file', 'vim-lsp'])
+call ddc#custom#patch_global('sourceOptions', {
+    \ 'buffer': {'mark': '[b]'},
+    \ 'file': {'mark': '[f]', 'isVolatile': v:true},
+    \ 'vim-lsp': {'mark': '[l]'},
+    \ })
+
+" set ddc filters
+call ddc#custom#patch_global('sourceOptions', {
+    \   '_': {
+    \     'matchers': ['matcher_fuzzy'],
+    \     'sorters': ['sorter_fuzzy'],
+    \     'converters': ['converter_fuzzy']
+    \   }
+    \ })
+
+" set up ddc for vimtex
+call vimtex#init()
+call ddc#custom#patch_filetype(['tex'], 'sourceOptions', {
+     \ 'omni': {
+     \   'forceCompletionPattern': g:vimtex#re#deoplete
+     \ },
+     \ })
+call ddc#custom#patch_filetype(['tex'], 'sourceParams', {
+     \ 'omni': {'omnifunc': 'vimtex#complete#omnifunc'},
+     \ })
+
+" enable ddc
+call ddc#enable()
 
 set showcmd                     " show command in bottom bar
 set cursorline                  " highlight current line
@@ -195,7 +251,7 @@ nnoremap q :q<cr>
 " searching and jumping
 nnoremap _ :
 nnoremap j /
-nnoremap J :Rg 
+nnoremap J :Rg
 nnoremap k `
 nnoremap kk ``
 nnoremap <leader>j :noh<cr>
@@ -228,13 +284,13 @@ vnoremap ; ,
 vnoremap , ;
 
 " easymotion bindings
-nmap s <Plug>(easymotion-s)
-nmap W <Plug>(easymotion-w)
+nmap s <plug>(easymotion-s)
+nmap W <plug>(easymotion-w)
 
-map <c-i> <Plug>(easymotion-lineforward)
-map <c-a> <Plug>(easymotion-linebackward)
-map <c-o> <Plug>(easymotion-k)
-map <c-e> <Plug>(easymotion-j)
+map <c-i> <plug>(easymotion-lineforward)
+map <c-a> <plug>(easymotion-linebackward)
+map <c-o> <plug>(easymotion-k)
+map <c-e> <plug>(easymotion-j)
 
 " find files with fzf
 nnoremap f :GFiles<cr>
@@ -261,10 +317,20 @@ nnoremap vil ^vg_
 nnoremap z z=
 nnoremap Z :setlocal invspell<cr>
 
-" YCM bindings
-nnoremap <leader>t :YcmCompleter GoTo<cr>
-nnoremap <leader>r :YcmCompleter GoToReferences<cr>
-nnoremap <leader>n :YcmCompleter GoToDefinition<cr>
+" vim-lsp bindings
+nnoremap <leader>t <plug>(lsp-definition)
+nnoremap <leader>T <plug>(lsp-declaration)
+nnoremap <leader>r <plug>(lsp-references)
+nnoremap <leader>n <plug>(lsp-next-reference)
+nnoremap <leader>N <plug>(lsp-previous-reference)
+nnoremap <leader>R <plug>(lsp-rename)
+nnoremap K <plug>(lsp-peek-definition)
+
+" using tab and shift-tab for ddc completions
+inoremap <silent><expr> <tab> ddc#map#pum_visible() ? '<C-n>' :
+\ (col('.') <= 1 <Bar><Bar> getline('.')[col('.') - 2] =~# '\s') ?
+\ '<tab>' : ddc#map#manual_complete()
+inoremap <expr><s-tab>  ddc#map#pum_visible() ? '<c-p>' : '<c-h>'
 
 " window management
 nnoremap <leader>a <c-w>h
