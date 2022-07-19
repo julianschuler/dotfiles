@@ -1,7 +1,7 @@
 // general settings
 settings.tabsMRUOrder = false;
 settings.focusFirstCandidate = true;
-settings.defaultSearchEngine = 'c';
+settings.defaultSearchEngine = 'd';
 
 // editing
 api.map('r', 'i');
@@ -39,12 +39,12 @@ api.iunmap(":");
 
 
 // searching
-api.addSearchAlias('c', 'Ecosia', 'https://www.ecosia.org/search?q=');
-api.addSearchAlias('w', 'wikipedia', 'https://de.wikipedia.org/wiki/', 's', 'https://de.wikipedia.org/w/api.php?action=opensearch&format=json&formatversion=2&namespace=0&limit=40&search=', function(response) {
+api.addSearchAlias('d', 'DuckDuckGo', 'https://duckduckgo.com/?q=');
+api.addSearchAlias('w', 'Wikipedia', 'https://de.wikipedia.org/wiki/', 's', 'https://de.wikipedia.org/w/api.php?action=opensearch&format=json&formatversion=2&namespace=0&limit=40&search=', function(response) {
     return JSON.parse(response.text)[1];
 });
-api.mapkey('l', '#8Open Search with Ecosia', function() {
-    api.Front.openOmnibar({type: "SearchEngine", extra: "c"});
+api.mapkey('l', '#8Open Search with DuckDuckGo', function() {
+    api.Front.openOmnibar({type: "SearchEngine", extra: "d"});
 });
 api.mapkey('h', '#8Open Search with Wikipedia (DE)', function() {
     api.Front.openOmnibar({type: "SearchEngine", extra: "w"});
