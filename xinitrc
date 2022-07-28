@@ -11,4 +11,6 @@ export PATH="$HOME/documents/scripts:$PATH"
 
 setxkbmap de nodeadkeys
 
+xss-lock xsecurelock &
+
 exec spectrwm
