@@ -12,14 +12,12 @@ $LN "$PWD/alacritty" "$CONFIG_DIR/"
 $LN "$PWD/alacritty/alacritty-$DEVICE.yml" "$PWD/alacritty/alacritty.yml"
 $LN "$PWD/conky/conky-$DEVICE.conf" "$HOME/.conkyrc"
 $LN "$PWD/fish" "$CONFIG_DIR/"
+$LN "$PWD/lesskey" "$HOME/.lesskey"
 $LN "$PWD/ranger" "$CONFIG_DIR/"
 $LN "$PWD/starship.toml" "$CONFIG_DIR/"
 $LN "$PWD/spectrwm.conf" "$HOME/.spectrwm.conf"
 $LN "$PWD/vimrc" "$HOME/.vimrc"
-$LN "$PWD/zathurarc" "$CONFIG_DIR/zathura/zathurarc"
-
-# generate less bindings from lesskey file
-lesskey lesskey
+$LN "$PWD/zathura" "$CONFIG_DIR/"
 
 # setup fish
 fish fish/install.fish
