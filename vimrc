@@ -254,7 +254,7 @@ nnoremap q :q<cr>
 " searching and jumping
 nnoremap _ :
 nnoremap j /
-nnoremap J :Rg
+nnoremap J :Rg 
 nnoremap k `
 nnoremap kk ``
 nnoremap <leader>j :noh<cr>
@@ -304,6 +304,7 @@ nnoremap <leader>f :Files $HOME<cr>
 nnoremap <c-v> :bp<cr>
 nnoremap <c-u> :bn<cr>
 nnoremap b :Buffers<cr>
+nnoremap B :Rex<cr>
 
 " Open :Git
 nnoremap <leader>g :Git
