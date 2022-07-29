@@ -1,7 +1,7 @@
 # Dotfiles
 This repository contains configuration files for most of the programs I use.
 
-### Development setup
+## General setup
 #### Keyboard
 * Hardware: [Ergomin](https://github.com/julianschuler/keyboards/tree/master/ergomin), custom designed ergonomic keyboard
 * Layout: [modified VOU layout](https://github.com/julianschuler/keyboards/blob/master/ergomin/qmk/keymaps/julianschuler/keymap.c#L52) (optimized for German and English)
@@ -38,6 +38,9 @@ This repository contains configuration files for most of the programs I use.
 * Email client: [aerc](https://git.sr.ht/~rjarry/aerc)
 * PDF viewer: [zathura](https://pwmt.org/projects/zathura)
 * Password manager: [KeePassXC](https://keepassxc.org)
+
+## Applying the configuration
+The provided script `apply-config.sh` can be used to apply some or all parts of the configuration. See `apply-config.sh -h` for further information.
 
 ## License
 This repository is licensed under the MIT license, see [`LICENSE.txt`](LICENSE.txt) for further information.
