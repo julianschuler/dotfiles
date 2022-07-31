@@ -71,6 +71,7 @@ if [ "$create_links" = true ]; then
     $ln_cmd "$dot_dir/fish" "$config_dir/"
     $ln_cmd "$dot_dir/lesskey" "$HOME/.lesskey"
     $ln_cmd "$dot_dir/ranger" "$config_dir/"
+    $ln_cmd "$dot_dir/rofi" "$config_dir/"
     $ln_cmd "$dot_dir/starship.toml" "$config_dir/"
     $ln_cmd "$dot_dir/spectrwm.conf" "$HOME/.spectrwm.conf"
     $ln_cmd "$dot_dir/vimrc" "$HOME/.vimrc"

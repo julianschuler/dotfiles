@@ -1,0 +1,13 @@
+configuration {
+    modi: "window,drun";
+    font: "Sauce Code Pro Nerd Font 13";
+    show-icons: true;
+    icon-theme: "Papirus";
+    drun-show-actions: false;
+    drun-display-format: "    {name}   [<span weight='light' size='small'><i>({generic})</i></span>]";
+    window-format: "    {c}      {t}";
+    display-window: "";
+    display-drun: "";
+}
+
+@theme "/usr/share/rofi/themes/gruvbox-dark.rasi"

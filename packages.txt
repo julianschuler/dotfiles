@@ -14,6 +14,7 @@ nerd-fonts-source-code-pro
 playerctl
 ranger
 ripgrep
+rofi
 spectrwm
 starship
 xsecurelock
