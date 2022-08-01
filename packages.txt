@@ -3,6 +3,7 @@ alacritty
 bat
 brightnessctl
 conky
+dante
 exa
 fd
 firefox
@@ -17,6 +18,7 @@ ripgrep
 rofi
 spectrwm
 starship
+w3m
 xsecurelock
 xss-lock
 zathura
