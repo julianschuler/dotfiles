@@ -40,7 +40,7 @@ setup_fish=false
 # set flags according to input parameters
 while getopts "alfph" arg; do
     case $arg in
-        "a") create_links=false; install_packages=false; setup_fish=false ;;
+        "a") create_links=true; install_packages=true; setup_fish=true ;;
         "f") setup_fish=true ;;
         "l") create_links=true ;;
         "p") install_packages=true ;;
