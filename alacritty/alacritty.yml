@@ -1,6 +1,12 @@
 font:
+  size: 13
   normal:
     family: Sauce Code Pro Nerd Font
+
+window:
+  padding:
+    x: 3
+    y: 3
 
 selection:
   save_to_clipboard: true

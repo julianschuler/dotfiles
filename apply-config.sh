@@ -66,7 +66,6 @@ if [ "$create_links" = true ]; then
     print_debug "Creating symlinks for the configuration files and directories..."
     $ln_cmd "$dot_dir/aerc" "$config_dir/"
     $ln_cmd "$dot_dir/alacritty" "$config_dir/"
-    $ln_cmd "$dot_dir/alacritty/alacritty-$device.yml" "$dot_dir/alacritty/alacritty.yml"
     $ln_cmd "$dot_dir/conky/conky-$device.conf" "$HOME/.conkyrc"
     $ln_cmd "$dot_dir/fish" "$config_dir/"
     $ln_cmd "$dot_dir/lesskey" "$HOME/.lesskey"
