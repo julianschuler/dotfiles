@@ -75,7 +75,9 @@ if [ "$create_links" = true ]; then
     $ln_cmd "$dot_dir/starship.toml" "$config_dir/"
     $ln_cmd "$dot_dir/spectrwm.conf" "$HOME/.spectrwm.conf"
     $ln_cmd "$dot_dir/vimrc" "$HOME/.vimrc"
-    $ln_cmd "$dot_dir/xinitrc" "$HOME/.xinitrc"
+    $ln_cmd "$dot_dir/xorg/xinitrc" "$HOME/.xinitrc"
+    $ln_cmd "$dot_dir/xorg/xresources" "$HOME/.Xresources"
+    $ln_cmd "$dot_dir/xorg/xserverrc" "$HOME/.xserverrc"
     $ln_cmd "$dot_dir/zathura" "$config_dir/"
     print_debug ""
 fi

@@ -1,2 +1,2 @@
-set TTY1 (tty)
-[ "$TTY1" = "/dev/tty1" ] && exec startx
+# Start X at login
+status is-login && [ -z "$DISPLAY" -a "$XDG_VTNR" = 1 ]  && exec startx

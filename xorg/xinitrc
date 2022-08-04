@@ -1,0 +1,24 @@
+#!/bin/sh
+
+# source additional config files if present
+if [ -d /etc/X11/xinit/xinitrc.d ] ; then
+ for f in /etc/X11/xinit/xinitrc.d/?*.sh ; do
+  [ -x "$f" ] && . "$f"
+ done
+ unset f
+fi
+
+[[ -f ~/.Xresources ]] && xrdb -merge -I$HOME ~/.Xresources
+
+export PATH="$HOME/documents/scripts:$PATH"
+
+# set keymap and screenlocker and hide cursor
+setxkbmap de nodeadkeys &
+xss-lock xsecurelock &
+unclutter --timeout 1 --ignore-scrolling --start-hidden &
+
+# execute startup scripts and set up display for laptop/desktop
+display-setup
+startup-scripts
+
+exec spectrwm

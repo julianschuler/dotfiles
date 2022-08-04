@@ -18,6 +18,7 @@ ripgrep
 rofi
 spectrwm
 starship
+unclutter
 w3m
 xsecurelock
 xss-lock
