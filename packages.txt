@@ -2,6 +2,7 @@ aerc
 alacritty
 bat
 brightnessctl
+btop
 conky
 dante
 exa
