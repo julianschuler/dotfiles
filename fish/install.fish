@@ -34,8 +34,9 @@ set -U fish_greeting
 # generate zoxide config
 zoxide init fish > "$HOME/.config/fish/conf.d/zoxide.fish"
 
-# generate abbreviations
+# generate abbreviations and aliases
 source fish/abbreviations.fish
+source fish/aliases.fish
 
 # use starship as prompt
 starship init fish | source
