@@ -9,3 +9,6 @@ fish/fish_variables
 
 # exclude aerc account information
 aerc/accounts.conf
+
+# exclude ranger plugin dir (plugins are included as submodules
+ranger/plugins
