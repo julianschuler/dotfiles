@@ -1,7 +1,7 @@
 # general
 abbr -a -U -- c z
 abbr -a -U -- d 'zathura --fork'
-abbr -a -U -- e vim
+abbr -a -U -- e nvim
 abbr -a -U -- f fd
 abbr -a -U -- l ls
 abbr -a -U -- m man
