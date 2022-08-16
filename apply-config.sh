@@ -10,9 +10,10 @@ print_usage() {
 Apply (parts of) the configuration to the system.
 
 Available options (at least one required):
-  -a    Apply all of the configuration, equivalent to -lpf
+  -a    Apply all of the configuration, equivalent to -lpfn
   -l    Create symlinks for configuration files and directories
   -p    Install packages listed in packages.txt using paru
+  -n    Setup neovim and install neovim plugins
   -f    Setup fish and install fish plugins
   -h    Show this help message"
     exit 0
@@ -35,15 +36,17 @@ print_error() {
 # flags to be set
 create_links=false
 install_packages=false
+setup_nvim=false
 setup_fish=false
 
 # set flags according to input parameters
-while getopts "alfph" arg; do
+while getopts "alpfnh" arg; do
     case $arg in
-        "a") create_links=true; install_packages=true; setup_fish=true ;;
-        "f") setup_fish=true ;;
+        "a") create_links=true; install_packages=true; setup_fish=true; setup_nvim=true ;;
         "l") create_links=true ;;
         "p") install_packages=true ;;
+        "f") setup_fish=true ;;
+        "n") setup_nvim=true ;;
         "h") print_usage; exit 0 ;;
         "?") print_error; exit 1 ;;
     esac
@@ -66,6 +69,7 @@ if [ "$create_links" = true ]; then
     print_debug "Creating symlinks for the configuration files and directories..."
     $ln_cmd "$dot_dir/aerc" "$config_dir/"
     $ln_cmd "$dot_dir/alacritty" "$config_dir/"
+    $ln_cmd "$dot_dir/astronvim" "$config_dir/"
     $ln_cmd "$dot_dir/conky/conky-$device.conf" "$HOME/.conkyrc"
     $ln_cmd "$dot_dir/fish" "$config_dir/"
     $ln_cmd "$dot_dir/lesskey" "$HOME/.lesskey"
@@ -84,7 +88,7 @@ fi
 # install packages using paru
 if [ "$install_packages" = true ]; then
     print_debug "Installing packages from package.txt using paru..."
-    cut "-d " -f1 "$dot_dir/packages.txt" | xargs paru -S
+    paru -S --needed - < "$dot_dir/packages.txt"
     print_debug ""
 fi
 
@@ -92,6 +96,18 @@ fi
 if [ "$setup_fish" = true ]; then
     print_debug "Setting up fish..."
     fish "$dot_dir/fish/install.fish"
+    print_debug ""
+fi
+
+# setup neovim
+if [ "$setup_nvim" = true ]; then
+    print_debug "Setting up neovim..."
+    $ln_cmd "$dot_dir/astronvim" "$config_dir/"
+    if [ -d "$config_dir/nvim" ]; then
+        rm -rf "$config_dir/nvim"
+    fi
+    git clone https://github.com/AstroNvim/AstroNvim "$config_dir/nvim"
+    nvim  --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
     print_debug ""
 fi
 

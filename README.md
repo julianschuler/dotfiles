@@ -9,8 +9,8 @@ This repository contains configuration files for most of the programs I use.
 #### General
 * Operating system: [Arch Linux](https://archlinux.org/)
 * Package manager: [Paru](https://github.com/morganamilo/paru)
+* Editor: [Neovim](https://github.com/neovim/neovim) using [AstroNvim](https://github.com/AstroNvim/AstroNvim) as base config
 * Font: [Source Code Pro Nerd Font](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/SourceCodePro)
-
 
 #### Terminal
 * Terminal emulator: [Alacritty](https://alacritty.org/)
@@ -23,10 +23,6 @@ This repository contains configuration files for most of the programs I use.
 * Improved diffs: [delta](https://github.com/dandavison/delta)
 * Fuzzy finder: [fzf](https://github.com/junegunn/fzf)
 * Improved ls: [exa](https://github.com/ogham/exa)
-
-#### Editor
-* Editor: [Vim](https://github.com/vim/vim)
-* Plugin manager: [vim-plug](https://github.com/junegunn/vim-plug)
 
 #### Browser
 * Browser: [Firefox](https://www.mozilla.org/de/firefox/new)

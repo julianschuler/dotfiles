@@ -12,6 +12,7 @@ fish
 fzf
 git-delta
 keepassxc
+neovim
 nerd-fonts-source-code-pro
 playerctl
 ranger

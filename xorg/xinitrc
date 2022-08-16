@@ -11,6 +11,7 @@ fi
 [[ -f ~/.Xresources ]] && xrdb -merge -I$HOME ~/.Xresources
 
 export PATH="$HOME/documents/scripts:$PATH"
+export EDITOR="nvim"
 
 # set keymap and screenlocker and hide cursor
 setxkbmap de nodeadkeys &

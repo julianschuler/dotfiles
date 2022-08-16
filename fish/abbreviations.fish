@@ -1,7 +1,7 @@
 # general
 abbr -a -U -- c z
 abbr -a -U -- d 'zathura --fork'
-abbr -a -U -- e vim
+abbr -a -U -- e nvim
 abbr -a -U -- f fd
 abbr -a -U -- l ls
 abbr -a -U -- m man
@@ -20,6 +20,7 @@ abbr -a -U -- aq 'paru -Q'
 # git
 abbr -a -U -- g git
 abbr -a -U -- ga 'git add'
+abbr -a -U -- gb 'git rebase'
 abbr -a -U -- gc 'git commit'
 abbr -a -U -- gcl 'git clone'
 abbr -a -U -- gco 'git checkout'
@@ -32,3 +33,4 @@ abbr -a -U -- gs 'git status'
 abbr -a -U -- gsh 'git stash'
 abbr -a -U -- gu 'git push'
 abbr -a -U -- gul 'git pull'
+abbr -a -U -- gw 'git show'
