@@ -107,7 +107,11 @@ if [ "$setup_nvim" = true ]; then
         rm -rf "$config_dir/nvim"
     fi
     git clone https://github.com/AstroNvim/AstroNvim "$config_dir/nvim"
-    nvim  --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
+    nvim --headless -c 'AstroUpdate' -c 'quitall' 2> /dev/null
+    print_debug "Syncing neovim plugins using packer..."
+    nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync' 2> /dev/null
+    # sync plugins a second time, required for installing all required plugins
+    nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync' 2> /dev/null
     print_debug ""
 fi
 

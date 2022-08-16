@@ -8,7 +8,7 @@ local config = {
     branch = "main",
     commit = nil,
     pin_plugins = nil,
-    skip_prompts = false,
+    skip_prompts = true,
     show_changelog = true,
   },
 
