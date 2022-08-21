@@ -11,6 +11,10 @@ window:
 selection:
   save_to_clipboard: true
 
+cursor:
+  style:
+    shape: Beam
+
 # Colors (Gruvbox dark)
 colors:
   # Default colors
