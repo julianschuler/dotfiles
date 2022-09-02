@@ -8,6 +8,7 @@ abbr -a -U -- m man
 abbr -a -U -- p python3
 abbr -a -U -- r ranger
 abbr -a -U -- s sudo
+abbr -a -U -- se sudo vim
 abbr -a -U -- t bat
 abbr -a -U -- x exit
 
