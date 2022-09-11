@@ -49,6 +49,7 @@ set encoding=utf8
 set scrolloff=3
 set wrap linebreak
 set number relativenumber
+set gdefault
 
 " Statusline settings
 set laststatus=2
@@ -71,11 +72,10 @@ let maplocalleader="\<space>"
 " The following keybindings are adapted to a modified VOU layout
 " and mostly won't make sense on a default QWERTY/QWERTZ keyboard
 
-" Replacing
+" Replacing and redo
 nnoremap ü r
-nnoremap ö R
 vnoremap ü r
-vnoremap ö R
+nnoremap ä <c-r>
 
 " Switching to insert mode
 nnoremap r i
@@ -84,7 +84,10 @@ nnoremap l o
 nnoremap L O
 vnoremap r I
 vnoremap w A
+
+" Changing the selection area
 vnoremap l o
+vnoremap L O
 
 " Deleting last word using <C-BS>
 noremap! <c-bs> <c-w>
@@ -111,33 +114,31 @@ vnoremap i l
 " Macros
 nnoremap Q q
 
-" Saving and quittinq
+" Saving and quitting
 nnoremap <leader>s :update<cr>
 nnoremap q :q<cr>
 nnoremap <leader>q :qa<cr>
 
-" Searching and jumping
-nnoremap _ :
+" Searching and substituting
 nnoremap j /
-nnoremap k `
-nnoremap kk ``
-nnoremap <leader>j :noh<cr>
-
-" Search/replace word under cursor/selection
 nnoremap h *
-nnoremap H :%s/\<<c-r><c-w>\>//g<left><left>
+nnoremap H :%s/
+nnoremap <leader>j :noh<cr>
+vnoremap j /
 vnoremap h "hy/<c-r>h<cr>
-vnoremap H "hy:%s/<c-r>h//g<left><left>
+vnoremap H :s/
 
-" Yank to end of line and buffer
+" Jumping and command-line mode
+nnoremap k '
+nnoremap kk ''
+nnoremap _ :
+vnoremap k '
+vnoremap kk ''
+vnoremap _ :
+
+" Yanking to end of line or the buffer
 nnoremap Y y$
 nnoremap <leader>y :%y<cr>
-
-" Delete not into register with x (use dl for cutting one character into register)
-nnoremap x "_x
-
-" Redo
-nnoremap ä <c-r>
 
 " Switching between buffers
 nnoremap <c-v> :bp<cr>

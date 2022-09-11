@@ -18,9 +18,10 @@ local config = {
   -- Set vim options
   options = {
     opt = {
-      relativenumber = true,
-      wrap = true,
+      gdefault = true,
       linebreak = true,
+      modeline = false,
+      wrap = true,
     },
     g = {
       mapleader = " ",
@@ -231,9 +232,9 @@ local config = {
       ["<leader>sn"] = false,
       ["<leader>sr"] = false,
 
-      -- Replacing
+      -- Replacing and redo
       ["ü"] = { "r", desc = "Replace character" },
-      ["Ö"] = { "R", desc = "Enter replace mode" },
+      ["ä"] = { "<c-r>", desc = "Redo" },
 
       -- Switching to insert mode
       ["r"] = { "<cmd>noh<cr>i", desc = "Insert before cursor" },
@@ -263,23 +264,20 @@ local config = {
       ["q"] = { "<cmd>q<cr>", desc = "Quit" },
       ["<leader>q"] = { "<cmd>qa<cr>", desc = "Quit all" },
 
-      -- Searching and jumping
-      ["_"] = { ":", desc = "Enter command-line mode" },
+      -- Searching and substituting
       ["j"] = { "/", desc = "Search" },
+      ["h"] = { "*", desc = "Search word under cursor" },
+      ["H"] = { ":%s/", desc = "Substitute" },
+      ["<leader>j"] = { "<cmd>noh<cr>", desc = "Disable search highlight" },
+
+      -- Jumping and command-line mode
       ["k"] = { "'", desc = "Jump to mark" },
       ["kk"] = { "''", desc = "Jump to position before last jump" },
-      ["<leader>j"] = { "<cmd>noh<cr>", desc = "Disable highlight" },
+      ["_"] = { ":", desc = "Enter command-line mode" },
 
-      -- Searching/Replacing word nearest to cursor
-      ["h"] = { "*", desc = "Search word under cursor" },
-      ["H"] = { "<cmd>%s/<<c-r><c-w>>//g<left><left>", desc = "Replace word under cursor" },
-
-      -- Yank
+      -- Yanking
       ["Y"] = { "y$", desc = "Yank to end of line" },
       ["<leader>y"] = { "<cmd>%y<cr>", desc = "Yank buffer" },
-
-      -- Redo
-      ["ä"] = { "<c-r>", desc = "Redo" },
 
       -- Spell checking
       ["Z"] = { "z=", desc = "Suggest correct word" },
@@ -314,7 +312,6 @@ local config = {
     v = {
       -- Replacing
       ["ü"] = { "r", desc = "Replace character" },
-      ["Ö"] = { "R", desc = "Enter replace mode" },
 
       -- Movement
       ["A"] = { "b", desc = "Move a word backwards" },
@@ -326,20 +323,28 @@ local config = {
       ["o"] = { "gk", desc = "Move up" },
       ["i"] = { "l", desc = "Move right" },
 
-      -- Switching to insert mode
-      ["r"] = { "<cmd>noh<cr>i", desc = "Insert before cursor" },
-      ["w"] = { "<cmd>noh<cr>A", desc = "Append at end of line" },
-      ["l"] = { "<cmd>noh<cr>o", desc = "Begin new line below" },
-      ["L"] = { "<cmd>noh<cr>O", desc = "Begin new line above" },
+      -- Changing the selection area
+      ["l"] = { "o", desc = "Go to other end of selection" },
+      ["L"] = { "O", desc = "Go to other end of selection or other corner" },
 
-      -- Searching/replacing selection
-      ["h"] = { "hy/<c-r>h<cr>", desc = "Search for selection" },
-      ["H"] = { "hy:%s/<c-r>h//g<left><left>", desc = "Begin new line below" },
+      -- Switching to insert mode
+      ["r"] = { "<cmd>noh<cr>I", desc = "Insert before cursor" },
+      ["w"] = { "<cmd>noh<cr>A", desc = "Append at end of line" },
+
+      -- Searching and substituting
+      ["j"] = { "/", desc = "Search" },
+      ["h"] = { '"hy/<c-r>h<cr>', desc = "Search for selection" },
+      ["H"] = { ":s/", desc = "Substitute within selection" },
+
+      -- Jumping and command-line mode
+      ["k"] = { "'", desc = "Jump to mark" },
+      ["kk"] = { "''", desc = "Jump to position before last jump" },
+      ["_"] = { ":", desc = "Enter command-line mode" },
     },
 
     -- Insert mode mappings
     i = {
-      -- Delete last word using control-backspace
+      -- Deleting last word using control-backspace
       ["<c-h>"] = { "<c-w>", desc = "Delete last word" },
     },
   },
@@ -366,7 +371,18 @@ local config = {
     --   group = "numbertoggle",
     --   command = "set norelativenumber",
     -- })
-    --
+
+    vim.api.nvim_create_augroup("bufcheck", { clear = true })
+    vim.api.nvim_create_autocmd("FileType", {
+      group = "bufcheck",
+      pattern = "tex",
+      command = "nnoremap <leader>v <cmd>VimtexView<cr>",
+    })
+    vim.api.nvim_create_autocmd("FileType", {
+      group = "bufcheck",
+      pattern = "markdown",
+      command = "nnoremap <leader>v <cmd>MarkdownPreviewToggle<cr>",
+    })
     vim.api.nvim_set_hl(0, "LeapLabelPrimary", { link = "GruvboxOrangeBold" })
     vim.api.nvim_set_hl(0, "LeapLabelSecondary", { link = "GruvboxYellowBold" })
   end,
