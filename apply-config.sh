@@ -67,6 +67,7 @@ device=$(hostnamectl hostname | cut -d- -f2)
 # create symbolic links for config files and directories
 if [ "$create_links" = true ]; then
     print_debug "Creating symlinks for the configuration files and directories..."
+    mkdir -p "$config_dir"
     $ln_cmd "$dot_dir/aerc" "$config_dir/"
     $ln_cmd "$dot_dir/alacritty" "$config_dir/"
     $ln_cmd "$dot_dir/astronvim" "$config_dir/"
@@ -109,8 +110,6 @@ if [ "$setup_nvim" = true ]; then
     git clone https://github.com/AstroNvim/AstroNvim "$config_dir/nvim"
     nvim --headless -c 'AstroUpdate' -c 'quitall' 2> /dev/null
     print_debug "Syncing neovim plugins using packer..."
-    nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync' 2> /dev/null
-    # sync plugins a second time, required for installing all required plugins
     nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync' 2> /dev/null
     print_debug ""
 fi

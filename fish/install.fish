@@ -32,6 +32,7 @@ set -U fish_pager_color_progress brwhite\x1e\x2d\x2dbackground\x3dcyan
 set -U fish_greeting
 
 # generate zoxide config
+mkdir -p "$HOME/.config/fish/conf.d"
 zoxide init fish > "$HOME/.config/fish/conf.d/zoxide.fish"
 
 # generate abbreviations and aliases

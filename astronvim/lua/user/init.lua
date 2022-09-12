@@ -251,10 +251,10 @@ local config = {
       ["e"] = { "gj", desc = "Move down" },
       ["o"] = { "gk", desc = "Move up" },
       ["i"] = { "l", desc = "Move right" },
-      ["<c-a>"] = { require("smart-splits").move_cursor_left, desc = "Go to the left window" },
-      ["<c-e>"] = { require("smart-splits").move_cursor_down, desc = "Go to the down window" },
-      ["<c-o>"] = { require("smart-splits").move_cursor_up, desc = "Go to the up window" },
-      ["<c-i>"] = { require("smart-splits").move_cursor_right, desc = "Go to the right window" },
+      ["<c-a>"] = { "<cmd>lua require('smart-splits').move_cursor_left()<cr>", desc = "Go to the left window" },
+      ["<c-e>"] = { "<cmd>lua require('smart-splits').move_cursor_down()<cr>", desc = "Go to the down window" },
+      ["<c-o>"] = { "<cmd>lua require('smart-splits').move_cursor_up()<cr>", desc = "Go to the up window" },
+      ["<c-i>"] = { "<cmd>lua require('smart-splits').move_cursor_right()<cr>", desc = "Go to the right window" },
 
       -- Macros
       ["Q"] = { "q", desc = "Record macro" },
