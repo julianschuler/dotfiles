@@ -10,7 +10,8 @@ print_usage() {
 Apply (parts of) the configuration to the system.
 
 Available options (at least one required):
-  -a    Apply all of the configuration, equivalent to -lpfn
+  -a    Apply all of the configuration, equivalent to -slpfn
+  -s    Install git submodules
   -l    Create symlinks for configuration files and directories
   -p    Install packages listed in packages.txt using paru
   -n    Setup neovim and install neovim plugins
@@ -34,15 +35,18 @@ print_error() {
 }
 
 # flags to be set
+install_submodules=false
 create_links=false
 install_packages=false
 setup_nvim=false
 setup_fish=false
 
 # set flags according to input parameters
-while getopts "alpfnh" arg; do
+while getopts "aslpfnh" arg; do
     case $arg in
-        "a") create_links=true; install_packages=true; setup_fish=true; setup_nvim=true ;;
+        "a") install_submodules=true create_links=true; install_packages=true;
+             setup_fish=true; setup_nvim=true ;;
+        "s") install_submodules=true ;;
         "l") create_links=true ;;
         "p") install_packages=true ;;
         "f") setup_fish=true ;;
@@ -63,6 +67,13 @@ ln_cmd="ln -sf"
 config_dir="$HOME/.config"
 dot_dir=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
 device=$(hostnamectl hostname | cut -d- -f2)
+
+# install git submodules
+if [ "$install_submodules" = true ]; then
+    print_debug "Install git submodules..."
+    git submodule update --init --recursive
+    print_debug ""
+fi
 
 # create symbolic links for config files and directories
 if [ "$create_links" = true ]; then
