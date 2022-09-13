@@ -30,14 +30,15 @@ set -U fish_pager_color_progress brwhite\x1e\x2d\x2dbackground\x3dcyan
 
 # disable greeting
 set -U fish_greeting
+set -l script_dir (realpath (dirname (status -f)))
 
 # generate zoxide config
-mkdir -p "$HOME/.config/fish/conf.d"
-zoxide init fish > "$HOME/.config/fish/conf.d/zoxide.fish"
+mkdir -p "$script_dir/conf.d"
+zoxide init fish > "$script_dir/conf.d/zoxide.fish"
 
 # generate abbreviations and aliases
-source fish/abbreviations.fish
-source fish/aliases.fish
+source "$script_dir/abbreviations.fish"
+source "$script_dir/aliases.fish"
 
 # use starship as prompt
 starship init fish | source
