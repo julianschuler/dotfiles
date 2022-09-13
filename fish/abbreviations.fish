@@ -14,8 +14,8 @@ abbr -a -U -- x exit
 
 # paru
 abbr -a -U -- a paru
-abbr -a -U -- ai 'paru -S'
-abbr -a -U -- ar 'paru -R'
+abbr -a -U -- as 'paru -S'
+abbr -a -U -- ar 'paru -Rs'
 abbr -a -U -- aq 'paru -Q'
 
 # git
