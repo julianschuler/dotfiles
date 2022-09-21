@@ -11,6 +11,7 @@ firefox
 fish
 fzf
 git-delta
+gnome-themes-extras
 keepassxc
 neovim
 nerd-fonts-source-code-pro
@@ -22,6 +23,8 @@ spectrwm
 starship
 unclutter
 w3m
+xclip
+xdg-user-dirs
 xsecurelock
 xss-lock
 zathura

@@ -81,14 +81,15 @@ if [ "$create_links" = true ]; then
     mkdir -p "$config_dir"
     $ln_cmd "$dot_dir/aerc" "$config_dir/"
     $ln_cmd "$dot_dir/alacritty" "$config_dir/"
-    $ln_cmd "$dot_dir/astronvim" "$config_dir/"
     $ln_cmd "$dot_dir/conky/conky-$device.conf" "$HOME/.conkyrc"
-    $ln_cmd "$dot_dir/fish" "$config_dir/"
+    $ln_cmd "$dot_dir/gtk/gtk-3.0" "$config_dir/"
+    $ln_cmd "$dot_dir/gtk/gtk-4.0" "$config_dir/"
     $ln_cmd "$dot_dir/lesskey" "$HOME/.lesskey"
     $ln_cmd "$dot_dir/ranger" "$config_dir/"
     $ln_cmd "$dot_dir/rofi" "$config_dir/"
     $ln_cmd "$dot_dir/starship.toml" "$config_dir/"
     $ln_cmd "$dot_dir/spectrwm.conf" "$HOME/.spectrwm.conf"
+    $ln_cmd "$dot_dir/user-dirs.dirs" "$config_dir/"
     $ln_cmd "$dot_dir/vimrc" "$HOME/.vimrc"
     $ln_cmd "$dot_dir/xorg/xinitrc" "$HOME/.xinitrc"
     $ln_cmd "$dot_dir/xorg/xresources" "$HOME/.Xresources"
@@ -106,6 +107,7 @@ fi
 
 # setup fish and install fish plugins
 if [ "$setup_fish" = true ]; then
+    $ln_cmd "$dot_dir/fish" "$config_dir/"
     print_debug "Setting up fish..."
     fish "$dot_dir/fish/install.fish"
     print_debug ""
