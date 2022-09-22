@@ -11,7 +11,7 @@ firefox
 fish
 fzf
 git-delta
-gnome-themes-extras
+gnome-themes-extra
 keepassxc
 neovim
 nerd-fonts-source-code-pro
