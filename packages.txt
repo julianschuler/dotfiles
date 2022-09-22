@@ -16,11 +16,13 @@ keepassxc
 neovim
 nerd-fonts-source-code-pro
 playerctl
+papirus-icon-theme
 ranger
 ripgrep
 rofi
 spectrwm
 starship
+ueberzug
 unclutter
 w3m
 xclip
