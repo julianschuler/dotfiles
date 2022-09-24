@@ -10,6 +10,9 @@ fish/fish_variables
 # exclude aerc account information
 aerc/accounts.conf
 
+# exclude symlinked conky file
+conky/conky.conf
+
 # exclude __pycache__ and __init__.py for ranger plugins
 __pycache__
 ranger/plugins/__init__.py

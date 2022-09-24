@@ -1,0 +1,19 @@
+[user]
+    email = 31921487+julianschuler@users.noreply.github.com
+    name = Julian Schuler
+
+[core]
+    pager = delta
+
+[interactive]
+    diffFilter = delta --color-only
+
+[delta]
+    navigate = true
+    line-numbers = true
+
+[merge]
+    conflictstyle = diff3
+
+[diff]
+    colorMoved = default
