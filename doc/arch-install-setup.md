@@ -22,7 +22,7 @@ parted /dev/nvme0n1
 Afterwards, create the EFI and root partitions.
 
 ```
-(parted) mkpart efi fat32 1MiB 512MiB
+(parted) mkpart efi fat32 0% 512MiB
 (parted) set 1 esp on
 (parted) mkpart root btrfs 512MiB 100%
 ```
@@ -69,10 +69,16 @@ From now on, follow section 3.1 to 3.5 of the Arch Wiki installation guide.
 Change the `HOOKS=(...)` line in `/etc/mkinitcpio.conf` to
 
 ```
-HOOKS=(base udev autodetect keyboard keymap consolefont modconf block encrypt filesystems)
+HOOKS=(base udev autodetect keyboard keymap modconf block encrypt filesystems)
 ```
 
 Enable lz4 compression by uncommenting `COMPRESSION=lz4` and setting `COMPRESSION_OPTIONS=(-9)`.
+
+Regenerate the initramfs.
+
+```
+mkinitcpio -P
+```
 
 ### Root password (3.7)
 
@@ -90,19 +96,18 @@ Install `sbctl` and `efibootmgr`.
 pacman -S efibootmgr sbctl
 ```
 
-Add the file `/etc/kernel/cmdline` with the following line and `device-uuid` set to the UUID of /dev/nvme0n1p1.
+Add the file `/etc/kernel/cmdline` with the following line and `device-uuid` set to the UUID of /dev/nvme0n1p2.
 
 ```
 cryptdevice=UUID=device-uuid:root root=/dev/mapper/root rw quiet bgrt_disable
 ```
 
-Create the unified kernel image using `sbctl`.
+Create the unified kernel image using `sbctl`. Note that we have to set `ESP_PATH` manually since `lsblk` will not work correctly within the chroot.
 
 ```
-sbctl bundle --save {-a /boot/amd-ucode.img | -i /boot/intel-ucode.img} \
+ESP_PATH=/efi sbctl bundle --save \
+    {-a /boot/amd-ucode.img | -i /boot/intel-ucode.img} \
     -l /usr/share/systemd/bootctl/splash-arch.bmp \
-    -k /boot/vmlinuz-linux \
-    -f /boot/initramfs-linux.img \
     /efi/EFI/Linux/archlinux.efi
 ```
 
@@ -138,14 +143,6 @@ Edit `/etc/xdg/reflector/reflector.conf` and uncomment `--country France,Germany
 
 ```
 systemctl enable --now reflector.timer
-```
-
-### Keyboard config
-
-Set a German keyboard layout with no dead keys and caps mapped to escape for X11 and the virtual console.
-
-```
-localectl set-x11-keymap de "" nodeadkeys caps:escape
 ```
 
 ### Firewall
@@ -208,6 +205,14 @@ chsh -s /bin/fish julian
 ```
 
 Reboot and log in as _julian_.
+
+### Keyboard layout
+
+Set a German keyboard layout with no dead keys and caps mapped to escape for X11 and the virtual console.
+
+```
+sudo localectl set-x11-keymap de "" nodeadkeys caps:escape
+```
 
 ### Secure Boot (optional)
 
