@@ -214,7 +214,7 @@ Set a German keyboard layout with no dead keys and caps mapped to escape for X11
 sudo localectl set-x11-keymap de "" nodeadkeys caps:escape
 ```
 
-### Secure Boot (optional)
+### Secure Boot
 
 Go to the firmware settings and set the secure boot mode to `Setup mode`.
 

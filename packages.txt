@@ -14,7 +14,6 @@ git-delta
 gnome-themes-extra
 keepassxc
 neovim
-nerd-fonts-source-code-pro
 playerctl
 papirus-icon-theme
 ranger
@@ -22,6 +21,7 @@ ripgrep
 rofi
 spectrwm
 starship
+ttf-sourcecodepro-nerd
 ueberzug
 unclutter
 w3m
