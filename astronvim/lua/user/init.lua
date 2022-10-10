@@ -18,8 +18,11 @@ local config = {
   -- Set vim options
   options = {
     opt = {
+      cmdheight = 1,
       gdefault = true,
       linebreak = true,
+      showtabline = 1,
+      signcolumn = "auto",
       modeline = false,
       wrap = true,
     },
@@ -87,6 +90,8 @@ local config = {
           leap.set_default_keymaps()
         end,
       },
+      -- Smooth scrolling
+      ["declancm/cinnamon.nvim"] = { config = function() require("cinnamon").setup() end },
       -- LaTeX and markdown integrations
       ["lervag/vimtex"] = {},
       ["iamcco/markdown-preview.nvim"] = { run = function() vim.fn["mkdp#util#install"]() end },
@@ -96,76 +101,19 @@ local config = {
       ["max397574/better-escape.nvim"] = { disable = true },
     },
     -- All other entries override the setup() call for default plugins
-    feline = function(config)
-      -- Configure custom status line
-      local hl = require("core.status").hl
-      local provider = require("core.status").provider
-      local conditional = require("core.status").conditional
-      local vi_mode_utils = require "feline.providers.vi_mode"
-
-      config.disable.filetypes = { "^NvimTree$", "^neo%-tree$", "^Outline$", "^aerial$", "^TelescopePrompt$" }
-      config.components.active = {
-        {
-          { provider = provider.spacer(), hl = hl.mode() },
-          { provider = function() return vi_mode_utils.get_vim_mode() end, hl = hl.mode { style = "bold" } },
-          { provider = provider.spacer(), hl = hl.mode() },
-          { provider = provider.spacer(2) },
-          { provider = "git_branch", hl = hl.fg("Conditional", { style = "bold" }), icon = " " },
-          { provider = provider.spacer(2), enabled = conditional.git_available },
-          { provider = { name = "file_info", opts = { type = "unique" } } },
-          { provider = provider.spacer(2), enabled = conditional.has_filetype },
-          { provider = "git_diff_added", hl = hl.fg "GitSignsAdd", icon = "  " },
-          { provider = "git_diff_changed", hl = hl.fg "GitSignsChange", icon = " 柳" },
-          { provider = "git_diff_removed", hl = hl.fg "GitSignsDelete", icon = "  " },
-          { provider = provider.spacer(2), enabled = conditional.git_changed },
-          { provider = "diagnostic_errors", hl = hl.fg "DiagnosticError", icon = "  " },
-          { provider = "diagnostic_warnings", hl = hl.fg "DiagnosticWarn", icon = "  " },
-          { provider = "diagnostic_info", hl = hl.fg "DiagnosticInfo", icon = "  " },
-          { provider = "diagnostic_hints", hl = hl.fg "DiagnosticHint", icon = "  " },
-        },
-        {
-          { provider = provider.lsp_progress, enabled = conditional.bar_width() },
-          {
-            provider = provider.lsp_client_names(true),
-            short_provider = provider.lsp_client_names(),
-            enabled = conditional.bar_width(),
-            icon = "   ",
-          },
-          { provider = provider.spacer(2), enabled = conditional.bar_width() },
-          {
-            provider = provider.treesitter_status,
-            enabled = conditional.bar_width(),
-            hl = hl.fg "GitSignsAdd",
-          },
-          { provider = provider.spacer(2) },
-          { provider = "position" },
-          { provider = provider.spacer(2) },
-          { provider = "line_percentage" },
-          { provider = provider.spacer() },
-        },
-      }
-
-      return config
-    end,
     ["null-ls"] = function(config)
       local null_ls = require "null-ls"
       -- Check supported formatters and linters
       config.sources = {
-        -- Set a formatter
-        null_ls.builtins.formatting.stylua,
+        -- Set linters
+        null_ls.builtins.diagnostics.flake8,
+        -- Set formatters
+        null_ls.builtins.formatting.black,
+        null_ls.builtins.formatting.isort,
         null_ls.builtins.formatting.prettier,
+        null_ls.builtins.formatting.rustfmt,
+        null_ls.builtins.formatting.stylua,
       }
-      -- Set up null-ls's on_attach function
-      config.on_attach = function(client)
-        -- Enable format on save
-        if client.resolved_capabilities.document_formatting then
-          vim.api.nvim_create_autocmd("BufWritePre", {
-            desc = "Auto format before save",
-            pattern = "<buffer>",
-            callback = vim.lsp.buf.formatting_sync,
-          })
-        end
-      end
       return config
     end,
     treesitter = {
@@ -174,6 +122,30 @@ local config = {
     packer = {
       compile_path = vim.fn.stdpath "data" .. "/packer_compiled.lua",
     },
+    heirline = function(config)
+      -- the first element of the default configuration table is the statusline
+      config[1] = {
+        -- set the fg/bg of the statusline
+        hl = { fg = "fg", bg = "bg" },
+        -- when adding the mode component, enable the mode text with padding to the left/right of it
+        astronvim.status.component.mode {
+          mode_text = { padding = { left = 1, right = 1 } },
+          hl = { fg = "bg", bold = true },
+        },
+        -- add all the other components for the statusline
+        astronvim.status.component.git_branch(),
+        astronvim.status.component.file_info(),
+        astronvim.status.component.git_diff(),
+        astronvim.status.component.diagnostics(),
+        astronvim.status.component.fill(),
+        astronvim.status.component.lsp(),
+        astronvim.status.component.treesitter(),
+        astronvim.status.component.nav { percentage = { padding = { left = 1, right = 1 } }, scrollbar = false },
+      }
+      config[2] = nil
+      -- return the final configuration table
+      return config
+    end,
   },
 
   -- LuaSnip Options
@@ -189,9 +161,9 @@ local config = {
   -- CMP Source Priorities
   cmp = {
     source_priority = {
-      nvim_lsp = 1000,
-      luasnip = 750,
-      buffer = 500,
+      buffer = 1000,
+      nvim_lsp = 750,
+      luasnip = 500,
       path = 250,
     },
   },
@@ -352,7 +324,7 @@ local config = {
   -- Modify which-key registration
   ["which-key"] = {
     -- Add bindings which show up as group name
-    register_mappings = {
+    register = {
       n = {
         ["t"] = { name = "Search" },
       },
