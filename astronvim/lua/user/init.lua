@@ -344,6 +344,7 @@ local config = {
     --   command = "set norelativenumber",
     -- })
 
+    -- Add additional commands for LaTeX and markdown files
     vim.api.nvim_create_augroup("bufcheck", { clear = true })
     vim.api.nvim_create_autocmd("FileType", {
       group = "bufcheck",
@@ -355,6 +356,15 @@ local config = {
       pattern = "markdown",
       command = "nnoremap <leader>v <cmd>MarkdownPreviewToggle<cr>",
     })
+
+    -- Reset cursor after exiting
+    vim.api.nvim_create_augroup("change_cursor", { clear = true })
+    vim.api.nvim_create_autocmd("VimLeave", {
+      group = "change_cursor",
+      command = "set guicursor=a:ver90",
+    })
+
+    -- Set highlighting groups for leap
     vim.api.nvim_set_hl(0, "LeapLabelPrimary", { link = "GruvboxOrangeBold" })
     vim.api.nvim_set_hl(0, "LeapLabelSecondary", { link = "GruvboxYellowBold" })
   end,
