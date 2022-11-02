@@ -90,6 +90,15 @@ local config = {
           leap.set_default_keymaps()
         end,
       },
+      -- Rust tools
+      ["simrat39/rust-tools.nvim"] = {
+        after = "mason-lspconfig.nvim", -- make sure to load after mason-lspconfig
+        config = function()
+          require("rust-tools").setup {
+            server = astronvim.lsp.server_settings "rust_analyzer",
+          }
+        end,
+      },
       -- Smooth scrolling
       ["declancm/cinnamon.nvim"] = { config = function() require("cinnamon").setup() end },
       -- LaTeX and markdown integrations
@@ -111,7 +120,6 @@ local config = {
         null_ls.builtins.formatting.black,
         null_ls.builtins.formatting.isort,
         null_ls.builtins.formatting.prettier,
-        null_ls.builtins.formatting.rustfmt,
         null_ls.builtins.formatting.stylua,
       }
       return config
@@ -161,8 +169,8 @@ local config = {
   -- CMP Source Priorities
   cmp = {
     source_priority = {
-      buffer = 1000,
-      nvim_lsp = 750,
+      nvim_lsp = 1000,
+      buffer = 750,
       luasnip = 500,
       path = 250,
     },
