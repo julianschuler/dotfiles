@@ -1,0 +1,5 @@
+color=000000
+ignore-empty-password
+indicator-idle-visible
+indicator-radius=60
+indicator-thickness=12

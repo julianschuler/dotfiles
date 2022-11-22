@@ -92,6 +92,7 @@ if [ "$create_links" = true ]; then
     $ln_cmd "$dot_dir/rofi" "$config_dir/"
     $ln_cmd "$dot_dir/starship.toml" "$config_dir/"
     $ln_cmd "$dot_dir/spectrwm" "$config_dir/"
+    $ln_cmd "$dot_dir/swaylock" "$config_dir/"
     $ln_cmd "$dot_dir/user-dirs.dirs" "$config_dir/"
     $ln_cmd "$dot_dir/vimrc" "$HOME/.vimrc"
     $ln_cmd "$dot_dir/xorg/xinitrc" "$HOME/.xinitrc"
