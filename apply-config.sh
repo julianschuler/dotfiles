@@ -81,8 +81,6 @@ if [ "$create_links" = true ]; then
     $ln_cmd "$dot_dir/aerc" "$config_dir/"
     $ln_cmd "$dot_dir/alacritty" "$config_dir/"
     $ln_cmd "$dot_dir/git" "$config_dir/"
-    $ln_cmd "$dot_dir/gtk/gtk-3.0" "$config_dir/"
-    $ln_cmd "$dot_dir/gtk/gtk-4.0" "$config_dir/"
     $ln_cmd "$dot_dir/hypr" "$config_dir/"
     $ln_cmd "$dot_dir/lesskey" "$config_dir/"
     $ln_cmd "$dot_dir/ranger" "$config_dir/"

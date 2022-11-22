@@ -28,6 +28,10 @@ set -U fish_pager_color_description B3A06D\x1eyellow
 set -U fish_pager_color_prefix white\x1e\x2d\x2dbold\x1e\x2d\x2dunderline
 set -U fish_pager_color_progress brwhite\x1e\x2d\x2dbackground\x3dcyan
 
+# set EDITOR and add to PATH
+set -Ux EDITOR nvim
+fish_add_path "$HOME/documents/scripts"
+
 # disable greeting
 set -U fish_greeting
 set -l script_dir (realpath (dirname (status -f)))
