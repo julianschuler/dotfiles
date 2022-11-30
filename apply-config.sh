@@ -80,6 +80,7 @@ if [ "$create_links" = true ]; then
     mkdir -p "$config_dir"
     $ln_cmd "$dot_dir/aerc" "$config_dir/"
     $ln_cmd "$dot_dir/alacritty" "$config_dir/"
+    $ln_cmd "$dot_dir/eww" "$config_dir/"
     $ln_cmd "$dot_dir/git" "$config_dir/"
     $ln_cmd "$dot_dir/hypr" "$config_dir/"
     $ln_cmd "$dot_dir/lesskey" "$config_dir/"

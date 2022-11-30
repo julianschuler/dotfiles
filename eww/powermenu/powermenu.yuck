@@ -1,0 +1,30 @@
+(defwidget powermenu []
+  (box :class "powermenu"
+       :orientation "h"
+       :space-evenly true
+       :spacing 20
+    (button :class "shutdown"
+            :onclick "poweroff"
+      (label :text "襤" :class "content")
+    )
+    (button :class "reboot"
+            :onclick "reboot"
+      (label :text "勒" :class "content")
+    )
+    (button :class "logout"
+            :onclick "hyprctl dispatch exit -"
+      (label :text "" :class "content")
+    )
+  )
+)
+
+(defwindow powermenu
+  :monitor 0
+  :focusable true
+  :stacking "overlay"
+  :geometry (geometry :x "0px"
+                      :y "0px"
+                      :width "500px"
+                      :height "150px"
+                      :anchor "center")
+(powermenu))
