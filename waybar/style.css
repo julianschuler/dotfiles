@@ -1,0 +1,94 @@
+@define-color fg #ebdbb2;
+@define-color bg #1d2021;
+
+@define-color black #282828;
+@define-color red #cc241d;
+@define-color green #b8bb26;
+@define-color yellow #fabd2f;
+@define-color blue #83a598;
+@define-color purple #d3869b;
+@define-color aqua #8ec07c;
+@define-color orange #fe8019;
+
+* {
+  all: unset;
+  font-family: Roboto, RobotoMono Nerd Font;
+  font-size: 17px;
+}
+
+.modules-left {
+  background: @bg;
+  font-weight: bold;
+  padding: 0 10px;
+  border-radius: 0 8px 8px 0;
+}
+
+.modules-right {
+  background: @bg;
+  font-weight: bold;
+  padding: 0 10px;
+  border-radius: 8px 0 0 8px;
+}
+
+.modules-center {
+  color: @fg;
+  font-weight: 500;
+  margin: 0 8px;
+  padding: 0 10px;
+  border-radius: 8px;
+}
+
+tooltip {
+  color: @fg;
+  background: @bg;
+}
+
+#backlight {
+  color: @purple;
+}
+
+#battery {
+  color: @green;
+}
+
+#clock.date {
+  color: @yellow;
+}
+
+#clock.time {
+  color: @orange;
+}
+
+#custom-launcher {
+  color: @red;
+  padding: 0 4px 0 0;
+}
+
+#custom-media {
+  color: @green;
+}
+
+#network {
+  color: @blue;
+}
+
+#pulseaudio {
+  color: @aqua;
+}
+
+#workspaces {
+  color: @fg;
+  margin: 0 -4px;
+}
+
+#workspaces button {
+  margin: 0 4px;
+}
+
+#workspaces button.active {
+  color: @orange;
+}
+
+#workspaces button:hover {
+  color: @yellow;
+}
