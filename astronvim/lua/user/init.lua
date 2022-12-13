@@ -21,6 +21,7 @@ local config = {
       cmdheight = 1,
       gdefault = true,
       linebreak = true,
+      relativenumber = false,
       showtabline = 1,
       signcolumn = "auto",
       modeline = false,
