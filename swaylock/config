@@ -1,5 +1,30 @@
-color=000000
+# General settings
+clock
+datestr=%e.%m.%Y
+timestr=%H:%M
+daemonize
 ignore-empty-password
 indicator-idle-visible
-indicator-radius=60
-indicator-thickness=12
+indicator-radius=120
+indicator-thickness=15
+line-uses-inside
+
+# Colors
+color=1d2021
+bs-hl-color=8ec07c
+inside-color=1d2021
+inside-clear-color=1d2021
+inside-caps-lock-color=1d2021
+inside-ver-color=1d2021
+inside-wrong-color=1d2021
+key-hl-color=83a598
+ring-color=458588
+ring-clear-color=fe8019
+ring-ver-color=b8bb26
+ring-wrong-color=fb4934
+separator-color=1d2021
+text-color=83a598
+text-clear-color=fe8019
+text-caps-lock-color=fb4934
+text-ver-color=b8bb26
+text-wrong-color=fb4934
