@@ -36,8 +36,8 @@
 
   "clock#date": {
     "interval": 10,
-    "format": "  {:%e.%m.}",
-    "tooltip-format": "{:%A, %e.%m.%Y}"
+    "format": "  {:%d.%m.}",
+    "tooltip-format": "{:%A, %d.%m.%Y}"
   },
 
   "custom/launcher": {
@@ -51,7 +51,8 @@
     "max-length": 40,
     "on-click": "playerctl play-pause",
     "on-click-right": "playerctl pause",
-    "exec": "playerctl -F metadata -f '{{title}}  •  {{artist}}'"
+    "exec": "playerctl -F metadata -f '{{title}}  •  {{artist}}'",
+    "escape": true
   },
 
   "hyprland/window": {

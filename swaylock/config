@@ -1,6 +1,6 @@
 # General settings
 clock
-datestr=%e.%m.%Y
+datestr=%d.%m.%Y
 timestr=%H:%M
 daemonize
 ignore-empty-password
