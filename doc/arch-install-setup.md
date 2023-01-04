@@ -105,6 +105,7 @@ cryptdevice=UUID=device-uuid:root root=/dev/mapper/root rw quiet bgrt_disable
 Create the unified kernel image using `sbctl`. Note that we have to set `ESP_PATH` manually since `lsblk` will not work correctly within the chroot.
 
 ```
+mkdir -p /efi/EFI/Linux
 ESP_PATH=/efi sbctl bundle --save \
     {-a /boot/amd-ucode.img | -i /boot/intel-ucode.img} \
     -l /usr/share/systemd/bootctl/splash-arch.bmp \
