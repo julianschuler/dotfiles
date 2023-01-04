@@ -42,7 +42,7 @@
 
   "custom/launcher": {
     "format": "",
-    "on-click": "pkill wofi || wofi --show drun",
+    "on-click": "pkill yofi || yofi",
     "tooltip": false
   },
 
