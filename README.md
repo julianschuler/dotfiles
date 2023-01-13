@@ -36,8 +36,11 @@ This repository contains configuration files for most of the programs I use.
 
 #### Desktop
 
-- Window manager: [spectrwm](https://github.com/conformal/spectrwm)
-- Status bar: [conky](https://github.com/brndnmtthws/conky)
+- Wayland compositor: [Hyprland](https://github.com/hyprwm/Hyprland)
+- Status bar: [waybar](https://github.com/Alexays/Waybar)
+- Application launcher: [yofi](https://github.com/l4l/yofi)
+- Screen locker: [swaylock-effects](https://github.com/jirutka/swaylock-effects)
+- Power menu: [wlogout](https://github.com/ArtsyMacaw/wlogout)
 - Email client: [aerc](https://git.sr.ht/~rjarry/aerc)
 - PDF viewer: [zathura](https://pwmt.org/projects/zathura)
 - Password manager: [KeePassXC](https://keepassxc.org)
