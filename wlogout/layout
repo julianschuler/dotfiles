@@ -1,0 +1,18 @@
+{
+    "label" : "shutdown",
+    "action" : "poweroff",
+    "text" : "襤",
+    "keybind" : "s"
+}
+{
+    "label" : "reboot",
+    "action" : "reboot",
+    "text" : "勒",
+    "keybind" : "r"
+}
+{
+    "label" : "logout",
+    "action" : "loginctl terminate-user $USER",
+    "text" : "",
+    "keybind" : "e"
+}
