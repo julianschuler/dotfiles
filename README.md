@@ -49,6 +49,13 @@ This repository contains configuration files for most of the programs I use.
 
 The provided script `apply-config.sh` can be used to apply some or all parts of the configuration. See `apply-config.sh -h` for further information.
 
+## Screenshots
+
+![Application launcher](doc/img/application-launcher.jpg)
+![Editor and terminal](doc/img/editor-terminal.png)
+![Power menu](doc/img/power-menu.png)
+![Screen locker](doc/img/screen-locker.png)
+
 ## License
 
 This repository is licensed under the MIT license, see [`LICENSE.txt`](LICENSE.txt) for further information.
