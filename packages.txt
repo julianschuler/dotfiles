@@ -14,7 +14,6 @@ gnome-themes-extra
 hyprland
 keepassxc
 neovim
-nerd-fonts-roboto-mono
 pavucontrol
 pipewire-pulse
 playerctl
@@ -26,6 +25,7 @@ swaybg
 swayidle
 swaylock-effects
 ttf-roboto
+ttf-roboto-mono-nerd
 ttf-sourcecodepro-nerd
 w3m
 waybar-hyprland
