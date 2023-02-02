@@ -12,7 +12,7 @@
 
 * {
   all: unset;
-  font-family: Roboto, RobotoMono Nerd Font;
+  font-family: Roboto, Sauce Code Pro Nerd Font;
   font-size: 17px;
 }
 
@@ -60,7 +60,6 @@ tooltip {
 
 #custom-launcher {
   color: @red;
-  padding: 0 4px 0 0;
 }
 
 #custom-media {
@@ -79,7 +78,7 @@ tooltip {
 #workspaces {
   color: @fg;
   font-weight: bold;
-  margin: 0 -4px;
+  margin: 0 -4px 0 -10px;
 }
 
 #workspaces button {

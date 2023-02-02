@@ -12,8 +12,8 @@
 
 window {
   background-color: rgba(40, 40, 40, 0.5);
-  font-family: RobotoMono Nerd Font;
-  font-size: 70px;
+  font-family: Sauce Code Pro Nerd Font;
+  font-size: 80px;
 }
 
 grid {
@@ -37,8 +37,7 @@ button {
 }
 
 button:focus,
-button:active,
-button:hover {
+button:active {
   border-color: @color;
 }
 

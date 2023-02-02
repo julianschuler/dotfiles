@@ -15,7 +15,7 @@
   ],
 
   "backlight": {
-    "format": "{icon} {percent}%",
+    "format": "{icon}  {percent}%",
     "format-icons": [" ", " ", " "],
     "on-scroll-up": "brightnessctl set 5%+ > /dev/null",
     "on-scroll-down": "brightnessctl set 5%- > /dev/null"
@@ -31,23 +31,23 @@
 
   "clock#time": {
     "interval": 1,
-    "format": "  {:%H:%M}"
+    "format": "   {:%H:%M}"
   },
 
   "clock#date": {
     "interval": 10,
-    "format": "  {:%d.%m.}",
+    "format": "   {:%d.%m.}",
     "tooltip-format": "{:%A, %d.%m.%Y}"
   },
 
   "custom/launcher": {
-    "format": "",
+    "format": " ",
     "on-click": "pkill yofi || yofi",
     "tooltip": false
   },
 
   "custom/media": {
-    "format": " {}",
+    "format": "  {}",
     "max-length": 40,
     "on-click": "playerctl play-pause",
     "on-click-right": "playerctl pause",
@@ -61,22 +61,22 @@
 
   "network": {
     "format-wifi": "直 {essid}",
-    "format-ethernet": "  {ifname}",
-    "format-linked": "  {ifname}",
+    "format-ethernet": "   {ifname}",
+    "format-linked": "   {ifname}",
     "format-disconnected": "睊 disconnected"
   },
 
   "pulseaudio": {
-    "format": "{icon} {volume}%",
-    "format-muted": "婢 {volume}%",
-    "format-bluetooth": "{icon} {volume}%",
-    "format-bluetooth-muted": "婢 {volume}%",
+    "format": "{icon}  {volume}%",
+    "format-muted": "婢  {volume}%",
+    "format-bluetooth": " {icon}  {volume}%",
+    "format-bluetooth-muted": " 婢  {volume}%",
     "scroll-step": 5,
     "on-click": "wpctl set-mute @DEFAULT_SINK@ toggle",
     "on-click-right": "wpctl set-mute @DEFAULT_SINK@ 1",
     "on-click-middle": "pavucontrol",
     "format-icons": {
-      "default": ["奄", "奔", "墳", "墳"]
+      "default": ["奔", "墳", "墳"]
     }
   },
 
