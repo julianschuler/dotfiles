@@ -105,6 +105,8 @@ local config = {
       -- LaTeX and markdown integrations
       ["lervag/vimtex"] = {},
       ["iamcco/markdown-preview.nvim"] = { run = function() vim.fn["mkdp#util#install"]() end },
+      -- Git co-authors
+      ["2kabhishek/co-author.nvim"] = {},
       -- Disable unused plugins
       ["akinsho/bufferline.nvim"] = { disable = true },
       ["goolord/alpha-nvim"] = { disable = true },
@@ -263,6 +265,9 @@ local config = {
       -- Spell checking
       ["Z"] = { "z=", desc = "Suggest correct word" },
       ["<leader>z"] = { "<cmd>setl invspell<cr>", desc = "Toggle spell checking" },
+
+      -- Add git co-authors to commit
+      ["<leader>ga"] = { "<cmd>GitCoAuthors<cr>" },
 
       -- Telescope bindings
       ["b"] = {
