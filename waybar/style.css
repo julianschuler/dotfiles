@@ -60,6 +60,7 @@ tooltip {
 
 #custom-launcher {
   color: @red;
+  margin: 0 6px 0 0;
 }
 
 #custom-media {
@@ -78,7 +79,7 @@ tooltip {
 #workspaces {
   color: @fg;
   font-weight: bold;
-  margin: 0 -4px 0 -10px;
+  margin: 0 -4px;
 }
 
 #workspaces button {
