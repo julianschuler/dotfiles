@@ -1,5 +1,26 @@
-local config = {
+local function git_co_authors()
+  -- Get all author names and keep unique ones
+  local authors = {}
+  local seen_authors = {}
+  local all_authors = vim.api.nvim_call_function("system", { 'git log --format="%aN <%aE>"' })
+  for _, author in ipairs(vim.split(all_authors, "\n", {})) do
+    if not seen_authors[author] then
+      seen_authors[author] = true
+      authors[#authors + 1] = author
+    end
+  end
+  -- Select co-author using telescope and insert it at current line
+  vim.ui.select(authors, { prompt = "Co-Authors" }, function(author, _)
+    if author then
+      local msg = "Co-authored-by: " .. author
+      local line = vim.api.nvim_win_get_cursor(0)[1]
+      vim.api.nvim_buf_set_lines(0, line, line, true, { msg })
+      vim.api.nvim_win_set_cursor(0, { line + 1, 0 })
+    end
+  end)
+end
 
+local config = {
   -- Configure AstroNvim updates
   updater = {
     remote = "origin",
@@ -132,16 +153,16 @@ local config = {
       compile_path = vim.fn.stdpath "data" .. "/packer_compiled.lua",
     },
     heirline = function(config)
-      -- the first element of the default configuration table is the statusline
+      -- The first element of the default configuration table is the statusline
       config[1] = {
-        -- set the fg/bg of the statusline
+        -- Set the fg/bg of the statusline
         hl = { fg = "fg", bg = "bg" },
-        -- when adding the mode component, enable the mode text with padding to the left/right of it
+        -- When adding the mode component, enable the mode text with padding to the left/right of it
         astronvim.status.component.mode {
           mode_text = { padding = { left = 1, right = 1 } },
           hl = { fg = "bg", bold = true },
         },
-        -- add all the other components for the statusline
+        -- Add all the other components for the statusline
         astronvim.status.component.git_branch(),
         astronvim.status.component.file_info(),
         astronvim.status.component.git_diff(),
@@ -152,7 +173,7 @@ local config = {
         astronvim.status.component.nav { percentage = { padding = { left = 1, right = 1 } }, scrollbar = false },
       }
       config[2] = nil
-      -- return the final configuration table
+      -- Return the final configuration table
       return config
     end,
   },
@@ -263,6 +284,9 @@ local config = {
       -- Spell checking
       ["Z"] = { "z=", desc = "Suggest correct word" },
       ["<leader>z"] = { "<cmd>setl invspell<cr>", desc = "Toggle spell checking" },
+
+      -- Adding git co-authors to commit
+      ["<leader>ga"] = { function() git_co_authors() end, desc = "Add git co-authors" },
 
       -- Telescope bindings
       ["b"] = {
