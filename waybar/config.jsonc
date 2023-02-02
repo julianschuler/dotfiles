@@ -41,7 +41,7 @@
   },
 
   "custom/launcher": {
-    "format": " ",
+    "format": "",
     "on-click": "pkill yofi || yofi",
     "tooltip": false
   },
