@@ -23,7 +23,7 @@ abbr -a -U -- aqi 'paru -Qi'
 abbr -a -U -- ar 'paru -Rs'
 abbr -a -U -- as 'paru -S'
 abbr -a -U -- asi 'paru -Si'
-abbr -a -U -- asi 'paru -Ss'
+abbr -a -U -- ass 'paru -Ss'
 abbr -a -U -- asy 'paru -Sy'
 
 # git
