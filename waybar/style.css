@@ -63,7 +63,7 @@ tooltip {
   margin: 0 6px 0 0;
 }
 
-#custom-media {
+#mpris {
   color: @green;
   font-weight: 600;
 }

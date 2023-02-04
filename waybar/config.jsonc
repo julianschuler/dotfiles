@@ -3,7 +3,7 @@
   "position": "top",
   "spacing": 16,
 
-  "modules-left": ["custom/launcher", "wlr/workspaces", "custom/media"],
+  "modules-left": ["custom/launcher", "wlr/workspaces", "mpris"],
   "modules-center": ["hyprland/window"],
   "modules-right": [
     "backlight",
@@ -46,17 +46,12 @@
     "tooltip": false
   },
 
-  "custom/media": {
-    "format": "  {}",
-    "max-length": 40,
-    "on-click": "playerctl play-pause",
-    "on-click-right": "playerctl pause",
-    "exec": "playerctl -F metadata -f '{{title}}  •  {{artist}}'",
-    "escape": true
-  },
-
   "hyprland/window": {
     "separate-outputs": true
+  },
+
+  "mpris": {
+    "format": "  {title}  •  {artist}"
   },
 
   "network": {
