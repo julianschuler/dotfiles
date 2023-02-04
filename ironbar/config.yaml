@@ -1,0 +1,38 @@
+anchor_to_edges: true
+height: 24
+position: top
+
+start:
+  - type: custom
+    bar:
+      - type: button
+        label: ""
+        on_click: "!yofi"
+        class: launcher
+
+  - type: workspaces
+    all_monitors: false
+    name_map:
+      "special:password_manager": "1"
+
+  - type: music
+    format: "{title}  •  {artist}"
+    icons:
+      play: "󰐊"
+      pause: "󰏤"
+    player_type: mpris
+    truncate: end
+
+center:
+  - type: focused
+    icon_size: 16
+    truncate: end
+
+end:
+  - type: clock
+    format: "   %d.%m."
+    class: calender
+
+  - type: clock
+    format: "  %H:%M"
+    class: clock
