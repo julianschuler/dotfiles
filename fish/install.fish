@@ -32,8 +32,9 @@ set -U fish_pager_color_progress brwhite\x1e\x2d\x2dbackground\x3dcyan
 set -Ux EDITOR nvim
 fish_add_path "$HOME/documents/scripts"
 
-# disable greeting
+# disable greeting and default fzf bindings
 set -U fish_greeting
+set -U FZF_DISABLE_KEYBINDINGS 1
 set -l script_dir (realpath (dirname (status -f)))
 
 # generate zoxide config
