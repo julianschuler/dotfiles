@@ -62,57 +62,55 @@ hints:
 # The following key bindings are adapted for a modified VOU layout
 # and mostly won't make sense on a normal QWERTY/QWERTZ layout
 key_bindings:
-  - { key: L,         mods: Control,                    action: ClearLogNotice }
-  - { key: L,         mods: Control, mode: ~Vi|~Search, chars: "\x0c"          }
-  - { key: PageUp,                   mode: ~Alt,        action: ScrollHalfPageUp,  }
-  - { key: PageDown,                 mode: ~Alt,        action: ScrollHalfPageDown }
-  - { key: Home,      mods: Shift,   mode: ~Alt,        action: ScrollToTop,   }
-  - { key: End,       mods: Shift,   mode: ~Alt,        action: ScrollToBottom }
+  - { key: D,        mods: Super|Shift,                action: CreateNewWindow         }
+  - { key: PageUp,                  mode: ~Alt,        action: ScrollHalfPageUp        }
+  - { key: PageDown,                mode: ~Alt,        action: ScrollHalfPageDown      }
+  - { key: Home,     mods: Shift,   mode: ~Alt,        action: ScrollToTop,            }
+  - { key: End,      mods: Shift,   mode: ~Alt,        action: ScrollToBottom          }
+  - { key: J,        mods: Control, mode: ~Alt|~Vi,    action: ToggleViMode            }
+  - { key: J,        mods: Control, mode: ~Alt,        action: SearchBackward          }
 
   # Vi Mode
-  - { key: N,      mods: Control,       mode: ~Search,    action: ToggleViMode            }
-  - { key: N,      mods: Control,       mode: Vi|~Search, action: ScrollToBottom          }
-  - { key: Escape,                      mode: Vi|~Search, action: ToggleViMode            }
-  - { key: Escape,                      mode: Vi|~Search, action: ScrollToBottom          }
-  - { key: Escape,                      mode: Vi|~Search, action: ClearSelection          }
-  - { key: R,                           mode: Vi|~Search, action: ToggleViMode            }
-  - { key: R,                           mode: Vi|~Search, action: ScrollToBottom          }
-  - { key: C,      mods: Control,       mode: Vi|~Search, action: ToggleViMode            }
-  - { key: O,                           mode: Vi|~Search, action: ScrollLineUp            }
-  - { key: E,                           mode: Vi|~Search, action: ScrollLineDown          }
-  - { key: G,                           mode: Vi|~Search, action: ScrollToTop             }
-  - { key: G,      mods: Shift,         mode: Vi|~Search, action: ScrollToBottom          }
-  - { key: O,      mods: Shift,         mode: Vi|~Search, action: ScrollHalfPageUp        }
-  - { key: E,      mods: Shift,         mode: Vi|~Search, action: ScrollHalfPageDown      }
-  - { key: Y,                           mode: Vi|~Search, action: Copy                    }
-  - { key: Y,                           mode: Vi|~Search, action: ClearSelection          }
-  - { key: Copy,                        mode: Vi|~Search, action: ClearSelection          }
-  - { key: V,                           mode: Vi|~Search, action: ToggleBlockSelection    }
-  - { key: V,      mods: Shift,         mode: Vi|~Search, action: ToggleLineSelection     }
-  - { key: V,      mods: Alt,           mode: Vi|~Search, action: ToggleSemanticSelection }
-  - { key: Return,                      mode: Vi|~Search, action: Open                    }
-  - { key: O,      mods: Control,       mode: Vi|~Search, action: Up                      }
-  - { key: E,      mods: Control,       mode: Vi|~Search, action: Down                    }
-  - { key: A,                           mode: Vi|~Search, action: Left                    }
-  - { key: I,                           mode: Vi|~Search, action: Right                   }
-  - { key: Up,                          mode: Vi|~Search, action: Up                      }
-  - { key: Down,                        mode: Vi|~Search, action: Down                    }
-  - { key: Left,                        mode: Vi|~Search, action: Left                    }
-  - { key: Right,                       mode: Vi|~Search, action: Right                   }
-  - { key: Key0,                        mode: Vi|~Search, action: First                   }
-  - { key: Key4,                        mode: Vi|~Search, action: Last                    }
-  - { key: Key6,                        mode: Vi|~Search, action: FirstOccupied           }
-  - { key: H,      mods: Shift,         mode: Vi|~Search, action: High                    }
-  - { key: M,      mods: Shift,         mode: Vi|~Search, action: Middle                  }
-  - { key: L,      mods: Shift,         mode: Vi|~Search, action: Low                     }
-  - { key: A,      mods: Control,       mode: Vi|~Search, action: SemanticLeft            }
-  - { key: I,      mods: Control,       mode: Vi|~Search, action: SemanticRight           }
-  - { key: U,      mods: Control,       mode: Vi|~Search, action: SemanticRightEnd        }
-  - { key: A,      mods: Shift,         mode: Vi|~Search, action: WordLeft                }
-  - { key: I,      mods: Shift,         mode: Vi|~Search, action: WordRight               }
-  - { key: U,      mods: Shift,         mode: Vi|~Search, action: WordRightEnd            }
-  - { key: Key5,                        mode: Vi|~Search, action: Bracket                 }
-  - { key: J,                           mode: Vi|~Search, action: SearchForward           }
-  - { key: J,      mods: Shift,         mode: Vi|~Search, action: SearchBackward          }
-  - { key: N,                           mode: Vi|~Search, action: SearchNext              }
-  - { key: N,      mods: Shift,         mode: Vi|~Search, action: SearchPrevious          }
+  - { key: N,        mods: Control, mode: ~Search,     action: ToggleViMode            }
+  - { key: N,        mods: Control, mode: Vi|~Search,  action: ScrollToBottom          }
+  - { key: Escape,                  mode: Vi|~Search,  action: ToggleViMode            }
+  - { key: Escape,                  mode: Vi|~Search,  action: ScrollToBottom          }
+  - { key: Escape,                  mode: Vi|~Search,  action: ClearSelection          }
+  - { key: R,                       mode: Vi|~Search,  action: ToggleViMode            }
+  - { key: R,                       mode: Vi|~Search,  action: ScrollToBottom          }
+  - { key: C,        mods: Control, mode: Vi|~Search,  action: ToggleViMode            }
+  - { key: O,                       mode: Vi|~Search,  action: ScrollLineUp            }
+  - { key: E,                       mode: Vi|~Search,  action: ScrollLineDown          }
+  - { key: G,                       mode: Vi|~Search,  action: ScrollToTop             }
+  - { key: G,        mods: Shift,   mode: Vi|~Search,  action: ScrollToBottom          }
+  - { key: O,        mods: Shift,   mode: Vi|~Search,  action: ScrollHalfPageUp        }
+  - { key: E,        mods: Shift,   mode: Vi|~Search,  action: ScrollHalfPageDown      }
+  - { key: Y,                       mode: Vi|~Search,  action: Copy                    }
+  - { key: Y,                       mode: Vi|~Search,  action: ClearSelection          }
+  - { key: Copy,                    mode: Vi|~Search,  action: ClearSelection          }
+  - { key: V,                       mode: Vi|~Search,  action: ToggleSemanticSelection }
+  - { key: Return,                  mode: Vi|~Search,  action: Open                    }
+  - { key: O,        mods: Control, mode: Vi|~Search,  action: Up                      }
+  - { key: E,        mods: Control, mode: Vi|~Search,  action: Down                    }
+  - { key: A,                       mode: Vi|~Search,  action: Left                    }
+  - { key: I,                       mode: Vi|~Search,  action: Right                   }
+  - { key: Up,                      mode: Vi|~Search,  action: Up                      }
+  - { key: Down,                    mode: Vi|~Search,  action: Down                    }
+  - { key: Left,                    mode: Vi|~Search,  action: Left                    }
+  - { key: Right,                   mode: Vi|~Search,  action: Right                   }
+  - { key: Home,                    mode: Vi|~Search,  action: FirstOccupied           }
+  - { key: End,                     mode: Vi|~Search,  action: Last                    }
+  - { key: H,        mods: Shift,   mode: Vi|~Search,  action: High                    }
+  - { key: M,        mods: Shift,   mode: Vi|~Search,  action: Middle                  }
+  - { key: L,        mods: Shift,   mode: Vi|~Search,  action: Low                     }
+  - { key: A,        mods: Shift,   mode: Vi|~Search,  action: SemanticLeft            }
+  - { key: I,        mods: Shift,   mode: Vi|~Search,  action: SemanticRight           }
+  - { key: U,        mods: Shift,   mode: Vi|~Search,  action: SemanticRightEnd        }
+  - { key: A,        mods: Control, mode: Vi|~Search,  action: WordLeft                }
+  - { key: I,        mods: Control, mode: Vi|~Search,  action: WordRight               }
+  - { key: U,        mods: Control, mode: Vi|~Search,  action: WordRightEnd            }
+  - { key: Key5,     mods: Shift,   mode: Vi|~Search,  action: Bracket                 }
+  - { key: J,                       mode: Vi|~Search,  action: SearchBackward          }
+  - { key: J,        mods: Shift,   mode: Vi|~Search,  action: SearchForward           }
+  - { key: N,                       mode: Vi|~Search,  action: SearchPrevious          }
+  - { key: N,        mods: Shift,   mode: Vi|~Search,  action: SearchNext              }
