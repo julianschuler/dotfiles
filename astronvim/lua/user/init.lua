@@ -2,7 +2,8 @@ local function git_co_authors()
   -- Get all author names and keep unique ones
   local authors = {}
   local seen_authors = {}
-  local all_authors = vim.api.nvim_call_function("system", { 'git log --format="%aN <%aE>"' })
+  local all_authors =
+    vim.api.nvim_call_function("system", { 'git log --format="%aN <%aE>"' })
   for _, author in ipairs(vim.split(all_authors, "\n", {})) do
     if not seen_authors[author] then
       seen_authors[author] = true
@@ -20,21 +21,16 @@ local function git_co_authors()
   end)
 end
 
+
 local config = {
   -- Configure AstroNvim updates
   updater = {
-    remote = "origin",
-    channel = "stable",
     version = "latest",
-    branch = "main",
-    commit = nil,
-    pin_plugins = nil,
+    channel = "nightly",
+    branch = "v3",
     skip_prompts = true,
     show_changelog = true,
   },
-
-  -- Set colorscheme
-  colorscheme = "gruvbox",
 
   -- Set vim options
   options = {
@@ -43,7 +39,7 @@ local config = {
       gdefault = true,
       linebreak = true,
       relativenumber = false,
-      showtabline = 1,
+      showtabline = 0,
       signcolumn = "auto",
       modeline = false,
       wrap = true,
@@ -51,157 +47,189 @@ local config = {
     g = {
       mapleader = " ",
       maplocalleader = " ",
+      mkdp_page_title = "${name}",
       vimtex_view_method = "zathura",
       vimtex_compiler_latexmk = { build_dir = "/tmp" },
     },
   },
 
+  -- Set colorscheme
+  colorscheme = "gruvbox",
+
+  -- LSP settings
+  lsp = {
+    setup_handlers = {
+      rust_analyzer = function(_, opts)
+        require("rust-tools").setup { server = opts }
+      end,
+    },
+  },
+
   -- Configure plugins
   plugins = {
-    -- Add plugins
-    init = {
-      -- Color sheme
-      ["ellisonleao/gruvbox.nvim"] = {
-        as = "gruvbox",
-        config = function()
-          local C = require("gruvbox.palette").colors
-          require("gruvbox").setup {
-            overrides = {
-              StatusLine = { bg = C.dark1, fg = C.light0, reverse = false },
-              GitSignsChange = { link = "GruvboxOrangeSign" },
-              Directory = { fg = "#729fcf" },
-            },
-          }
-        end,
-      },
-      -- Improved movement
-      ["ggandor/leap.nvim"] = {
-        config = function()
-          local leap = require "leap"
+    -- Disable unused plugins
+    { "AstroNvim/astrotheme", enabled = false },
+    { "akinsho/toggleterm.nvim", enabled = false },
+    { "goolord/alpha-nvim", enabled = false },
+    { "max397574/better-escape.nvim", enabled = false },
 
-          leap.setup {
-            safe_labels = { "a", "i", "e", "t", "n", "s", "o", "u", "g", "h", "f", "j", "ü", "b", "ä", "q", "ö" },
-            labels = {
-              "a",
-              "e",
-              "i",
-              "t",
-              "n",
-              "s",
-              "o",
-              "u",
-              "g",
-              "h",
-              "c",
-              "r",
-              "l",
-              "y",
-              "d",
-              "w",
-              "m",
-              "k",
-              "f",
-              "j",
-              "ü",
-              "b",
-              "ä",
-              "q",
-              "ö",
-            },
-          }
-          leap.set_default_keymaps()
-        end,
-      },
-      -- Rust tools
-      ["simrat39/rust-tools.nvim"] = {
-        after = "mason-lspconfig.nvim", -- make sure to load after mason-lspconfig
-        config = function()
-          require("rust-tools").setup {
-            server = astronvim.lsp.server_settings "rust_analyzer",
-          }
-        end,
-      },
-      -- Smooth scrolling
-      ["declancm/cinnamon.nvim"] = { config = function() require("cinnamon").setup() end },
-      -- LaTeX and markdown integrations
-      ["lervag/vimtex"] = {},
-      ["iamcco/markdown-preview.nvim"] = { run = function() vim.fn["mkdp#util#install"]() end },
-      -- Disable unused plugins
-      ["akinsho/bufferline.nvim"] = { disable = true },
-      ["goolord/alpha-nvim"] = { disable = true },
-      ["max397574/better-escape.nvim"] = { disable = true },
+    -- Set LSP sources
+    {
+      "jose-elias-alvarez/null-ls.nvim",
+      opts = function(_, opts)
+        local null_ls = require "null-ls"
+        -- Set linters and formatters
+        opts.sources = {
+          null_ls.builtins.diagnostics.flake8,
+          null_ls.builtins.formatting.black,
+          null_ls.builtins.formatting.isort,
+          null_ls.builtins.formatting.prettier,
+          null_ls.builtins.formatting.stylua,
+        }
+        return opts
+      end,
     },
-    -- All other entries override the setup() call for default plugins
-    ["null-ls"] = function(config)
-      local null_ls = require "null-ls"
-      -- Check supported formatters and linters
-      config.sources = {
-        -- Set linters
-        null_ls.builtins.diagnostics.flake8,
-        -- Set formatters
-        null_ls.builtins.formatting.black,
-        null_ls.builtins.formatting.isort,
-        null_ls.builtins.formatting.prettier,
-        null_ls.builtins.formatting.stylua,
-      }
-      return config
-    end,
-    treesitter = {
-      ensure_installed = { "lua" },
+    -- Set completion source priorities
+    {
+      "hrsh7th/nvim-cmp",
+      opts = function(_, opts)
+        local cmp = require "cmp"
+        opts.sources = cmp.config.sources {
+          { name = "nvim_lsp", priority = 1000 },
+          { name = "luasnip", priority = 750 },
+          { name = "buffer", priority = 500 },
+          { name = "path", priority = 250 },
+        }
+        return opts
+      end,
     },
-    packer = {
-      compile_path = vim.fn.stdpath "data" .. "/packer_compiled.lua",
+    -- Change statusline components and disable tabline and winbar
+    {
+      "rebelot/heirline.nvim",
+      opts = function(_, opts)
+        local status = require "core.utils.status"
+        opts.statusline = {
+          hl = { fg = "fg", bg = "bg" },
+          status.component.mode {
+            mode_text = { padding = { left = 1, right = 1 } },
+            hl = { bold = true },
+          },
+          -- Add all the other components for the statusline
+          status.component.git_branch(),
+          status.component.file_info(),
+          status.component.git_diff(),
+          status.component.diagnostics(),
+          status.component.fill(),
+          status.component.lsp(),
+          status.component.treesitter(),
+          status.component.nav {
+            percentage = { padding = { left = 1, right = 1 } },
+            scrollbar = false,
+          },
+        }
+        opts.tabline = nil
+        opts.winbar = nil
+        return opts
+      end,
     },
-    heirline = function(config)
-      -- The first element of the default configuration table is the statusline
-      config[1] = {
-        -- Set the fg/bg of the statusline
-        hl = { fg = "fg", bg = "bg" },
-        -- When adding the mode component, enable the mode text with padding to the left/right of it
-        astronvim.status.component.mode {
-          mode_text = { padding = { left = 1, right = 1 } },
-          hl = { fg = "bg", bold = true },
+
+    -- Improved movement
+    {
+      "ggandor/leap.nvim",
+      event = "UIEnter",
+      config = function()
+        local leap = require "leap"
+
+        leap.setup {
+          safe_labels = {
+            "a",
+            "i",
+            "e",
+            "t",
+            "n",
+            "s",
+            "o",
+            "u",
+            "g",
+            "h",
+            "f",
+            "j",
+            "ü",
+            "b",
+            "ä",
+            "q",
+            "ö",
+          },
+          labels = {
+            "a",
+            "e",
+            "i",
+            "t",
+            "n",
+            "s",
+            "o",
+            "u",
+            "g",
+            "h",
+            "c",
+            "r",
+            "l",
+            "y",
+            "d",
+            "w",
+            "m",
+            "k",
+            "f",
+            "j",
+            "ü",
+            "b",
+            "ä",
+            "q",
+            "ö",
+          },
+        }
+        leap.set_default_keymaps()
+      end,
+    },
+    -- Color scheme
+    {
+      "ellisonleao/gruvbox.nvim",
+      name = "gruvbox",
+      opts = function(_, opts)
+        local C = require("gruvbox.palette").colors
+        opts = {
+          overrides = {
+            StatusLine = { bg = C.dark1, fg = C.light0, reverse = false },
+            GitSignsChange = { link = "GruvboxOrangeSign" },
+            Directory = { fg = "#729fcf" },
+          },
+        }
+        return opts
+      end,
+    },
+    -- Rust tools integration
+    {
+      "simrat39/rust-tools.nvim",
+      {
+        "williamboman/mason-lspconfig.nvim",
+        opts = {
+          ensure_installed = { "rust_analyzer" },
         },
-        -- Add all the other components for the statusline
-        astronvim.status.component.git_branch(),
-        astronvim.status.component.file_info(),
-        astronvim.status.component.git_diff(),
-        astronvim.status.component.diagnostics(),
-        astronvim.status.component.fill(),
-        astronvim.status.component.lsp(),
-        astronvim.status.component.treesitter(),
-        astronvim.status.component.nav { percentage = { padding = { left = 1, right = 1 } }, scrollbar = false },
-      }
-      config[2] = nil
-      -- Return the final configuration table
-      return config
-    end,
-  },
-
-  -- LuaSnip Options
-  luasnip = {
-    -- Add paths for including more VS Code style snippets in luasnip
-    vscode_snippet_paths = {},
-    -- Extend filetypes
-    filetype_extend = {
-      javascript = { "javascriptreact" },
+      },
     },
-  },
-
-  -- CMP Source Priorities
-  cmp = {
-    source_priority = {
-      nvim_lsp = 1000,
-      buffer = 750,
-      luasnip = 500,
-      path = 250,
+    -- Smooth scrolling
+    {
+      "declancm/cinnamon.nvim",
+      event = "UIEnter",
+      config = function() require("cinnamon").setup() end,
     },
-  },
-
-  -- Diagnostics configuration (for vim.diagnostics.config({}))
-  diagnostics = {
-    virtual_text = true,
-    underline = true,
+    -- LaTeX and markdown integrations
+    { "lervag/vimtex", ft = { "tex", "bib" } },
+    {
+      "iamcco/markdown-preview.nvim",
+      ft = "markdown",
+      build = function() vim.fn["mkdp#util#install"]() end,
+    },
   },
 
   -- The following keybindings are adapted to a modified VOU layout
@@ -209,23 +237,15 @@ local config = {
   mappings = {
     -- Normal mode mappings
     n = {
-      -- Disable default bindings
+      -- Disable unused default bindings
       ["<leader>c"] = false,
-      ["<leader>e"] = false,
       ["<leader>h"] = false,
-      ["<leader>o"] = false,
       ["<leader>w"] = false,
       ["<leader>/"] = false,
-      ["<leader>fb"] = false,
-      ["<leader>fc"] = false,
-      ["<leader>ff"] = false,
-      ["<leader>fF"] = false,
-      ["<leader>fh"] = false,
-      ["<leader>fm"] = false,
-      ["<leader>fn"] = false,
-      ["<leader>fo"] = false,
-      ["<leader>fw"] = false,
-      ["<leader>fW"] = false,
+      ["<leader>b"] = false,
+      ["<leader>bb"] = false,
+      ["<leader>b\\"] = false,
+      ["<leader>b|"] = false,
       ["<leader>sb"] = false,
       ["<leader>sc"] = false,
       ["<leader>sh"] = false,
@@ -247,16 +267,34 @@ local config = {
       -- Movement
       ["A"] = { "b", desc = "Move a word backwards" },
       ["I"] = { "w", desc = "Move a word forwards" },
-      ["O"] = { "<cmd>lua Scroll('<c-u>', 1, 1)<cr>", desc = "Scroll up half a page" },
-      ["E"] = { "<cmd>lua Scroll('<c-d>', 1, 1)<cr>", desc = "Scroll up half a page" },
+      ["O"] = {
+        "<cmd>lua Scroll('<c-u>', 1, 1)<cr>",
+        desc = "Scroll up half a page",
+      },
+      ["E"] = {
+        "<cmd>lua Scroll('<c-d>', 1, 1)<cr>",
+        desc = "Scroll up half a page",
+      },
       ["a"] = { "h", desc = "Move left" },
       ["e"] = { "gj", desc = "Move down" },
       ["o"] = { "gk", desc = "Move up" },
       ["i"] = { "l", desc = "Move right" },
-      ["<c-a>"] = { "<cmd>lua require('smart-splits').move_cursor_left()<cr>", desc = "Go to the left window" },
-      ["<c-e>"] = { "<cmd>lua require('smart-splits').move_cursor_down()<cr>", desc = "Go to the down window" },
-      ["<c-o>"] = { "<cmd>lua require('smart-splits').move_cursor_up()<cr>", desc = "Go to the up window" },
-      ["<c-i>"] = { "<cmd>lua require('smart-splits').move_cursor_right()<cr>", desc = "Go to the right window" },
+      ["<c-a>"] = {
+        "<cmd>lua require('smart-splits').move_cursor_left()<cr>",
+        desc = "Go to the left window",
+      },
+      ["<c-e>"] = {
+        "<cmd>lua require('smart-splits').move_cursor_down()<cr>",
+        desc = "Go to the down window",
+      },
+      ["<c-o>"] = {
+        "<cmd>lua require('smart-splits').move_cursor_up()<cr>",
+        desc = "Go to the up window",
+      },
+      ["<c-i>"] = {
+        "<cmd>lua require('smart-splits').move_cursor_right()<cr>",
+        desc = "Go to the right window",
+      },
 
       -- Macros
       ["Q"] = { "q", desc = "Record macro" },
@@ -283,12 +321,19 @@ local config = {
 
       -- Spell checking
       ["Z"] = { "z=", desc = "Suggest correct word" },
-      ["<leader>z"] = { "<cmd>setl invspell<cr>", desc = "Toggle spell checking" },
+      ["<leader>z"] = {
+        "<cmd>setl invspell<cr>",
+        desc = "Toggle spell checking",
+      },
 
       -- Adding git co-authors to commit
-      ["<leader>ga"] = { function() git_co_authors() end, desc = "Add git co-authors" },
+      ["<leader>ga"] = {
+        function() git_co_authors() end,
+        desc = "Add git co-authors",
+      },
 
       -- Telescope bindings
+      ["t"] = { name = "Search with telescope" },
       ["b"] = {
         "<cmd>Telescope buffers sort_mru=true ignore_current_buffer=true<cr>",
         desc = "Switch between buffers",
@@ -297,20 +342,27 @@ local config = {
       ["F"] = { "<cmd>Telescope find_files<cr>", desc = "Search files" },
       ["J"] = { "<cmd>Telescope live_grep<cr>", desc = "Search word in files" },
       ["T"] = { "<cmd>Telescope<cr>", desc = "Search Telescope builtins" },
-
       ["tc"] = { "<cmd>Telescope commands<cr>", desc = "Search commands" },
       ["tf"] = { "<cmd>Telescope oldfiles<cr>", desc = "Search file history" },
       ["th"] = { "<cmd>Telescope help_tags<cr>", desc = "Search help" },
-      ["tj"] = { "<cmd>Telescope search_history<cr>", desc = "Search search history" },
+      ["tj"] = {
+        "<cmd>Telescope search_history<cr>",
+        desc = "Search search history",
+      },
       ["tk"] = { "<cmd>Telescope keymaps<cr>", desc = "Search keymaps" },
       ["tm"] = { "<cmd>Telescope man_pages<cr>", desc = "Search man" },
-      ["tn"] = { "<cmd>Telescope diagnostics<cr>", desc = "Search notifications" },
+      ["tn"] = {
+        "<cmd>Telescope diagnostics<cr>",
+        desc = "Search notifications",
+      },
       ["tr"] = { "<cmd>Telescope registers<cr>", desc = "Search registers" },
-      ["t_"] = { "<cmd>Telescope command_history<cr>", desc = "Search command history" },
+      ["t_"] = {
+        "<cmd>Telescope command_history<cr>",
+        desc = "Search command history",
+      },
 
-      -- Neo-tree bindings
-      ["<leader>f"] = { "<cmd>Neotree focus<cr>", desc = "Focus explorer" },
-      ["<leader>F"] = { "<cmd>Neotree toggle<cr>", desc = "Toggle explorer" },
+      -- Deleting buffer
+      ["<leader>bd"] = { "<cmd>Bdelete<cr>", desc = "Delete buffer" },
     },
 
     -- Visual mode mappings
@@ -321,8 +373,14 @@ local config = {
       -- Movement
       ["A"] = { "b", desc = "Move a word backwards" },
       ["I"] = { "w", desc = "Move a word forwards" },
-      ["O"] = { "<cmd>lua Scroll('<c-u>', 1, 1)<cr>", desc = "Scroll up half a page" },
-      ["E"] = { "<cmd>lua Scroll('<c-d>', 1, 1)<cr>", desc = "Scroll up half a page" },
+      ["O"] = {
+        "<cmd>lua Scroll('<c-u>', 1, 1)<cr>",
+        desc = "Scroll up half a page",
+      },
+      ["E"] = {
+        "<cmd>lua Scroll('<c-d>', 1, 1)<cr>",
+        desc = "Scroll up half a page",
+      },
       ["a"] = { "h", desc = "Move left" },
       ["e"] = { "gj", desc = "Move down" },
       ["o"] = { "gk", desc = "Move up" },
@@ -354,29 +412,8 @@ local config = {
     },
   },
 
-  -- Modify which-key registration
-  ["which-key"] = {
-    -- Add bindings which show up as group name
-    register = {
-      n = {
-        ["t"] = { name = "Search" },
-      },
-    },
-  },
-
   -- Set up autocommands and custom highlight groups
   polish = function()
-    -- Enable number number hybrid mode
-    -- vim.api.nvim_create_augroup("numbertoggle", { clear = true })
-    -- vim.api.nvim_create_autocmd({ "BufEnter", "FocusGained", "InsertLeave" }, {
-    --   group = "numbertoggle",
-    --   command = "set relativenumber",
-    -- })
-    -- vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost", "InsertEnter" }, {
-    --   group = "numbertoggle",
-    --   command = "set norelativenumber",
-    -- })
-
     -- Add additional commands for LaTeX and markdown files
     vim.api.nvim_create_augroup("bufcheck", { clear = true })
     vim.api.nvim_create_autocmd("FileType", {
@@ -397,11 +434,10 @@ local config = {
       command = "set guicursor=a:ver90",
     })
 
-    -- Set highlighting groups for leap
+    -- Set highlight groups for leap
     vim.api.nvim_set_hl(0, "LeapLabelPrimary", { link = "GruvboxOrangeBold" })
     vim.api.nvim_set_hl(0, "LeapLabelSecondary", { link = "GruvboxYellowBold" })
   end,
 }
 
--- Return final config table
 return config
