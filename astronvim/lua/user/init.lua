@@ -64,7 +64,7 @@ local config = {
       ["ellisonleao/gruvbox.nvim"] = {
         as = "gruvbox",
         config = function()
-          local C = require "gruvbox.palette"
+          local C = require("gruvbox.palette").colors
           require("gruvbox").setup {
             overrides = {
               StatusLine = { bg = C.dark1, fg = C.light0, reverse = false },
