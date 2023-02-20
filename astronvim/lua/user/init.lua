@@ -132,6 +132,17 @@ local config = {
         return opts
       end,
     },
+    -- Change mappings for commenting above, below and at end of line
+    {
+      "numToStr/Comment.nvim",
+      opts = {
+        extra = {
+          above = "gco",
+          below = "gce",
+          eol = "gcw",
+        },
+      },
+    },
     -- Close telescope picker with escape
     {
       "nvim-telescope/telescope.nvim",
