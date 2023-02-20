@@ -35,7 +35,6 @@ local config = {
   -- Set vim options
   options = {
     opt = {
-      cmdheight = 1,
       gdefault = true,
       linebreak = true,
       relativenumber = false,
@@ -58,6 +57,11 @@ local config = {
 
   -- LSP settings
   lsp = {
+    formatting = {
+      disabled = {
+        "lua_ls",
+      },
+    },
     setup_handlers = {
       rust_analyzer = function(_, opts)
         require("rust-tools").setup { server = opts }
@@ -73,22 +77,6 @@ local config = {
     { "goolord/alpha-nvim", enabled = false },
     { "max397574/better-escape.nvim", enabled = false },
 
-    -- Set LSP sources
-    {
-      "jose-elias-alvarez/null-ls.nvim",
-      opts = function(_, opts)
-        local null_ls = require "null-ls"
-        -- Set linters and formatters
-        opts.sources = {
-          null_ls.builtins.diagnostics.flake8,
-          null_ls.builtins.formatting.black,
-          null_ls.builtins.formatting.isort,
-          null_ls.builtins.formatting.prettier,
-          null_ls.builtins.formatting.stylua,
-        }
-        return opts
-      end,
-    },
     -- Set completion source priorities
     {
       "hrsh7th/nvim-cmp",
@@ -119,6 +107,8 @@ local config = {
           status.component.file_info(),
           status.component.git_diff(),
           status.component.diagnostics(),
+          status.component.fill(),
+          status.component.cmd_info(),
           status.component.fill(),
           status.component.lsp(),
           status.component.treesitter(),
