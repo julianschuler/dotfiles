@@ -67,6 +67,14 @@ local config = {
         require("rust-tools").setup { server = opts }
       end,
     },
+    mappings = {
+      n = {
+        ["<leader>a"] = {
+          function() vim.lsp.buf.code_action() end,
+          desc = "LSP code action",
+        },
+      },
+    },
   },
 
   -- Configure plugins
@@ -113,7 +121,7 @@ local config = {
           status.component.lsp(),
           status.component.treesitter(),
           status.component.nav {
-            percentage = { padding = { left = 1, right = 1 } },
+            percentage = { padding = { left = 2, right = 1 } },
             scrollbar = false,
           },
         }
@@ -257,13 +265,6 @@ local config = {
       ["<leader>bd"] = false,
       ["<leader>b\\"] = false,
       ["<leader>b|"] = false,
-      ["<leader>sb"] = false,
-      ["<leader>sc"] = false,
-      ["<leader>sh"] = false,
-      ["<leader>sk"] = false,
-      ["<leader>sm"] = false,
-      ["<leader>sn"] = false,
-      ["<leader>sr"] = false,
 
       -- Replacing and redo
       ["ü"] = { "r", desc = "Replace character" },
@@ -331,7 +332,6 @@ local config = {
       ["<leader>y"] = { "<cmd>%y<cr>", desc = "Yank buffer" },
 
       -- Spell checking
-      ["Z"] = { "z=", desc = "Suggest correct word" },
       ["<leader>z"] = {
         "<cmd>setl invspell<cr>",
         desc = "Toggle spell checking",
@@ -354,19 +354,43 @@ local config = {
       ["J"] = { "<cmd>Telescope live_grep<cr>", desc = "Search word in files" },
       ["T"] = { "<cmd>Telescope<cr>", desc = "Search Telescope builtins" },
       ["tc"] = { "<cmd>Telescope commands<cr>", desc = "Search commands" },
+      ["td"] = { "<cmd>Telescope diagnostics<cr>", desc = "Search diagnostics" },
       ["tf"] = { "<cmd>Telescope oldfiles<cr>", desc = "Search file history" },
       ["th"] = { "<cmd>Telescope help_tags<cr>", desc = "Search help" },
+      ["ti"] = {
+        "<cmd>Telescope lsp_implementations<cr>",
+        desc = "Search implementations",
+      },
       ["tj"] = {
         "<cmd>Telescope search_history<cr>",
         desc = "Search search history",
       },
-      ["tk"] = { "<cmd>Telescope keymaps<cr>", desc = "Search keymaps" },
+      ["tk"] = { "<cmd>Telescope jumplist<cr>", desc = "Search jumplist" },
       ["tm"] = { "<cmd>Telescope man_pages<cr>", desc = "Search man" },
       ["tn"] = {
-        "<cmd>Telescope diagnostics<cr>",
-        desc = "Search notifications",
+        "<cmd>Telescope lsp_definitions<cr>",
+        desc = "Search definitions",
       },
-      ["tr"] = { "<cmd>Telescope registers<cr>", desc = "Search registers" },
+      ["tr"] = {
+        "<cmd>Telescope lsp_references<cr>",
+        desc = "Search references",
+      },
+      ["ts"] = {
+        "<cmd>Telescope lsp_document_symbols<cr>",
+        desc = "Search document symbols",
+      },
+      ["tS"] = {
+        "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>",
+        desc = "Search workspace symbols",
+      },
+      ["tt"] = {
+        "<cmd>Telescope lsp_type_definitions<cr>",
+        desc = "Search definitions",
+      },
+      ["tz"] = {
+        "<cmd>Telescope spell_suggest<cr>",
+        desc = "Search spell suggestions",
+      },
       ["t_"] = {
         "<cmd>Telescope command_history<cr>",
         desc = "Search command history",
