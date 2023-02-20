@@ -132,6 +132,16 @@ local config = {
         return opts
       end,
     },
+    -- Close telescope picker with escape
+    {
+      "nvim-telescope/telescope.nvim",
+      opts = function(_, opts)
+        opts.defaults.mappings.i = {
+          ["<esc>"] = require("telescope.actions").close,
+        }
+        return opts
+      end,
+    },
 
     -- Improved movement
     {
