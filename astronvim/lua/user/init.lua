@@ -259,12 +259,12 @@ local config = {
     -- Normal mode mappings
     n = {
       -- Disable unused default bindings
-      ["<leader>c"] = false,
       ["<leader>h"] = false,
       ["<leader>w"] = false,
       ["<leader>/"] = false,
       ["<leader>b"] = false,
       ["<leader>bb"] = false,
+      ["<leader>bd"] = false,
       ["<leader>b\\"] = false,
       ["<leader>b|"] = false,
       ["<leader>sb"] = false,
@@ -322,7 +322,7 @@ local config = {
 
       -- Saving and quitting
       ["<leader>s"] = { "<cmd>update<cr>", desc = "Save" },
-      ["q"] = { "<cmd>q<cr>", desc = "Quit" },
+      ["q"] = { "<cmd>confirm q<cr>", desc = "Quit" },
       ["<leader>q"] = { "<cmd>qa<cr>", desc = "Quit all" },
 
       -- Searching and substituting
@@ -381,9 +381,6 @@ local config = {
         "<cmd>Telescope command_history<cr>",
         desc = "Search command history",
       },
-
-      -- Deleting buffer
-      ["<leader>bd"] = { "<cmd>Bdelete<cr>", desc = "Delete buffer" },
     },
 
     -- Visual mode mappings
