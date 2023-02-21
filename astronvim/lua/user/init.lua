@@ -469,6 +469,11 @@ local config = {
     -- Set highlight groups for leap
     vim.api.nvim_set_hl(0, "LeapLabelPrimary", { link = "GruvboxOrangeBold" })
     vim.api.nvim_set_hl(0, "LeapLabelSecondary", { link = "GruvboxYellowBold" })
+
+    -- Fix mappings to special characters by defining them again explicitely
+    vim.keymap.set("n", "j", "/")
+    vim.keymap.set("v", "j", "/")
+    vim.keymap.set("n", "k", "'")
   end,
 }
 
