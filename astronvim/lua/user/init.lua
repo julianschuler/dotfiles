@@ -21,13 +21,11 @@ local function git_co_authors()
   end)
 end
 
-
 local config = {
   -- Configure AstroNvim updates
   updater = {
     version = "latest",
-    channel = "nightly",
-    branch = "v3",
+    channel = "stable",
     skip_prompts = true,
     show_changelog = true,
   },
@@ -103,7 +101,7 @@ local config = {
     {
       "rebelot/heirline.nvim",
       opts = function(_, opts)
-        local status = require "core.utils.status"
+        local status = require "astronvim.utils.status"
         opts.statusline = {
           hl = { fg = "fg", bg = "bg" },
           status.component.mode {
