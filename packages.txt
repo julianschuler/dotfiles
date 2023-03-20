@@ -30,9 +30,9 @@ w3m
 waybar-hyprland
 wl-clipboard
 wlogout
-xdg-dektop-portal-wlr
+xdg-desktop-portal-wlr
 xdg-user-dirs
-yofi
+yofi-git
 zathura
 zathura-pdf-mupdf
 zoxide
