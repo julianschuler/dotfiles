@@ -56,50 +56,51 @@ map [normal] k mark_evaluate
 
 map [normal] s exec zathura-inverse-search
 
-set selection-clipboard clipboard
-set synctex true
-set synctex-editor-command "nvim --headless -c 'VimtexInverseSearch %l %f'"
-set highlight-transparency 0.15
+set font                        "Source Code Pro normal 13"
+set selection-clipboard         clipboard
+set statusbar-basename          true
+set synctex                     true
+set synctex-editor-command      "nvim --headless -c 'VimtexInverseSearch %l %f'"
+set window-title-home-tilde     true
 
+set completion-bg               "#3c3836"
+set completion-fg               "#ebdbb2"
+set completion-group-bg         "#3c3836"
+set completion-group-fg         "#928374"
+set completion-highlight-bg     "#83a598"
+set completion-highlight-fg     "#3c3836"
 
-# gruvbox dark theme from https://github.com/eastack/zathura-gruvbox
-set notification-error-bg       "#282828"   # bg
-set notification-error-fg       "#fb4934"   # bright:red
-set notification-warning-bg     "#282828"   # bg
-set notification-warning-fg     "#fabd2f"   # bright:yellow
-set notification-bg             "#282828"   # bg
-set notification-fg             "#b8bb26"   # bright:green
+set default-bg                  "#282828"
+set default-fg                  "#ebdbb2"
 
-set completion-bg               "#504945"   # bg2
-set completion-fg               "#fbf1c7"   # fg
-set completion-group-bg         "#3c3836"   # bg1
-set completion-group-fg         "#928374"   # gray
-set completion-highlight-bg     "#83a598"   # bright:blue
-set completion-highlight-fg     "#504945"   # bg2
+set highlight-fg                "#282828"
+set highlight-color             "#fabd2f"
+set highlight-active-color      "#fe8019"
+set highlight-transparency      0.15
 
-# Define the color in index mode
-set index-bg                    "#504945"   # bg2
-set index-fg                    "#fbf1c7"   # fg
-set index-active-bg             "#83a598"   # bright:blue
-set index-active-fg             "#504945"   # bg2
+set index-bg                    "#282828"
+set index-fg                    "#ebdbb2"
+set index-active-bg             "#83a598"
+set index-active-fg             
 
-set inputbar-bg                 "#282828"   # bg
-set inputbar-fg                 "#fbf1c7"   # fg
+set inputbar-bg                 "#282828"
+set inputbar-fg                 "#ebdbb2"
 
-set statusbar-bg                "#504945"   # bg2
-set statusbar-fg                "#fbf1c7"   # fg
+set notification-bg             "#282828"
+set notification-fg             "#b8bb26"
+set notification-error-bg       "#282828"
+set notification-error-fg       "#fb4934"
+set notification-warning-bg     "#282828"
+set notification-warning-fg     "#fabd2f"
 
-set highlight-color             "#fabd2f"   # bright:yellow
-set highlight-active-color      "#fe8019"   # bright:orange
-
-set default-bg                  "#282828"   # bg
-set default-fg                  "#fbf1c7"   # fg
 set render-loading              true
-set render-loading-bg           "#282828"   # bg
-set render-loading-fg           "#fbf1c7"   # fg
+set render-loading-bg           "#282828"
+set render-loading-fg           "#ebdbb2"
 
-# Recolor book content's color
-set recolor-lightcolor          "#282828"   # bg
-set recolor-darkcolor           "#fbf1c7"   # fg
-set recolor                     false       # don't recolor by default
-set recolor-keephue             true        # keep original color
+set recolor-keephue             true
+set recolor-lightcolor          "#282828"
+set recolor-darkcolor           "#fbf1c7"
+
+set statusbar-bg                "#3c3836"
+set statusbar-fg                "#ebdbb2"
+set statusbar-v-padding         4
