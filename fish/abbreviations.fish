@@ -30,6 +30,7 @@ abbr -a -U -- asy 'paru -Sy'
 abbr -a -U -- g git
 abbr -a -U -- ga 'git add'
 abbr -a -U -- gap 'git add -p'
+abbr -a -U -- gb 'git branch'
 abbr -a -U -- gc 'git commit'
 abbr -a -U -- gca 'git commit -a'
 abbr -a -U -- gcl 'git clone'
