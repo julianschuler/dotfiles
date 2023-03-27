@@ -41,8 +41,7 @@ set -l script_dir (realpath (dirname (status -f)))
 mkdir -p "$script_dir/conf.d"
 zoxide init fish > "$script_dir/conf.d/zoxide.fish"
 
-# generate abbreviations and aliases
-source "$script_dir/abbreviations.fish"
+# generate aliases
 source "$script_dir/aliases.fish"
 
 # use starship as prompt
