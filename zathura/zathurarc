@@ -58,7 +58,7 @@ map [normal] s exec zathura-inverse-search
 
 set selection-clipboard clipboard
 set synctex true
-set synctex-editor-command "vim --remote-silent +%{line} %{input}"
+set synctex-editor-command "nvim --headless -c 'VimtexInverseSearch %l %f'"
 set highlight-transparency 0.15
 
 

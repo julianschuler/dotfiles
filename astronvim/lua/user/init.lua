@@ -241,7 +241,7 @@ local config = {
       config = function() require("cinnamon").setup() end,
     },
     -- LaTeX and markdown integrations
-    { "lervag/vimtex", ft = { "tex", "bib" } },
+    { "lervag/vimtex", ft = { "tex", "bib" }, cmd = "VimtexInverseSearch" },
     {
       "iamcco/markdown-preview.nvim",
       ft = "markdown",
