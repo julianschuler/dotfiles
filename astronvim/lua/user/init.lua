@@ -38,6 +38,7 @@ local config = {
       relativenumber = false,
       showtabline = 0,
       signcolumn = "auto",
+      foldcolumn = "0",
       modeline = false,
       wrap = true,
     },
@@ -55,12 +56,23 @@ local config = {
 
   -- LSP settings
   lsp = {
+    config = {
+      clangd = {
+        capabilities = {
+          offsetEncoding = "utf-8",
+        },
+      },
+    },
     formatting = {
       disabled = {
         "lua_ls",
+        "openscad_lsp",
       },
     },
     setup_handlers = {
+      clangd = function(_, opts)
+        require("clangd_extensions").setup { server = opts }
+      end,
       rust_analyzer = function(_, opts)
         require("rust-tools").setup { server = opts }
       end,
@@ -231,6 +243,15 @@ local config = {
         "williamboman/mason-lspconfig.nvim",
         opts = {
           ensure_installed = { "rust_analyzer" },
+        },
+      },
+    },
+    {
+      "p00f/clangd_extensions.nvim",
+      {
+        "williamboman/mason-lspconfig.nvim",
+        opts = {
+          ensure_installed = { "clangd" },
         },
       },
     },
