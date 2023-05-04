@@ -16,16 +16,16 @@
 
   "backlight": {
     "format": "{icon}  {percent}%",
-    "format-icons": [" ", " ", " "],
+    "format-icons": ["󰃞 ", "󰃟 ", "󰃠 "],
     "on-scroll-up": "brightnessctl set 5%+ > /dev/null",
     "on-scroll-down": "brightnessctl set 5%- > /dev/null"
   },
 
   "battery": {
     "format": "{icon} {capacity}%",
-    "format-charging": " {capacity}%",
-    "format-plugged": " {capacity}%",
-    "format-icons": ["", "", "", "", "", "", "", "", ""],
+    "format-charging": "󰂄 {capacity}%",
+    "format-plugged": "󰂄 {capacity}%",
+    "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰥁", "󰁿", "󰂀", "󰂁", "󰁹"],
     "tooltip-format": "{time}"
   },
 
@@ -51,27 +51,27 @@
   },
 
   "mpris": {
-    "format": "  {title}  •  {artist}"
+    "format": "󰎈  {title}  •  {artist}"
   },
 
   "network": {
-    "format-wifi": "直 {essid}",
-    "format-ethernet": "   {ifname}",
+    "format-wifi": "󰖩   {essid}",
+    "format-ethernet": "󰈀   {ifname}",
     "format-linked": "   {ifname}",
-    "format-disconnected": "睊 disconnected"
+    "format-disconnected": "󰖪   disconnected"
   },
 
   "pulseaudio": {
     "format": "{icon}  {volume}%",
-    "format-muted": "婢  {volume}%",
-    "format-bluetooth": " {icon}  {volume}%",
-    "format-bluetooth-muted": " 婢  {volume}%",
+    "format-muted": "󰖁  {volume}%",
+    "format-bluetooth": "󰂯 {icon}  {volume}%",
+    "format-bluetooth-muted": "󰂯 󰖁  {volume}%",
     "scroll-step": 5,
     "on-click": "wpctl set-mute @DEFAULT_SINK@ toggle",
     "on-click-right": "wpctl set-mute @DEFAULT_SINK@ 1",
     "on-click-middle": "pavucontrol",
     "format-icons": {
-      "default": ["奔", "墳", "墳"]
+      "default": ["󰖀", "󰕾", "󰕾"]
     }
   },
 
