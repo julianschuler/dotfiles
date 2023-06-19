@@ -13,8 +13,9 @@ api.map("a", "E");
 api.map("O", "e");
 api.map("E", "d");
 api.map(",", "cs");
+
 // simple map won't work as 'e' and 'o' are also used in hints
-api.mapkey("o", "Scroll down", function () {
+api.mapkey("o", "Scroll up", function () {
   api.Normal.scroll("up");
 });
 api.mapkey("e", "Scroll down", function () {
