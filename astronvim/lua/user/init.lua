@@ -67,6 +67,7 @@ local config = {
       disabled = {
         "lua_ls",
         "openscad_lsp",
+        "pylsp",
       },
     },
     setup_handlers = {
@@ -261,8 +262,9 @@ local config = {
       event = "UIEnter",
       config = function() require("cinnamon").setup() end,
     },
-    -- LaTeX and markdown integrations
+    -- LaTeX, Typst and markdown integrations
     { "lervag/vimtex", ft = { "tex", "bib" }, cmd = "VimtexInverseSearch" },
+    { "kaarmu/typst.vim", ft = "typst" },
     {
       "iamcco/markdown-preview.nvim",
       ft = "markdown",
@@ -348,7 +350,7 @@ local config = {
 
       -- Yanking
       ["Y"] = { "y$", desc = "Yank to end of line" },
-      ["<leader>y"] = { "<cmd>%y<cr>", desc = "Yank buffer" },
+      ["<leader>y"] = { "<cmd>sil %y<cr>", desc = "Yank buffer" },
 
       -- Spell checking
       ["<leader>z"] = {
@@ -471,6 +473,11 @@ local config = {
       group = "bufcheck",
       pattern = "tex",
       command = "nnoremap <leader>v <cmd>VimtexView<cr>",
+    })
+    vim.api.nvim_create_autocmd("FileType", {
+      group = "bufcheck",
+      pattern = "typst",
+      command = "nnoremap <leader>v <cmd>sil !pdf %:r.pdf<cr>",
     })
     vim.api.nvim_create_autocmd("FileType", {
       group = "bufcheck",
