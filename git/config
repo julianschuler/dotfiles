@@ -1,5 +1,5 @@
 [user]
-    email = 31921487+julianschuler@users.noreply.github.com
+    email = julianschuler@users.noreply.github.com
     name = Julian Schuler
 
 [core]
@@ -23,3 +23,8 @@
 
 [push]
     autoSetupRemote = true
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
