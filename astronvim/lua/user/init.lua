@@ -47,7 +47,7 @@ local config = {
       maplocalleader = " ",
       mkdp_page_title = "${name}",
       vimtex_view_method = "zathura",
-      vimtex_compiler_latexmk = { build_dir = "/tmp" },
+      vimtex_compiler_latexmk = { out_dir = "/tmp" },
     },
   },
 
