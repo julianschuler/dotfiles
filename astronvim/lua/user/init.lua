@@ -278,24 +278,24 @@ local config = {
     -- Normal mode mappings
     n = {
       -- Disable unused default bindings
-      ["<leader>h"] = false,
       ["<leader>w"] = false,
       ["<leader>/"] = false,
-      ["<leader>b"] = false,
-      ["<leader>bb"] = false,
-      ["<leader>bd"] = false,
-      ["<leader>b\\"] = false,
-      ["<leader>b|"] = false,
 
-      -- Replacing and redo
+      -- Joining, replacing and redo
+      ["ö"] = { "J", desc = "Join lines" },
       ["ü"] = { "r", desc = "Replace character" },
       ["ä"] = { "<c-r>", desc = "Redo" },
 
       -- Switching to insert mode
       ["r"] = { "<cmd>noh<cr>i", desc = "Insert before cursor" },
       ["w"] = { "<cmd>noh<cr>A", desc = "Append at end of line" },
+      ["W"] = { "<cmd>noh<cr>I", desc = "Insert at beginning of line" },
       ["l"] = { "<cmd>noh<cr>o", desc = "Begin new line below" },
       ["L"] = { "<cmd>noh<cr>O", desc = "Begin new line above" },
+
+      -- Navigating the jump list
+      ["<c-k>"] = { "<c-o>", desc = "Jump to previous position in jumplist" },
+      ["<c-m>"] = { "<c-i>", desc = "Jump to next position in jumplist" },
 
       -- Movement
       ["A"] = { "b", desc = "Move a word backwards" },
@@ -420,7 +420,8 @@ local config = {
 
     -- Visual mode mappings
     v = {
-      -- Replacing
+      -- Joining and replacing
+      ["ö"] = { "J", desc = "Join lines" },
       ["ü"] = { "r", desc = "Replace character" },
 
       -- Movement
