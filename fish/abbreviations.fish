@@ -6,13 +6,11 @@ abbr -a e nvim
 abbr -a f fd
 abbr -a l ls
 abbr -a m man
-abbr -a n nvim
 abbr -a p python
 abbr -a r ranger
 abbr -a s sudo
 abbr -a se sudo rvim
 abbr -a t tldr
-abbr -a x exit
 
 # paru
 abbr -a a paru
@@ -20,6 +18,7 @@ abbr -a ag 'paru -Gp'
 abbr -a aq 'paru -Q'
 abbr -a aqe 'paru -Qe'
 abbr -a aqi 'paru -Qi'
+abbr -a aqm 'paru -Qm'
 abbr -a ar 'paru -Rs'
 abbr -a as 'paru -S'
 abbr -a asi 'paru -Si'
