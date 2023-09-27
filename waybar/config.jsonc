@@ -3,7 +3,7 @@
   "position": "top",
   "spacing": 16,
 
-  "modules-left": ["custom/launcher", "wlr/workspaces", "mpris"],
+  "modules-left": ["custom/launcher", "hyprland/workspaces", "mpris"],
   "modules-center": ["hyprland/window"],
   "modules-right": [
     "backlight",
@@ -73,12 +73,5 @@
     "format-icons": {
       "default": ["󰖀", "󰕾", "󰕾"]
     }
-  },
-
-  "wlr/workspaces": {
-    "disable-scroll": true,
-    "sort-by-number": true,
-    "all-outputs": false,
-    "on-click": "activate"
   }
 }

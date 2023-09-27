@@ -27,7 +27,7 @@ swaylock-effects
 ttf-roboto
 ttf-sourcecodepro-nerd
 w3m
-waybar-hyprland
+waybar
 wl-clipboard
 wlogout
 xdg-desktop-portal-wlr
