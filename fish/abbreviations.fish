@@ -4,6 +4,7 @@ abbr -a c z
 abbr -a d pdf
 abbr -a e nvim
 abbr -a f fd
+abbr -a h helix
 abbr -a l ls
 abbr -a m man
 abbr -a p python

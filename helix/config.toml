@@ -1,0 +1,118 @@
+theme = "gruvbox"
+
+[editor]
+color-modes = true
+cursorline = true
+idle-timeout = 0
+
+[editor.lsp]
+display-messages = true
+
+[editor.statusline]
+left = ["mode", "file-name", "file-modification-indicator"]
+center = ["selections"]
+right = ["spinner", "diagnostics", "position", "position-percentage", "file-encoding"]
+mode.normal = "NORMAL"
+mode.insert = "INSERT"
+mode.select = "SELECT"
+
+[editor.cursor-shape]
+insert = "bar"
+select = "underline"
+
+[editor.soft-wrap]
+enable = true
+
+[keys.normal]
+# Movement
+o = "move_visual_line_up"
+e = "move_visual_line_down"
+a = "move_char_left"
+i = "move_char_right"
+O = ["move_line_up", "align_view_center"]
+E = ["move_line_down", "align_view_center"]
+A = "move_prev_word_start"
+I = "move_next_word_start"
+G = "goto_last_line"
+
+# Joining, replacing and redoing
+"ö" = "join_selections"
+"ü" = "replace"
+"Ü" = "replace_with_yanked"
+"ä" = "redo"
+
+# Switching to insert mode
+r = "insert_mode"
+R = "append_mode"
+w = "insert_at_line_end"
+W = "insert_at_line_start"
+l = "open_below"
+L = "open_above"
+
+# Yanking and searching
+Y = ":clipboard-yank"
+j = "search"
+h = ["search_selection", "search_next"]
+H = ["select_all", "select_regex"]
+
+# Mimic vim like line mode
+V = ["extend_line_below", "select_mode"]
+
+# Picker dialogs
+b = "buffer_picker"
+f = "file_picker"
+J = "global_search"
+
+# Other
+_ = "command_mode"
+K = "hover"
+q = ":quit"
+
+[keys.normal.t]
+c = "command_palette"
+d = "diagnostics_picker"
+e = "extend_to_line_end"
+k = "jumplist_picker"
+l = "last_picker"
+s = "symbol_picker"
+S = "workspace_symbol_picker"
+t = "goto_type_definition"
+
+[keys.normal.space]
+s = ":update"
+c = ":buffer-close"
+q = "replay_macro"
+
+[keys.select]
+# Movement
+o = "extend_visual_line_up"
+e = "extend_visual_line_down"
+a = "extend_char_left"
+i = "extend_char_right"
+O = ["extend_line_up", "align_view_center"]
+E = ["extend_line_down", "align_view_center"]
+A = "extend_prev_word_start"
+I = "extend_next_word_start"
+G = "goto_last_line"
+
+# Switching to insert mode
+r = "insert_mode"
+R = "append_mode"
+w = "insert_at_line_end"
+W = "insert_at_line_start"
+
+# Flipping the selection cursor and anchor
+l = "flip_selections"
+L = "flip_selections"
+
+# Yanking and searching
+Y = ":clipboard-yank"
+j = "search"
+h = ["search_selection", "search_next"]
+H = ["select_all", "select_regex"]
+
+[keys.select.t]
+e = "extend_to_line_end"
+
+[keys.insert]
+C-h = "delete_word_backward"
