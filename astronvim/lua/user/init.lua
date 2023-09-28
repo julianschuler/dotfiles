@@ -256,12 +256,6 @@ local config = {
         },
       },
     },
-    -- Smooth scrolling
-    {
-      "declancm/cinnamon.nvim",
-      event = "UIEnter",
-      config = function() require("cinnamon").setup() end,
-    },
     -- LaTeX, Typst and markdown integrations
     { "lervag/vimtex", ft = { "tex", "bib" }, cmd = "VimtexInverseSearch" },
     { "kaarmu/typst.vim", ft = "typst" },
@@ -281,7 +275,7 @@ local config = {
       ["<leader>w"] = false,
       ["<leader>/"] = false,
 
-      -- Joining, replacing and redo
+      -- Joining, replacing and redoing
       ["ö"] = { "J", desc = "Join lines" },
       ["ü"] = { "r", desc = "Replace character" },
       ["ä"] = { "<c-r>", desc = "Redo" },
@@ -300,14 +294,8 @@ local config = {
       -- Movement
       ["A"] = { "b", desc = "Move a word backwards" },
       ["I"] = { "w", desc = "Move a word forwards" },
-      ["O"] = {
-        "<cmd>lua Scroll('<c-u>', 1, 1)<cr>",
-        desc = "Scroll up half a page",
-      },
-      ["E"] = {
-        "<cmd>lua Scroll('<c-d>', 1, 1)<cr>",
-        desc = "Scroll up half a page",
-      },
+      ["E"] = { "gjzz", desc = "Move down and center window" },
+      ["O"] = { "gkzz", desc = "Move down and center window" },
       ["a"] = { "h", desc = "Move left" },
       ["e"] = { "gj", desc = "Move down" },
       ["o"] = { "gk", desc = "Move up" },
@@ -427,14 +415,8 @@ local config = {
       -- Movement
       ["A"] = { "b", desc = "Move a word backwards" },
       ["I"] = { "w", desc = "Move a word forwards" },
-      ["O"] = {
-        "<cmd>lua Scroll('<c-u>', 1, 1)<cr>",
-        desc = "Scroll up half a page",
-      },
-      ["E"] = {
-        "<cmd>lua Scroll('<c-d>', 1, 1)<cr>",
-        desc = "Scroll up half a page",
-      },
+      ["E"] = { "gjzz", desc = "Move down and center window" },
+      ["O"] = { "gkzz", desc = "Move down and center window" },
       ["a"] = { "h", desc = "Move left" },
       ["e"] = { "gj", desc = "Move down" },
       ["o"] = { "gk", desc = "Move up" },
