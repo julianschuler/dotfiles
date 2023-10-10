@@ -38,6 +38,7 @@ local config = {
       relativenumber = false,
       showtabline = 0,
       signcolumn = "auto",
+      scrolloff = 5,
       foldcolumn = "0",
       modeline = false,
       wrap = true,
