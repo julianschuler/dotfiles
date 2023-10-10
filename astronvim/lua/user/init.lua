@@ -295,8 +295,8 @@ local config = {
       -- Movement
       ["A"] = { "b", desc = "Move a word backwards" },
       ["I"] = { "w", desc = "Move a word forwards" },
-      ["E"] = { "gjzz", desc = "Move down and center window" },
-      ["O"] = { "gkzz", desc = "Move down and center window" },
+      ["E"] = { "<c-d>", desc = "Move half page down" },
+      ["O"] = { "<c-u>", desc = "Move half page up" },
       ["a"] = { "h", desc = "Move left" },
       ["e"] = { "gj", desc = "Move down" },
       ["o"] = { "gk", desc = "Move up" },
