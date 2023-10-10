@@ -4,27 +4,6 @@
 syntax on
 filetype plugin indent on
 
-" Move temporary files to a secure location to protect against CVE-2017-1000382
-if exists('$XDG_CACHE_HOME')
-  let &g:directory=$XDG_CACHE_HOME
-else
-  let &g:directory=$HOME . '/.cache'
-endif
-let &g:undodir=&g:directory . '/vim/undo//'
-let &g:backupdir=&g:directory . '/vim/backup//'
-let &g:directory.='/vim/swap//'
-
-" Create directories if they doesn't exist
-if ! isdirectory(expand(&g:directory))
-  silent! call mkdir(expand(&g:directory), 'p', 0700)
-endif
-if ! isdirectory(expand(&g:backupdir))
-  silent! call mkdir(expand(&g:backupdir), 'p', 0700)
-endif
-if ! isdirectory(expand(&g:undodir))
-  silent! call mkdir(expand(&g:undodir), 'p', 0700)
-endif
-
 " Options
 set nocompatible
 set nomodeline
@@ -46,7 +25,7 @@ set splitbelow
 set splitright
 set background=dark
 set encoding=utf8
-set scrolloff=3
+set scrolloff=5
 set wrap linebreak
 set number relativenumber
 set gdefault
@@ -72,7 +51,8 @@ let maplocalleader="\<space>"
 " The following keybindings are adapted to a modified VOU layout
 " and mostly won't make sense on a default QWERTY/QWERTZ keyboard
 
-" Replacing and redo
+" Joining, replacing and redo
+nnoremap ö J
 nnoremap ü r
 vnoremap ü r
 nnoremap ä <c-r>
@@ -84,6 +64,10 @@ nnoremap l o
 nnoremap L O
 vnoremap r I
 vnoremap w A
+
+" Navigating the jump list
+nnoremap <c-k> <c-o>
+nnoremap <c-m> <c-i>
 
 " Changing the selection area
 vnoremap l o
@@ -140,10 +124,6 @@ vnoremap _ :
 nnoremap Y y$
 nnoremap <leader>y :%y<cr>
 
-" Switching between buffers
-nnoremap <c-v> :bp<cr>
-nnoremap <c-u> :bn<cr>
-
 " Spell checking
 nnoremap Z z=
 nnoremap <leader>z :setlocal invspell<cr>
@@ -153,7 +133,3 @@ nnoremap <c-a> <c-w>h
 nnoremap <c-e> <c-w>j
 nnoremap <c-o> <c-w>k
 nnoremap <c-i> <c-w>l
-nnoremap <leader>a :to vs %<cr>
-nnoremap <leader>e :sp<cr>
-nnoremap <leader>o :to sp %<cr>
-nnoremap <leader>i :vs<cr>
