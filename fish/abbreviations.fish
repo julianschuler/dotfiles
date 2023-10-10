@@ -10,7 +10,7 @@ abbr -a m man
 abbr -a p python
 abbr -a r ranger
 abbr -a s sudo
-abbr -a se sudo rvim
+abbr -a se sudoedit
 abbr -a t tldr
 
 # paru
