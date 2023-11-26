@@ -12,7 +12,9 @@
 
 * {
   all: unset;
-  font-family: Roboto, Sauce Code Pro Nerd Font;
+  font-family:
+    Roboto,
+    Sauce Code Pro NF;
   font-size: 17px;
 }
 
