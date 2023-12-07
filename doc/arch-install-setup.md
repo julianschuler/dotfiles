@@ -69,7 +69,7 @@ From now on, follow section 3.1 to 3.5 of the Arch Wiki installation guide.
 Change the `HOOKS=(...)` line in `/etc/mkinitcpio.conf` to
 
 ```
-HOOKS=(base udev autodetect keyboard keymap modconf block encrypt filesystems)
+HOOKS=(base udev autodetect modconf kms keyboard keymap block encrypt filesystems)
 ```
 
 Enable lz4 compression by uncommenting `COMPRESSION=lz4` and setting `COMPRESSION_OPTIONS=(-9)`.
