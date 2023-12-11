@@ -15,6 +15,9 @@ abbr -a t tldr
 
 # paru
 abbr -a a paru
+abbr -a ab 'paru -Bi'
+abbr -a ac 'paru -c'
+abbr -a ad 'paru -D --asdeps'
 abbr -a ag 'paru -Gp'
 abbr -a aq 'paru -Q'
 abbr -a aqe 'paru -Qe'
