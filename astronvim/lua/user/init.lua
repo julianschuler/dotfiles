@@ -223,10 +223,14 @@ local config = {
       "ellisonleao/gruvbox.nvim",
       name = "gruvbox",
       opts = function(_, opts)
-        local C = require("gruvbox.palette").colors
+        local palette = require("gruvbox").palette
         opts = {
           overrides = {
-            StatusLine = { bg = C.dark1, fg = C.light0, reverse = false },
+            StatusLine = {
+              bg = palette.dark1,
+              fg = palette.light0,
+              reverse = false,
+            },
             GitSignsChange = { link = "GruvboxOrangeSign" },
             Directory = { fg = "#729fcf" },
           },
