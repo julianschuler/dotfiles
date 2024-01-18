@@ -47,8 +47,6 @@ local config = {
       mapleader = " ",
       maplocalleader = " ",
       mkdp_page_title = "${name}",
-      vimtex_view_method = "zathura",
-      vimtex_compiler_latexmk = { out_dir = "/tmp" },
     },
   },
 
@@ -248,8 +246,7 @@ local config = {
         },
       },
     },
-    -- LaTeX, Typst and markdown integrations
-    { "lervag/vimtex", ft = { "tex", "bib" }, cmd = "VimtexInverseSearch" },
+    -- Typst and Markdown integrations
     { "kaarmu/typst.vim", ft = "typst" },
     {
       "iamcco/markdown-preview.nvim",
@@ -442,13 +439,8 @@ local config = {
 
   -- Set up autocommands and custom highlight groups
   polish = function()
-    -- Add additional commands for LaTeX and markdown files
+    -- Add additional commands for Typst and Markdown files
     vim.api.nvim_create_augroup("bufcheck", { clear = true })
-    vim.api.nvim_create_autocmd("FileType", {
-      group = "bufcheck",
-      pattern = "tex",
-      command = "nnoremap <leader>v <cmd>VimtexView<cr>",
-    })
     vim.api.nvim_create_autocmd("FileType", {
       group = "bufcheck",
       pattern = "typst",
