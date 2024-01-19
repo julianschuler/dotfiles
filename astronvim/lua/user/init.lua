@@ -158,6 +158,12 @@ local config = {
       end,
     },
 
+    -- Surround
+    {
+      "kylechui/nvim-surround",
+      event = "VeryLazy",
+      config = function() require("nvim-surround").setup() end,
+    },
     -- Improved movement
     {
       "ggandor/leap.nvim",
