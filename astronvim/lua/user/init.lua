@@ -425,7 +425,7 @@ local config = {
     -- Insert mode mappings
     i = {
       -- Deleting last word using control-backspace
-      ["<c-h>"] = { "<c-w>", desc = "Delete last word" },
+      ["<c-backspace>"] = { "<c-w>", desc = "Delete last word" },
     },
   },
 
