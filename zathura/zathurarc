@@ -74,9 +74,6 @@ set default-bg                  "#282828"
 set default-fg                  "#ebdbb2"
 
 set highlight-fg                "#282828"
-set highlight-color             "#fabd2f"
-set highlight-active-color      "#fe8019"
-set highlight-transparency      0.15
 
 set index-bg                    "#282828"
 set index-fg                    "#ebdbb2"
