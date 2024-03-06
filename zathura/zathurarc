@@ -54,13 +54,13 @@ map [normal] <C-r> rotate
 map [normal] p print
 map [normal] k mark_evaluate
 
-map [normal] s exec zathura-inverse-search
-
 set font                        "Source Code Pro normal 13"
+set database                    sqlite
+set dbus-service                false
+set sandbox                     normal
 set selection-clipboard         clipboard
 set statusbar-basename          true
-set synctex                     true
-set synctex-editor-command      "nvim --headless -c 'VimtexInverseSearch %l %f'"
+set synctex                     false
 set window-title-home-tilde     true
 
 set completion-bg               "#3c3836"
