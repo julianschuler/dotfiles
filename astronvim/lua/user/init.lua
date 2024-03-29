@@ -133,13 +133,14 @@ local config = {
         },
       },
     },
-    -- Close telescope picker with escape
+    -- Close telescope picker with escape and exclude .git/ subfolder
     {
       "nvim-telescope/telescope.nvim",
       opts = function(_, opts)
         opts.defaults.mappings.i = {
           ["<esc>"] = require("telescope.actions").close,
         }
+        opts.defaults.file_ignore_patterns = { ".git/" }
         return opts
       end,
     },
@@ -339,8 +340,11 @@ local config = {
         "<cmd>Telescope buffers sort_mru=true ignore_current_buffer=true<cr>",
         desc = "Switch between buffers",
       },
-      ["f"] = { "<cmd>Telescope git_files<cr>", desc = "Search git files" },
-      ["F"] = { "<cmd>Telescope find_files<cr>", desc = "Search files" },
+      ["f"] = { "<cmd>Telescope find_files<cr>", desc = "Search files" },
+      ["F"] = {
+        "<cmd>Telescope find_files hidden=true<cr>",
+        desc = "Search all files",
+      },
       ["J"] = { "<cmd>Telescope live_grep<cr>", desc = "Search word in files" },
       ["T"] = { "<cmd>Telescope<cr>", desc = "Search Telescope builtins" },
       ["tc"] = { "<cmd>Telescope commands<cr>", desc = "Search commands" },
