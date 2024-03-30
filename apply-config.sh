@@ -118,8 +118,8 @@ if [ "$setup_nvim" = true ]; then
     if [ -d "$config_dir/nvim" ]; then
         rm -rf "$config_dir/nvim"
     fi
-    git clone https://github.com/AstroNvim/AstroNvim "$config_dir/nvim"
-    nvim --headless -c 'AstroUpdate' -c 'quitall' 2> /dev/null
+    git clone --depth 1 https://github.com/AstroNvim/AstroNvim "$config_dir/nvim"
+    nvim --headless +q
     print_debug ""
 fi
 
