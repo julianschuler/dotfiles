@@ -18,4 +18,8 @@ return {
       },
     },
   },
+  servers = {
+    "rust_analyzer",
+    "clangd",
+  },
 }

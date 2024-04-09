@@ -144,15 +144,7 @@ return {
     end,
   },
   -- Rust tools integration
-  {
-    "simrat39/rust-tools.nvim",
-    {
-      "williamboman/mason-lspconfig.nvim",
-      opts = {
-        ensure_installed = { "rust_analyzer" },
-      },
-    },
-  },
+  { "simrat39/rust-tools.nvim" },
   -- Typst and Markdown integrations
   { "kaarmu/typst.vim", ft = "typst" },
   {
