@@ -14,7 +14,6 @@ Available options (at least one required):
   -s    Install git submodules
   -l    Create symlinks for configuration files and directories
   -p    Install packages listed in packages.txt using paru
-  -n    Setup neovim and install neovim plugins
   -f    Setup fish and install fish plugins
   -h    Show this help message"
     exit 0
@@ -38,7 +37,6 @@ print_error() {
 install_submodules=false
 create_links=false
 install_packages=false
-setup_nvim=false
 setup_fish=false
 
 # set flags according to input parameters
@@ -50,7 +48,6 @@ while getopts "aslpfnh" arg; do
         "l") create_links=true ;;
         "p") install_packages=true ;;
         "f") setup_fish=true ;;
-        "n") setup_nvim=true ;;
         "h") print_usage; exit 0 ;;
         "?") print_error; exit 1 ;;
     esac
@@ -84,6 +81,7 @@ if [ "$create_links" = true ]; then
     $ln_cmd "$dot_dir/helix" "$config_dir/"
     $ln_cmd "$dot_dir/hypr" "$config_dir/"
     $ln_cmd "$dot_dir/lesskey" "$config_dir/"
+    $ln_cmd "$dot_dir/nvim" "$config_dir/"
     $ln_cmd "$dot_dir/ranger" "$config_dir/"
     $ln_cmd "$dot_dir/starship.toml" "$config_dir/"
     $ln_cmd "$dot_dir/swaylock" "$config_dir/"
@@ -108,18 +106,6 @@ if [ "$setup_fish" = true ]; then
     $ln_cmd "$dot_dir/fish" "$config_dir/"
     print_debug "Setting up fish..."
     fish "$dot_dir/fish/install.fish"
-    print_debug ""
-fi
-
-# setup neovim
-if [ "$setup_nvim" = true ]; then
-    print_debug "Setting up neovim..."
-    $ln_cmd "$dot_dir/astronvim" "$config_dir/"
-    if [ -d "$config_dir/nvim" ]; then
-        rm -rf "$config_dir/nvim"
-    fi
-    git clone --depth 1 https://github.com/AstroNvim/AstroNvim "$config_dir/nvim"
-    nvim --headless +q
     print_debug ""
 fi
 
