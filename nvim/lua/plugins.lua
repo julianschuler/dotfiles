@@ -18,7 +18,7 @@ return {
         },
         -- Add all the other components for the statusline
         status.component.git_branch(),
-        status.component.file_info(),
+        status.component.file_info { filename = {}, filetype = false },
         status.component.git_diff(),
         status.component.diagnostics(),
         status.component.fill(),
