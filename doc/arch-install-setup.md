@@ -96,10 +96,10 @@ Install `sbctl` and `efibootmgr`.
 pacman -S efibootmgr sbctl
 ```
 
-Add the file `/etc/kernel/cmdline` with the following line and `device-uuid` set to the UUID of /dev/nvme0n1p2.
+Add the file `/etc/kernel/cmdline` with the following line and `<device-uuid>` set to the UUID of /dev/nvme0n1p2.
 
 ```
-cryptdevice=UUID=device-uuid:root root=/dev/mapper/root rw quiet bgrt_disable
+cryptdevice=UUID=<device-uuid>:root root=/dev/mapper/root rw quiet bgrt_disable
 ```
 
 Create the unified kernel image using `sbctl`. Note that we have to set `ESP_PATH` manually since `lsblk` will not work correctly within the chroot.
@@ -137,7 +137,7 @@ If required, use `nmtui` to connect to a wireless network.
 Uncomment the parallel downloads and color options in `/etc/pacman.conf` and install additional packages.
 
 ```
-pacman -S --needed base-devel git man-db pipewire pipewire-pulse polkit reflector ufw xorg-xinit xorg-server
+pacman -S --needed base-devel git man-db pipewire pipewire-pulse polkit reflector ufw
 ```
 
 Edit `/etc/xdg/reflector/reflector.conf` and uncomment `--country France,Germany`. Afterwards, start the timer to update the mirror list weekly.
