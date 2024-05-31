@@ -57,7 +57,6 @@ map [normal] k mark_evaluate
 set font                        "Source Code Pro normal 13"
 set database                    sqlite
 set dbus-service                false
-set sandbox                     normal
 set selection-clipboard         clipboard
 set statusbar-basename          true
 set synctex                     false
