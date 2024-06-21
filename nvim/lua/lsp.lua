@@ -1,4 +1,12 @@
 return {
+  formatting = {
+    format_on_save = {
+      enabled = true,
+      ignore_filetypes = {
+        "markdown",
+      },
+    },
+  },
   handlers = {
     rust_analyzer = function(_, opts)
       require("rust-tools").setup { server = opts }
