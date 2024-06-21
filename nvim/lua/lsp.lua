@@ -26,6 +26,11 @@ return {
       },
     },
   },
+  settings = {
+    typst_lsp = {
+      exportPDF = "never",
+    },
+  },
   servers = {
     "rust_analyzer",
     "clangd",
