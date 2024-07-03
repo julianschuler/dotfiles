@@ -7,6 +7,13 @@ return {
       },
     },
   },
+  config = {
+    typst_lsp = {
+      settings = {
+        exportPdf = "never",
+      },
+    },
+  },
   handlers = {
     rust_analyzer = function(_, opts)
       require("rust-tools").setup { server = opts }
@@ -24,11 +31,6 @@ return {
         function() vim.lsp.buf.code_action() end,
         desc = "LSP code action",
       },
-    },
-  },
-  settings = {
-    typst_lsp = {
-      exportPDF = "never",
     },
   },
   servers = {
