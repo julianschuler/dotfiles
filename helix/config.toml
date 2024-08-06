@@ -6,12 +6,13 @@ cursorline = true
 idle-timeout = 0
 
 [editor.lsp]
+auto-signature-help = false
 display-messages = true
 
 [editor.statusline]
-left = ["mode", "file-name", "file-modification-indicator"]
+left = ["mode", "spacer", "spinner", "file-name", "file-modification-indicator", "read-only-indicator"]
 center = ["selections"]
-right = ["spinner", "diagnostics", "position", "position-percentage", "file-encoding"]
+right = ["diagnostics", "spacer", "position", "spacer", "position-percentage", "spacer", "file-encoding"]
 mode.normal = "NORMAL"
 mode.insert = "INSERT"
 mode.select = "SELECT"
