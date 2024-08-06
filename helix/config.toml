@@ -58,6 +58,7 @@ H = ["select_all", "select_regex"]
 
 # Mimic vim like line mode
 V = ["extend_line_below", "select_mode"]
+X = ["extend_line_up", "extend_to_line_bounds"]
 
 # Picker dialogs
 b = "buffer_picker"
@@ -74,7 +75,10 @@ c = "command_palette"
 d = "diagnostics_picker"
 e = "extend_to_line_end"
 k = "jumplist_picker"
+h = "command_palette"
 l = "last_picker"
+n = "goto_definition"
+r = "goto_reference"
 s = "symbol_picker"
 S = "workspace_symbol_picker"
 t = "goto_type_definition"
@@ -95,6 +99,7 @@ E = "half_page_down"
 A = "extend_prev_word_start"
 I = "extend_next_word_start"
 G = "goto_last_line"
+X = ["extend_line_up", "extend_to_line_bounds"]
 
 # Switching to insert mode
 r = "insert_mode"
@@ -116,4 +121,4 @@ H = ["select_all", "select_regex"]
 e = "extend_to_line_end"
 
 [keys.insert]
-C-h = "delete_word_backward"
+C-backspace = "delete_word_backward"
