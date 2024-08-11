@@ -59,7 +59,7 @@ mount --mkdir /dev/nvme0n1p1 /mnt/efi
 Select the microcode package according to your CPU manufacturer (AMD or Intel).
 
 ```
-pacstrap /mnt base linux linux-firmware btrfs-progs networkmanager vi {amd|intel}-ucode
+pacstrap /mnt base efibootmgr linux linux-firmware btrfs-progs networkmanager vi {amd|intel}-ucode
 ```
 
 From now on, follow section 3.1 to 3.5 of the Arch Wiki installation guide.
@@ -74,11 +74,7 @@ HOOKS=(base udev autodetect modconf kms keyboard keymap block encrypt filesystem
 
 Enable lz4 compression by uncommenting `COMPRESSION=lz4` and setting `COMPRESSION_OPTIONS=(-9)`.
 
-Regenerate the initramfs.
-
-```
-mkinitcpio -P
-```
+The initramfs is regenerated later in section 3.8.
 
 ### Root password (3.7)
 
@@ -90,32 +86,37 @@ passwd
 
 ### Boot loader (3.8)
 
-Install `sbctl` and `efibootmgr`.
-
-```
-pacman -S efibootmgr sbctl
-```
-
 Add the file `/etc/kernel/cmdline` with the following line and `<device-uuid>` set to the UUID of /dev/nvme0n1p2.
 
 ```
 cryptdevice=UUID=<device-uuid>:root root=/dev/mapper/root rw quiet bgrt_disable
 ```
 
-Create the unified kernel image using `sbctl`. Note that we have to set `ESP_PATH` manually since `lsblk` will not work correctly within the chroot.
+Change the content of `/etc/mkinitcpio.d/linux.preset` to the following:
+
+```
+# mkinitcpio preset file for the 'linux' package
+
+ALL_config="/etc/mkinitcpio.conf"
+ALL_kver="/boot/vmlinuz-linux"
+
+PRESETS=('default')
+
+default_uki="/efi/EFI/Linux/arch-linux.efi"
+default_options="--splash=/usr/share/systemd/bootctl/splash-arch.bmp"
+```
+
+Regenerate the initramfs to build the unified kernel image.
 
 ```
 mkdir -p /efi/EFI/Linux
-ESP_PATH=/efi sbctl bundle --save \
-    {-a /boot/amd-ucode.img | -i /boot/intel-ucode.img} \
-    -l /usr/share/systemd/bootctl/splash-arch.bmp \
-    /efi/EFI/Linux/archlinux.efi
+mkinitcpio -P
 ```
 
-Add an EFI entry for the created image.
+Finally, add an EFI entry for the created image.
 
 ```
-efibootmgr -c -d /dev/nvme0n1 -p 1 -L "Arch Linux" -l 'EFI\Linux\archlinux.efi'
+efibootmgr -c -d /dev/nvme0n1 -p 1 -L "Arch Linux" -l 'EFI\Linux\arch-linux.efi'
 ```
 
 ## Setup
@@ -217,42 +218,29 @@ sudo localectl set-x11-keymap de "" nodeadkeys caps:escape
 
 ### Secure Boot
 
-Go to the firmware settings and set the secure boot mode to `Setup mode`.
+Install `sbctl`.
+
+```
+sudo pacman -S sbctl
+```
+
+Reboot into the firmware settings and set the secure boot mode to `Setup mode`.
 
 ```
 systemctl reboot --firmware-setup
 ```
 
-Create and enroll the custom secure boot keys.
+Create and enroll custom secure boot keys.
 
 ```
 sudo sbctl create-keys
 sudo sbctl enroll-keys -m
 ```
 
-Regenerate and sign the unified kernel image(s).
+Regenerate the unified kernel image to trigger the `sbctl` hook signing it.
 
 ```
-sudo sbctl generate-bundles -s
-```
-
-Add a `pacman` hook to regenerate and sign the images upon kernel and initramfs changes by adding the file `/etc/pacmand.d/hooks/zz-sbctl.hook` containing the following:
-
-```
-[Trigger]
-Type = Path
-Operation = Install
-Operation = Upgrade
-Operation = Remove
-Target = boot/*
-Target = usr/lib/modules/*/vmlinuz
-Target = usr/lib/initcpio/*
-Target = usr/lib/**/efi/*.efi*
-
-[Action]
-Description = Regenerating and signing unified kernel images...
-When = PostTransaction
-Exec = /usr/bin/sbctl generate-bundles -s
+sudo mkinitcpio -P
 ```
 
 Reboot again to the firmware settings and enable secure boot.
