@@ -14,14 +14,14 @@ Securely erase the NVMe drive as described in the [Arch Wiki article](https://wi
 
 Start `parted` and create a new GUID Partition Table.
 
-```
+```sh
 parted /dev/nvme0n1
 (parted) mklabel gpt
 ```
 
 Afterwards, create the EFI and root partitions.
 
-```
+```sh
 (parted) mkpart efi fat32 0% 512MiB
 (parted) set 1 esp on
 (parted) mkpart root btrfs 512MiB 100%
@@ -31,7 +31,7 @@ Afterwards, create the EFI and root partitions.
 
 Encrypt the root partition with dm-crypt and unlock it.
 
-```
+```sh
 cryptsetup luksFormat /dev/nvme0n1p2
 cryptsetup open /dev/nvme0n1p2 root
 ```
@@ -40,7 +40,7 @@ cryptsetup open /dev/nvme0n1p2 root
 
 Format the EFI partitions to FAT32 and the root partition to btrfs.
 
-```
+```sh
 mkfs.fat -F 32 /dev/nvme0n1p1
 mkfs.btrfs /dev/mapper/root
 ```
@@ -49,7 +49,7 @@ mkfs.btrfs /dev/mapper/root
 
 Mount the partitions to `/mnt/efi` and `/mnt` respectively.
 
-```
+```sh
 mount /dev/mapper/root /mnt
 mount --mkdir /dev/nvme0n1p1 /mnt/efi
 ```
@@ -58,7 +58,7 @@ mount --mkdir /dev/nvme0n1p1 /mnt/efi
 
 Select the microcode package according to your CPU manufacturer (AMD or Intel).
 
-```
+```sh
 pacstrap /mnt base efibootmgr linux linux-firmware btrfs-progs networkmanager vi {amd|intel}-ucode
 ```
 
@@ -68,7 +68,7 @@ From now on, follow section 3.1 to 3.5 of the Arch Wiki installation guide.
 
 Change the `HOOKS=(...)` line in `/etc/mkinitcpio.conf` to
 
-```
+```sh
 HOOKS=(base udev autodetect modconf kms keyboard keymap block encrypt filesystems)
 ```
 
@@ -80,7 +80,7 @@ The initramfs is regenerated later in section 3.8.
 
 Set the root password to something simple (the root login will be disabled during setup).
 
-```
+```sh
 passwd
 ```
 
@@ -108,14 +108,14 @@ default_options="--splash=/usr/share/systemd/bootctl/splash-arch.bmp"
 
 Regenerate the initramfs to build the unified kernel image.
 
-```
+```sh
 mkdir -p /efi/EFI/Linux
 mkinitcpio -P
 ```
 
 Finally, add an EFI entry for the created image.
 
-```
+```sh
 efibootmgr -c -d /dev/nvme0n1 -p 1 -L "Arch Linux" -l 'EFI\Linux\arch-linux.efi'
 ```
 
@@ -127,7 +127,7 @@ After finishing the installation, reboot, remove the installation medium and log
 
 Enable and start NetworkManager.
 
-```
+```sh
 systemctl enable --now NetworkManager
 ```
 
@@ -137,13 +137,13 @@ If required, use `nmtui` to connect to a wireless network.
 
 Uncomment the parallel downloads and color options in `/etc/pacman.conf` and install additional packages.
 
-```
+```sh
 pacman -S --needed base-devel git man-db pipewire pipewire-pulse polkit reflector ufw
 ```
 
 Edit `/etc/xdg/reflector/reflector.conf` and uncomment `--country France,Germany`. Afterwards, start the timer to update the mirror list weekly.
 
-```
+```sh
 systemctl enable --now reflector.timer
 ```
 
@@ -151,7 +151,7 @@ systemctl enable --now reflector.timer
 
 Configure the firewall to allow only traffic from 192.168.178.0/24 and rate limit ssh.
 
-```
+```sh
 ufw default deny
 ufw allow from 192.168.178.0/24
 ufw limit ssh
@@ -159,7 +159,7 @@ ufw limit ssh
 
 Enable the firewall and show its status.
 
-```
+```sh
 systemctl enable --now ufw
 ufw enable
 ufw status
@@ -169,7 +169,7 @@ ufw status
 
 Create the unprivileged user _julian_ and add it to the _sudo_ group.
 
-```
+```sh
 groupadd -r sudo
 useradd -m -G sudo julian
 passwd julian
@@ -179,7 +179,7 @@ Execute `visudo` to edit `/etc/sudoers` and uncomment `%sudo ALL=(ALL:ALL) ALL`.
 
 Log in as _julian_. If everything works as expected, disable the root login.
 
-```
+```sh
 sudo passwd -l root
 ```
 
@@ -189,7 +189,7 @@ All following commands are executed as _julian_.
 
 Install and build `paru` as `pacman` wrapping AUR helper.
 
-```
+```sh
 git clone https://aur.archlinux.org/paru.git ~/programs/paru
 cd ~/programs/paru
 makepkg -si
@@ -199,7 +199,7 @@ makepkg -si
 
 Finish the system setup by cloning the dotfiles, applying the configuration and changing the shell.
 
-```
+```sh
 git clone https://github.com/julianschuler/dotfiles ~/documents/dotfiles
 cd ~/documents/dotfiles
 ./apply-config -a
@@ -212,7 +212,7 @@ Reboot and log in as _julian_.
 
 Set a German keyboard layout with no dead keys and caps mapped to escape for X11 and the virtual console.
 
-```
+```sh
 sudo localectl set-x11-keymap de "" nodeadkeys caps:escape
 ```
 
@@ -220,26 +220,26 @@ sudo localectl set-x11-keymap de "" nodeadkeys caps:escape
 
 Install `sbctl`.
 
-```
+```sh
 sudo pacman -S sbctl
 ```
 
 Reboot into the firmware settings and set the secure boot mode to `Setup mode`.
 
-```
+```sh
 systemctl reboot --firmware-setup
 ```
 
 Create and enroll custom secure boot keys.
 
-```
+```sh
 sudo sbctl create-keys
 sudo sbctl enroll-keys -m
 ```
 
 Regenerate the unified kernel image to trigger the `sbctl` hook signing it.
 
-```
+```sh
 sudo mkinitcpio -P
 ```
 
