@@ -57,6 +57,7 @@ L = "open_above"
 # Yanking and searching
 Y = ":clipboard-yank"
 j = "search"
+J = ["search_selection", "global_search"]
 h = ["search_selection", "search_next"]
 H = ["select_all", "select_regex"]
 
@@ -64,33 +65,61 @@ H = ["select_all", "select_regex"]
 V = ["extend_line_below", "select_mode"]
 X = ["extend_line_up", "extend_to_line_bounds"]
 
-# Picker dialogs
-b = "buffer_picker"
-f = "file_picker"
-J = "global_search"
-
 # Other
-_ = "command_mode"
-K = "hover"
+b = "buffer_picker"
+B = "goto_last_accessed_file"
+k = "hover"
 q = ":quit"
+_ = "command_mode"
 
 [keys.normal.t]
-c = "command_palette"
-d = "diagnostics_picker"
-e = "extend_to_line_end"
-k = "jumplist_picker"
-h = "command_palette"
-l = "last_picker"
+# Going to arbitrary positions
 n = "goto_definition"
+N = "goto_declaration"
 r = "goto_reference"
 s = "symbol_picker"
 S = "workspace_symbol_picker"
 t = "goto_type_definition"
+w = "goto_word"
+h = "command_palette"
+
+# Traversing jumplist
+k = "jumplist_picker"
+i = "jump_forward"
+o = "jump_backward"
+
+# Going to next (unimpaired like mappings)
+a = "goto_next_parameter"
+e = "goto_next_diag"
+c = "goto_next_comment"
+f = "goto_next_function"
+l = "goto_next_class"
+m = "goto_next_change"
+M = "goto_last_change"
+p = "goto_next_paragraph"
+T = "goto_next_test"
+space = "add_newline_below"
+
+[keys.normal.f]
+# Going to previous (unimpaired like mappings)
+a = "goto_prev_parameter"
+e = "goto_prev_diag"
+c = "goto_prev_comment"
+f = "goto_prev_function"
+l = "goto_prev_class"
+m = "goto_prev_change"
+M = "goto_first_change"
+T = "goto_prev_test"
+p = "goto_prev_paragraph"
+space = "add_newline_above"
 
 [keys.normal.space]
+b = ":buffer-close"
+e = "extend_to_line_end"
+l = "last_picker"
 s = ":update"
-c = ":buffer-close"
 q = "replay_macro"
+"'" = "no_op"
 
 [keys.select]
 # Movement
@@ -118,11 +147,16 @@ L = "flip_selections"
 # Yanking and searching
 Y = ":clipboard-yank"
 j = "search"
+J = ["search_selection", "global_search"]
 h = ["search_selection", "search_next"]
 H = ["select_all", "select_regex"]
 
-[keys.select.t]
-e = "extend_to_line_end"
+# Other
+b = "buffer_picker"
+B = "goto_last_accessed_file"
+k = "hover"
+q = ":quit"
+_ = "command_mode"
 
 [keys.insert]
 C-backspace = "delete_word_backward"
