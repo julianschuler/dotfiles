@@ -1,8 +1,8 @@
 {
-    "label" : "shutdown",
+    "label" : "poweroff",
     "action" : "poweroff",
     "text" : "󰐥",
-    "keybind" : "s"
+    "keybind" : "p"
 }
 {
     "label" : "reboot",
@@ -11,8 +11,8 @@
     "keybind" : "r"
 }
 {
-    "label" : "logout",
-    "action" : "loginctl terminate-user $USER",
-    "text" : "󰗼",
-    "keybind" : "e"
+    "label" : "suspend",
+    "action" : "systemctl suspend",
+    "text" : "󰤄",
+    "keybind" : "s"
 }

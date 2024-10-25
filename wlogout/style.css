@@ -41,7 +41,7 @@ button:active {
   border-color: @color;
 }
 
-#shutdown {
+#poweroff {
   color: @red;
 }
 
@@ -49,6 +49,6 @@ button:active {
   color: @blue;
 }
 
-#logout {
+#suspend {
   color: @green;
 }
