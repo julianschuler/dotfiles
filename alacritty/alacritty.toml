@@ -65,7 +65,7 @@ bindings = [
   { key = "Home",     mods = "Shift",   mode = "~Alt",       action = "ScrollToTop"             },
   { key = "End",      mods = "Shift",   mode = "~Alt",       action = "ScrollToBottom"          },
   { key = "J",        mods = "Control", mode = "~Alt|~Vi",   action = "ToggleViMode"            },
-  { key = "J",        mods = "Control", mode = "~Alt",       action = "SearchBackward"          },
+  { key = "J",        mods = "Control", mode = "~Alt",       action = "SearchForward"           },
 
   # Vi Mode
   { key = "N",        mods = "Control", mode = "~Search",    action = "ToggleViMode"            },
@@ -107,8 +107,8 @@ bindings = [
   { key = "I",        mods = "Control", mode = "Vi|~Search", action = "WordRight"               },
   { key = "U",        mods = "Control", mode = "Vi|~Search", action = "WordRightEnd"            },
   { key = "Key5",     mods = "Shift",   mode = "Vi|~Search", action = "Bracket"                 },
-  { key = "J",                          mode = "Vi|~Search", action = "SearchBackward"          },
-  { key = "J",        mods = "Shift",   mode = "Vi|~Search", action = "SearchForward"           },
+  { key = "J",                          mode = "Vi|~Search", action = "SearchForward"           },
+  { key = "J",        mods = "Shift",   mode = "Vi|~Search", action = "SearchBackward"          },
   { key = "N",                          mode = "Vi|~Search", action = "SearchPrevious"          },
   { key = "N",        mods = "Shift",   mode = "Vi|~Search", action = "SearchNext"              },
 ]
