@@ -7,18 +7,6 @@ return {
       },
     },
   },
-  config = {
-    typst_lsp = {
-      settings = {
-        exportPdf = "never",
-      },
-    },
-  },
-  handlers = {
-    rust_analyzer = function(_, opts)
-      require("rust-tools").setup { server = opts }
-    end,
-  },
   mappings = {
     n = {
       ["<leader>a"] = {

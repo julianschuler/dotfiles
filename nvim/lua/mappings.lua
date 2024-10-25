@@ -19,10 +19,6 @@ return {
     ["l"] = { "<cmd>noh<cr>o", desc = "Begin new line below" },
     ["L"] = { "<cmd>noh<cr>O", desc = "Begin new line above" },
 
-    -- Navigating the jump list
-    ["<c-k>"] = { "<c-o>", desc = "Jump to previous position in jumplist" },
-    ["<c-m>"] = { "<c-i>", desc = "Jump to next position in jumplist" },
-
     -- Movement
     ["A"] = { "b", desc = "Move a word backwards" },
     ["I"] = { "w", desc = "Move a word forwards" },
@@ -32,22 +28,6 @@ return {
     ["e"] = { "gj", desc = "Move down" },
     ["o"] = { "gk", desc = "Move up" },
     ["i"] = { "l", desc = "Move right" },
-    ["<c-a>"] = {
-      "<cmd>lua require('smart-splits').move_cursor_left()<cr>",
-      desc = "Go to the left window",
-    },
-    ["<c-e>"] = {
-      "<cmd>lua require('smart-splits').move_cursor_down()<cr>",
-      desc = "Go to the down window",
-    },
-    ["<c-o>"] = {
-      "<cmd>lua require('smart-splits').move_cursor_up()<cr>",
-      desc = "Go to the up window",
-    },
-    ["<c-i>"] = {
-      "<cmd>lua require('smart-splits').move_cursor_right()<cr>",
-      desc = "Go to the right window",
-    },
 
     -- Macros
     ["Q"] = { "q", desc = "Record macro" },

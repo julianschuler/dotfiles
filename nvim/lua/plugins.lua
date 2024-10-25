@@ -1,8 +1,8 @@
 return {
   -- Disable unused plugins
-  { "AstroNvim/astrotheme", enabled = false },
-  { "akinsho/toggleterm.nvim", enabled = false },
-  { "goolord/alpha-nvim", enabled = false },
+  { "AstroNvim/astrotheme",         enabled = false },
+  { "akinsho/toggleterm.nvim",      enabled = false },
+  { "goolord/alpha-nvim",           enabled = false },
   { "max397574/better-escape.nvim", enabled = false },
 
   -- Change statusline components and disable tabline and winbar
@@ -35,17 +35,6 @@ return {
       opts.winbar = nil
       return opts
     end,
-  },
-  -- Change mappings for commenting above, below and at end of line
-  {
-    "numToStr/Comment.nvim",
-    opts = {
-      extra = {
-        above = "gco",
-        below = "gce",
-        eol = "gcw",
-      },
-    },
   },
   -- Close telescope picker with escape and exclude .git/ subfolder
   {
@@ -143,10 +132,7 @@ return {
       leap.set_default_keymaps()
     end,
   },
-  -- Rust tools integration
-  { "simrat39/rust-tools.nvim" },
-  -- Typst and Markdown integrations
-  { "kaarmu/typst.vim", ft = "typst" },
+  -- Markdown preview
   {
     "iamcco/markdown-preview.nvim",
     ft = "markdown",
