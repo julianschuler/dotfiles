@@ -47,7 +47,9 @@
   },
 
   "hyprland/window": {
-    "separate-outputs": true
+    "separate-outputs": true,
+    "icon": true,
+    "icon-size": 16
   },
 
   "mpris": {
