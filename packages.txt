@@ -13,6 +13,7 @@ git-delta
 gnome-themes-extra
 hyprland
 keepassxc
+mako
 neovim
 pavucontrol
 pipewire-pulse
