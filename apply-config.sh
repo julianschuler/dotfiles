@@ -81,6 +81,7 @@ if [ "$create_links" = true ]; then
     $ln_cmd "$dot_dir/helix" "$config_dir/"
     $ln_cmd "$dot_dir/hypr" "$config_dir/"
     $ln_cmd "$dot_dir/lesskey" "$config_dir/"
+    $ln_cmd "$dot_dir/niri" "$config_dir/"
     $ln_cmd "$dot_dir/nvim" "$config_dir/"
     $ln_cmd "$dot_dir/ranger" "$config_dir/"
     $ln_cmd "$dot_dir/starship.toml" "$config_dir/"

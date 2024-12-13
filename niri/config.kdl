@@ -1,0 +1,172 @@
+prefer-no-csd
+screenshot-path "~/screenshots/%Y-%m-%d-%H:%M:%S.png"
+
+environment {
+    QT_QPA_PLATFORM "wayland"
+    DISPLAY null
+}
+
+input {
+    keyboard {
+        xkb {
+            layout "de"
+            variant "nodeadkeys"
+            options "caps:escape"
+        }
+
+        repeat-delay 200
+        repeat-rate 75
+    }
+
+    warp-mouse-to-focus
+    focus-follows-mouse
+}
+
+output "DP-1" {
+    mode "1920x1080"
+    position x=0 y=0
+}
+
+output "DP-2" {
+    scale 2
+}
+
+layout {
+    gaps 0
+
+    center-focused-column "never"
+    always-center-single-column
+
+    preset-column-widths {
+        proportion 0.5
+    }
+
+    focus-ring {
+        off
+    }
+
+    border {
+        width 2
+        active-color "#73d216"
+        inactive-color "#797979"
+    }
+}
+
+cursor {
+    hide-when-typing
+}
+
+hotkey-overlay {
+    skip-at-startup
+}
+
+window-rule {
+    draw-border-with-background false
+}
+
+window-rule {
+    match app-id=r#"^org\.keepassxc\.KeePassXC$"#
+
+    block-out-from "screen-capture"
+}
+
+binds {
+    // Media and brightness control
+    XF86AudioRaiseVolume  allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "5%+"; }
+    XF86AudioLowerVolume  allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "5%-"; }
+    XF86AudioMute         allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
+    XF86AudioMicMute      allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
+    XF86AudioPlay         allow-when-locked=true { spawn "playerctl" "play-pause"; }
+    XF86AudioNext         allow-when-locked=true { spawn "playerctl" "next"; }
+    XF86AudioPrev         allow-when-locked=true { spawn "playerctl" "previous"; }
+    XF86MonBrightnessUp   allow-when-locked=true { spawn "brightnessctl" "s" "5%+"; }
+    XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "s" "5%-"; }
+
+    // Programs
+    Mod+F2  { spawn "alacritty" "-e" "nvim"; }
+    Mod+F3  { spawn "alacritty" "-e" "aerc"; }
+    Mod+F4  { spawn "alacritty" "-e" "btop"; }
+    Mod+F5  { spawn "alacritty" "-e" "nmtui"; }
+    Mod+F8  { spawn "alacritty"; }
+    Mod+F9  { spawn "firefox"; }
+    Mod+F10 { spawn "alacritty" "-e" "ranger"; }
+    Mod+F11 { spawn "fuzzel"; }
+    Ctrl+Alt+Delete { spawn "wlogout"; }
+
+    // Move focus and windows between workspaces
+    Mod+1 { focus-workspace 1; }
+    Mod+2 { focus-workspace 2; }
+    Mod+3 { focus-workspace 3; }
+    Mod+4 { focus-workspace 4; }
+    Mod+5 { focus-workspace 5; }
+    Mod+6 { focus-workspace 6; }
+    Mod+7 { focus-workspace 7; }
+    Mod+8 { focus-workspace 8; }
+    Mod+9 { focus-workspace 9; }
+    Mod+Shift+1 { move-window-to-workspace 1; }
+    Mod+Shift+2 { move-window-to-workspace 2; }
+    Mod+Shift+3 { move-window-to-workspace 3; }
+    Mod+Shift+4 { move-window-to-workspace 4; }
+    Mod+Shift+5 { move-window-to-workspace 5; }
+    Mod+Shift+6 { move-window-to-workspace 6; }
+    Mod+Shift+7 { move-window-to-workspace 7; }
+    Mod+Shift+8 { move-window-to-workspace 8; }
+    Mod+Shift+9 { move-window-to-workspace 9; }
+
+    /// Mouse bindings
+    Mod+WheelScrollDown            { focus-workspace-down; }
+    Mod+WheelScrollUp              { focus-workspace-up; }
+    Mod+WheelScrollRight           { focus-column-right; }
+    Mod+WheelScrollLeft            { focus-column-left; }
+    Mod+Shift+WheelScrollDown      { focus-column-right; }
+    Mod+Shift+WheelScrollUp        { focus-column-left; }
+    Mod+Ctrl+WheelScrollDown       { move-column-to-workspace-down; }
+    Mod+Ctrl+WheelScrollUp         { move-column-to-workspace-up; }
+    Mod+Ctrl+WheelScrollRight      { move-column-right; }
+    Mod+Ctrl+WheelScrollLeft       { move-column-left; }
+    Mod+Ctrl+Shift+WheelScrollDown { move-column-right; }
+    Mod+Ctrl+Shift+WheelScrollUp   { move-column-left; }
+
+    // The following key bindings are adapted for a modified VOU layout
+    // and mostly won't make sense on a normal QWERTY/QWERTZ layout
+    Mod+D { spawn "alacritty"; }
+    Mod+W { spawn "firefox"; }
+    Mod+M { spawn "alacritty" "-e" "ranger"; }
+    Mod+K { spawn "fuzzel"; }
+    Mod+Shift+L { spawn "swaylock"; }
+
+    // Toggle bar
+    Mod+B { spawn "pkill" "-USR1" "waybar"; }
+    // TODO: Mod+P { toggle-special }
+
+    // Move focus
+    Mod+A   { focus-column-left; }
+    Mod+I   { focus-column-right; }
+    Mod+E   { focus-window-or-workspace-down; }
+    Mod+O   { focus-window-or-workspace-up; }
+    Mod+T   { focus-monitor-left; }
+    Mod+N   { focus-monitor-right; }
+    Mod+Tab { focus-workspace-previous; }
+
+    // Move column and windows
+    Mod+Shift+A { move-column-left; }
+    Mod+Shift+I { move-column-right; }
+    Mod+Shift+E { move-window-down-or-to-workspace-down; }
+    Mod+Shift+O { move-window-up-or-to-workspace-up; }
+    Mod+Shift+T { move-window-to-monitor-left; }
+    Mod+Shift+N { move-window-to-monitor-right; }
+    Mod+Comma   { consume-or-expel-window-left; }
+    Mod+Y       { consume-or-expel-window-right; }
+
+    // Resize columns
+    Mod+Period { set-column-width "-5%"; }
+    Mod+U      { set-column-width "+5%"; }
+    Mod+C      { maximize-column; }
+    Mod+R      { switch-preset-column-width; }
+
+    // Fullscreen, close window and quit
+    Mod+V       { fullscreen-window; }
+    Mod+X       { close-window; }
+    Mod+Shift+Q { quit; }
+    Print       { screenshot; }
+}
