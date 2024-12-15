@@ -142,27 +142,32 @@ binds {
     // Move focus
     Mod+A   { focus-column-left; }
     Mod+I   { focus-column-right; }
-    Mod+E   { focus-window-or-workspace-down; }
-    Mod+O   { focus-window-or-workspace-up; }
-    Mod+T   { focus-monitor-left; }
-    Mod+N   { focus-monitor-right; }
+    Mod+E   { focus-window-down; }
+    Mod+O   { focus-window-up; }
+    Mod+T   { focus-workspace-up; }
+    Mod+N   { focus-workspace-down; }
+    Mod+R   { focus-monitor-next; }
+    Mod+S   { focus-workspace 100; }
     Mod+Tab { focus-workspace-previous; }
 
-    // Move column and windows
-    Mod+Shift+A { move-column-left; }
-    Mod+Shift+I { move-column-right; }
-    Mod+Shift+E { move-window-down-or-to-workspace-down; }
-    Mod+Shift+O { move-window-up-or-to-workspace-up; }
-    Mod+Shift+T { move-window-to-monitor-left; }
-    Mod+Shift+N { move-window-to-monitor-right; }
-    Mod+Comma   { consume-or-expel-window-left; }
-    Mod+Y       { consume-or-expel-window-right; }
+    // Move columns and windows
+    Mod+Period { move-column-left; }
+    Mod+U      { move-column-right; }
+    Mod+G      { move-window-to-workspace-up; }
+    Mod+H      { move-window-to-workspace-down; }
+    Mod+L      { move-window-to-monitor-next; }
+    Mod+J      { move-window-to-workspace 100; }
+    Mod+F      { move-workspace-to-monitor-next; }
+    Mod+Comma  { consume-or-expel-window-left; }
+    Mod+Y      { consume-or-expel-window-right; }
 
-    // Resize columns
-    Mod+Period { set-column-width "-5%"; }
-    Mod+U      { set-column-width "+5%"; }
-    Mod+C      { maximize-column; }
-    Mod+R      { switch-preset-column-width; }
+    // Resize columns and windows
+    Mod+Shift+A { set-column-width "-5%"; }
+    Mod+Shift+I { set-column-width "+5%"; }
+    Mod+Shift+E { set-window-height "-5%"; }
+    Mod+Shift+O { set-window-height "+5%"; }
+    Mod+C       { maximize-column; }
+    Mod+Z       { switch-preset-column-width; }
 
     // Fullscreen, close window and quit
     Mod+V       { fullscreen-window; }
