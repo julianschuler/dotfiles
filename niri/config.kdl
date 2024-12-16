@@ -18,6 +18,10 @@ input {
         repeat-rate 75
     }
 
+    touchpad {
+        natural-scroll
+    }
+
     warp-mouse-to-focus
     focus-follows-mouse
 }
