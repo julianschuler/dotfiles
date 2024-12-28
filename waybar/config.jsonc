@@ -3,8 +3,8 @@
   "position": "top",
   "spacing": 16,
 
-  "modules-left": ["custom/launcher", "hyprland/workspaces", "mpris"],
-  "modules-center": ["hyprland/window"],
+  "modules-left": ["custom/launcher", "niri/workspaces", "mpris"],
+  "modules-center": ["niri/window"],
   "modules-right": [
     "backlight",
     "network",
@@ -46,7 +46,7 @@
     "tooltip": false
   },
 
-  "hyprland/window": {
+  "niri/window": {
     "separate-outputs": true,
     "icon": true,
     "icon-size": 16
