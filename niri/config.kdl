@@ -26,6 +26,8 @@ input {
 
     warp-mouse-to-focus
     focus-follows-mouse
+
+    workspace-auto-back-and-forth
 }
 
 output "DP-1" {
@@ -70,11 +72,16 @@ window-rule {
     draw-border-with-background false
 }
 
+workspace "password-manager"
+
 window-rule {
     match app-id=r#"^org\.keepassxc\.KeePassXC$"#
 
     block-out-from "screen-capture"
+    open-on-workspace "password-manager"
 }
+
+spawn-at-startup "keepassxc"
 
 binds {
     // Media and brightness control
@@ -143,7 +150,7 @@ binds {
 
     // Toggle bar
     Mod+B { spawn "pkill" "-USR1" "waybar"; }
-    // TODO: Mod+P { toggle-special }
+    Mod+P { focus-workspace "password-manager"; }
 
     // Move focus
     Mod+A   { focus-column-left; }
