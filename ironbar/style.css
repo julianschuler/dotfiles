@@ -1,0 +1,152 @@
+@define-color fg #ebdbb2;
+@define-color bg #1d2021;
+/* @define-color border #73d216; */
+@define-color border #797979;
+
+@define-color black #282828;
+@define-color red #cc241d;
+@define-color green #b8bb26;
+@define-color yellow #fabd2f;
+@define-color blue #83a598;
+@define-color purple #d3869b;
+@define-color aqua #8ec07c;
+@define-color orange #fe8019;
+
+* {
+  all: unset;
+  font-family:
+    Roboto,
+    Sauce Code Pro NF;
+  font-size: 17px;
+}
+
+#bar #start,
+#bar #end {
+  background: @bg;
+  padding: 0 4px;
+  font-weight: bold;
+}
+
+#bar #start {
+  border-radius: 0 8px 8px 0;
+}
+
+#bar #end {
+  border-radius: 8px 0 0 8px;
+}
+
+#bar #center {
+  color: @fg;
+  font-weight: 500;
+}
+
+#bar #start > * > * > * {
+  margin: 0 6px;
+}
+
+#bar #end > * > * > * {
+  margin: 0 6px;
+}
+
+.custom .launcher {
+  color: @red;
+  margin-right: 6px;
+}
+
+.workspaces {
+  color: @fg;
+  margin: 0 -4px;
+}
+
+.workspaces .item {
+  margin: 0 4px;
+}
+
+.workspaces .item.focused {
+  color: @orange;
+}
+
+#bar #end > :first-child {
+  color: @yellow;
+}
+
+#bar #end > :last-child {
+  color: @orange;
+}
+
+.music {
+  color: @green;
+  font-weight: 600;
+}
+
+.popup {
+  color: @fg;
+  background-color: @bg;
+  border-radius: 8px;
+  border: 2px solid @border;
+  margin: 0px 0px;
+}
+
+.popup-clock {
+  padding: 1em;
+  color: @fg;
+  /* color: @yellow; */
+}
+
+.calendar-clock {
+  color: @orange;
+  font-size: 2.5em;
+  padding-bottom: 0.2em;
+}
+
+.calendar {
+  /* color: @fg; */
+  background-color: @black;
+}
+
+.calendar .header {
+  color: @yellow;
+}
+
+.calendar:selected {
+  background-color: @blue;
+}
+
+.popup-music {
+  padding: 1em;
+}
+
+.popup-music .album-art {
+  margin-right: 1em;
+}
+
+.popup-music .album .icon,
+.popup-music .album .label {
+  margin-right: 0.5em;
+  color: @purple;
+}
+
+.popup-music .artist .icon,
+.popup-music .artist .label {
+  color: @aqua;
+  margin-right: 0.5em;
+}
+
+.popup-music .title .icon,
+.popup-music .title .label {
+  color: @green;
+  font-size: 1.6em;
+  margin: -4px 0;
+}
+
+.popup-music .controls {
+  color: @blue;
+  padding-left: 0.7em;
+}
+
+.popup-music .controls > * {
+  margin: 2px 10px;
+  padding: 0 10px;
+  background-color: @black;
+  font-size: 10px;
+}

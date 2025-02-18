@@ -138,4 +138,11 @@ return {
     ft = "markdown",
     build = function() vim.fn["mkdp#util#install"]() end,
   },
+  {
+    'saecki/crates.nvim',
+    tag = 'stable',
+    config = function()
+        require('crates').setup()
+    end,
+  }
 }

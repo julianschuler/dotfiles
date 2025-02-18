@@ -2,5 +2,9 @@
 name = "cpp"
 auto-format = true
 
+[[language]]
+name = "python"
+auto-format = true
+
 [language-server.rust-analyzer.config.check]
 command = "clippy"
