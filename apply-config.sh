@@ -91,6 +91,7 @@ if [ "$create_links" = true ]; then
     $ln_cmd "$dot_dir/vimrc" "$HOME/.vimrc"
     $ln_cmd "$dot_dir/waybar" "$config_dir/"
     $ln_cmd "$dot_dir/wlogout" "$config_dir/"
+    $ln_cmd "$dot_dir/xdg-desktop-portal" "$config_dir/"
     $ln_cmd "$dot_dir/yofi" "$config_dir/"
     $ln_cmd "$dot_dir/zathura" "$config_dir/"
     print_debug ""
