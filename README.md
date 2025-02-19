@@ -38,7 +38,7 @@ This repository contains configuration files for most of the programs I use.
 
 - Wayland compositor: [Hyprland](https://github.com/hyprwm/Hyprland)
 - Status bar: [waybar](https://github.com/Alexays/Waybar)
-- Application launcher: [yofi](https://github.com/l4l/yofi)
+- Application launcher: [fuzzel](https://codeberg.org/dnkl/fuzzel)
 - Screen locker: [swaylock-effects](https://github.com/jirutka/swaylock-effects)
 - Power menu: [wlogout](https://github.com/ArtsyMacaw/wlogout)
 - Email client: [aerc](https://git.sr.ht/~rjarry/aerc)

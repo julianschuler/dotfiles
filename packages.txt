@@ -8,6 +8,7 @@ exa
 fd
 firefox
 fish
+fuzzel
 fzf
 git-delta
 gnome-themes-extra
@@ -34,7 +35,6 @@ wlogout
 xdg-desktop-portal-gtk
 xdg-desktop-portal-wlr
 xdg-user-dirs
-yofi
 zathura
 zathura-pdf-mupdf
 zoxide
