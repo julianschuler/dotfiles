@@ -2,7 +2,7 @@
 abbr -a b bat
 abbr -a c z
 abbr -a d pdf
-abbr -a e nvim
+abbr -a e $EDITOR
 abbr -a f fd
 abbr -a h helix
 abbr -a ir 'ip route'
@@ -11,6 +11,7 @@ abbr -a il 'ip -brief link'
 abbr -a l ls
 abbr -a lb lsblk
 abbr -a m man
+abbr -a n nvim
 abbr -a p python
 abbr -a r ranger
 abbr -a s sudo
