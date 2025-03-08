@@ -1,0 +1,60 @@
+[
+  {
+    "context": "Editor && vim_mode == normal",
+    "bindings": {
+      // Movement
+      "o": "vim::Up",
+      "e": "vim::Down",
+      "a": "vim::Left",
+      "i": "vim::Right",
+      "O": "editor::HalfPageUp",
+      "E": "editor::HalfPageDown",
+      "A": "vim::PreviousWordStart",
+      "I": "vim::NextWordStart",
+
+      // Joining, replacing and redoing
+      "ö": "vim::JoinLines",
+      "ü": "vim::PushReplace",
+      "Ü": "vim::SwitchToReplaceMode",
+      "ä": "vim::Redo",
+
+      // Switching to insert mode
+      "r": "vim::InsertBefore",
+      "w": "vim::InsertEndOfLine",
+      "W": "vim::InsertFirstNonWhitespace",
+      "l": "vim::InsertLineBelow",
+      "L": "vim::InsertLineAbove",
+
+      // Searching and yanking
+      "j": "vim::Search",
+      "h": "buffer_search::Deploy",
+      "H": "buffer_search::DeployReplace",
+      //"Y": ["workspace::SendKeystrokes", "y$"]
+
+      // Other
+      "b": "tab_switcher::Toggle",
+      "k": "editor::Hover",
+      "q": "pane::CloseActiveItem",
+
+      "space a": "editor::ToggleCodeActions",
+      "space c": "vim::ToggleComments",
+      "space r": "editor::Rename",
+      "space s": "workspace::Save",
+      // "space y": "",
+      "space f": "file_finder::Toggle",
+      "space o": "project_panel::Open",
+      "space e": "workspace::ToggleLeftDock",
+
+      "t n": "editor::GoToDefinition",
+      "t N": "editor::GoToDeclaration",
+      "t r": "editor::FindAllReferences",
+      "t s": "outline::Toggle",
+      "t S": "project_symbols::Toggle",
+      "t w": "vim::PushSneak",
+
+      "t e": "editor::GoToDiagnostic",
+      "t c": "vim::NextComment",
+      "t space": "editor::NewlineBelow"
+    }
+  }
+]

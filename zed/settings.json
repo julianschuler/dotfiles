@@ -1,0 +1,28 @@
+{
+  "assistant": {
+    "default_model": {
+      "provider": "ollama",
+      "model": "llama3.2:latest"
+    },
+    "version": "2"
+  },
+  "features": {
+    "edit_prediction_provider": "none"
+  },
+  "ui_font_size": 16,
+  "buffer_font_size": 16,
+  "buffer_font_family": "Source Code Pro",
+  "theme": {
+    "mode": "dark",
+    "light": "Gruvbox Light",
+    "dark": "Gruvbox Dark"
+  },
+  "vim_mode": true,
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false
+  },
+  "tab_bar": {
+    "show": true
+  }
+}
