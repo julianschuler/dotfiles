@@ -2,5 +2,12 @@
 name = "cpp"
 auto-format = true
 
+[[language]]
+name = "typst"
+auto-format = true
+
+[language-server.tinymist.config]
+formatterMode = "typstyle"
+
 [language-server.rust-analyzer.config.check]
 command = "clippy"
