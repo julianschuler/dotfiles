@@ -30,6 +30,11 @@ input {
     workspace-auto-back-and-forth
 }
 
+layer-rule {
+    match namespace="^wallpaper$"
+    place-within-backdrop true
+}
+
 output "DP-1" {
     scale 2
 }
@@ -41,6 +46,7 @@ output "DP-2" {
 
 layout {
     gaps 0
+    background-color "transparent"
 
     center-focused-column "never"
     always-center-single-column
@@ -57,6 +63,12 @@ layout {
         width 2
         active-color "#73d216"
         inactive-color "#797979"
+    }
+}
+
+overview {
+    workspace-shadow {
+        off
     }
 }
 
@@ -148,7 +160,8 @@ binds {
     Mod+K { spawn "fuzzel"; }
     Mod+Shift+L { spawn "swaylock"; }
 
-    // Toggle bar
+    // Toggle overview, bar and password manager
+    Mod+Udiaeresis { toggle-overview; }
     Mod+B { spawn "pkill" "-USR1" "waybar"; }
     Mod+P { focus-workspace "password-manager"; }
 
