@@ -3,7 +3,7 @@ abbr -a b bat
 abbr -a c z
 abbr -a d pdf
 abbr -a e $EDITOR
-abbr -a f fd
+abbr -a f fend
 abbr -a h helix
 abbr -a ir 'ip route'
 abbr -a ia 'ip -brief address'
