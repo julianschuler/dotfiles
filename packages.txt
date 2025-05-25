@@ -12,9 +12,9 @@ fuzzel
 fzf
 git-delta
 gnome-themes-extra
+helix
 keepassxc
 mako
-neovim
 niri
 pavucontrol
 pipewire-pulse

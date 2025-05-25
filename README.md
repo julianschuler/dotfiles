@@ -13,7 +13,7 @@ This repository contains configuration files for most of the programs I use.
 
 - Operating system: [Arch Linux](https://archlinux.org/)
 - Package manager: [Paru](https://github.com/morganamilo/paru)
-- Editor: [Neovim](https://github.com/neovim/neovim) using [AstroNvim](https://github.com/AstroNvim/AstroNvim) as base config
+- Editor: [Helix](https://github.com/helix-editor/helix)
 - Font: [Source Code Pro Nerd Font](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/SourceCodePro)
 
 #### Terminal

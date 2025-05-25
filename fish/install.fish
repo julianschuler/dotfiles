@@ -29,7 +29,7 @@ set -U fish_pager_color_prefix white\x1e\x2d\x2dbold\x1e\x2d\x2dunderline
 set -U fish_pager_color_progress brwhite\x1e\x2d\x2dbackground\x3dcyan
 
 # set EDITOR and add to PATH
-set -Ux EDITOR nvim
+set -Ux EDITOR helix
 fish_add_path "$HOME/documents/scripts"
 
 # disable greeting and default fzf bindings
