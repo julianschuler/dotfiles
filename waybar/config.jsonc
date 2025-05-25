@@ -46,14 +46,21 @@
     "tooltip": false
   },
 
-  "niri/window": {
-    "separate-outputs": true,
-    "icon": true,
-    "icon-size": 16
+  "niri/workspaces": {
+    "format": "{icon}",
+    "format-icons": {
+      "password-manager": ""
+    }
   },
 
   "mpris": {
     "format": "󰎈  {title}  •  {artist}"
+  },
+
+  "niri/window": {
+    "separate-outputs": true,
+    "icon": true,
+    "icon-size": 16
   },
 
   "network": {

@@ -95,3 +95,7 @@ tooltip {
 #workspaces button:hover {
   color: @yellow;
 }
+
+#workspaces button#niri-workspace-password-manager {
+  margin: 0 -4px;
+}
