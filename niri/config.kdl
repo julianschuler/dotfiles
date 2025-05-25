@@ -200,4 +200,14 @@ binds {
     Mod+X       { close-window; }
     Mod+Shift+Q { quit; }
     Print       { screenshot; }
+
+    // Fallback bindings
+    Mod+Left        { focus-column-left; }
+    Mod+Right       { focus-column-right; }
+    Mod+Up          { focus-workspace-up; }
+    Mod+Down        { focus-workspace-down; }
+    Mod+Shift+Left  { move-column-left; }
+    Mod+Shift+Right { move-column-right; }
+    Mod+Shift+Up    { move-column-to-workspace-up; }
+    Mod+Shift+Down  { move-column-to-workspace-down; }
 }
