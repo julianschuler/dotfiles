@@ -1,0 +1,10 @@
+font=Sauce Code Pro NF 12
+default-timeout=2000
+max-icon-size=32
+padding=10
+
+text-color=#ebdbb2
+background-color=#1d2021
+border-color=#797979
+border-size=2
+border-radius=8
