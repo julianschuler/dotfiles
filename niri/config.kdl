@@ -211,3 +211,27 @@ binds {
     Mod+Shift+Up    { move-column-to-workspace-up; }
     Mod+Shift+Down  { move-column-to-workspace-down; }
 }
+
+animations {
+    window-resize {
+        // Crop and fill with background color (0x282828) for window resize
+        custom-shader r"
+            vec4 resize_color(vec3 coords_curr_geo, vec3 size_curr_geo) {
+                vec3 coords_next_geo = niri_curr_geo_to_next_geo * coords_curr_geo;
+                vec3 coords_crop = niri_geo_to_tex_next * coords_next_geo;
+
+                vec4 color;
+                if (coords_curr_geo.x < 0.0 || 1.0 < coords_curr_geo.x ||
+                        coords_curr_geo.y < 0.0 || 1.0 < coords_curr_geo.y) {
+                    color = vec4(0.0);
+                } else if (coords_next_geo.x < 0.0 || 1.0 < coords_next_geo.x ||
+                        coords_next_geo.y < 0.0 || 1.0 < coords_next_geo.y) {
+                    color = vec4(0.15625, 0.15625, 0.15625, 1.0);
+                } else {
+                    color = texture2D(niri_tex_next, coords_crop.st);
+                }
+                return color;
+            }
+        "
+    }
+}
