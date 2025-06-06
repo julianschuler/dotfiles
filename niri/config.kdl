@@ -91,6 +91,7 @@ window-rule {
 
     block-out-from "screen-capture"
     open-on-workspace "password-manager"
+    open-maximized true
 }
 
 spawn-at-startup "keepassxc"
