@@ -67,6 +67,7 @@ layout {
 }
 
 overview {
+    zoom 0.49
     workspace-shadow {
         off
     }
