@@ -6,6 +6,7 @@ btop
 dante
 exa
 fd
+fend
 firefox
 fish
 fuzzel
