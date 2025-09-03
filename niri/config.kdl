@@ -155,7 +155,7 @@ binds {
     Mod+W { spawn "firefox"; }
     Mod+M { spawn "alacritty" "-e" "ranger"; }
     Mod+K { spawn "fuzzel"; }
-    Mod+Shift+L { spawn "swaylock"; }
+    Mod+Shift+L allow-when-locked=true { spawn "swaylock"; }
 
     // Toggle overview, bar and password manager
     Mod+Udiaeresis { toggle-overview; }
