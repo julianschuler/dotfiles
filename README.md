@@ -6,7 +6,7 @@ This repository contains configuration files for most of the programs I use.
 
 #### Keyboard
 
-- Hardware: [Concavum](https://github.com/julianschuler/keyboards/tree/master/concavum), custom designed ergonomic keyboard
+- Hardware: [Concavum](https://github.com/julianschuler/keyboards/tree/master/concavum-v2), custom designed ergonomic keyboard
 - Layout: [modified VOU layout](https://github.com/julianschuler/keyboards/blob/master/concavum/qmk/keymaps/julianschuler/keymap.c#L51) (optimized for German and English)
 
 #### General
@@ -36,7 +36,7 @@ This repository contains configuration files for most of the programs I use.
 
 #### Desktop
 
-- Wayland compositor: [Hyprland](https://github.com/hyprwm/Hyprland)
+- Wayland compositor: [niri](https://github.com/YaLTeR/niri)
 - Status bar: [waybar](https://github.com/Alexays/Waybar)
 - Application launcher: [fuzzel](https://codeberg.org/dnkl/fuzzel)
 - Screen locker: [swaylock-effects](https://github.com/jirutka/swaylock-effects)
