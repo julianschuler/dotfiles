@@ -1,11 +1,6 @@
 prefer-no-csd
 screenshot-path "~/screenshots/%Y-%m-%d-%H:%M:%S.png"
 
-environment {
-    QT_QPA_PLATFORM "wayland"
-    DISPLAY null
-}
-
 input {
     keyboard {
         xkb {
