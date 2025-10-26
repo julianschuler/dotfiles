@@ -96,6 +96,12 @@ tooltip {
   color: @yellow;
 }
 
+#workspaces button.empty label,
+#workspaces button#niri-workspace-password-manager label {
+  font-size: 0;
+}
+
+#workspaces button.empty,
 #workspaces button#niri-workspace-password-manager {
   margin: 0 -4px;
 }

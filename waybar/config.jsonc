@@ -46,13 +46,6 @@
     "tooltip": false
   },
 
-  "niri/workspaces": {
-    "format": "{icon}",
-    "format-icons": {
-      "password-manager": ""
-    }
-  },
-
   "mpris": {
     "format": "󰎈  {title}  •  {artist}",
     "format-paused": "⏸  {title}  •  {artist}",
