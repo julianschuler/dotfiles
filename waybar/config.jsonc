@@ -54,7 +54,10 @@
   },
 
   "mpris": {
-    "format": "󰎈  {title}  •  {artist}"
+    "format": "󰎈  {title}  •  {artist}",
+    "format-paused": "⏸  {title}  •  {artist}",
+    "title-len": 40,
+    "artist-len": 40
   },
 
   "niri/window": {
