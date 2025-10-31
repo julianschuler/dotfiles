@@ -21,8 +21,6 @@ input {
 
     warp-mouse-to-focus
     focus-follows-mouse
-
-    workspace-auto-back-and-forth
 }
 
 layer-rule {
@@ -87,7 +85,9 @@ window-rule {
 
     block-out-from "screen-capture"
     open-on-workspace "password-manager"
-    open-maximized true
+    open-floating true
+    default-column-width { proportion 0.8; }
+    default-window-height { proportion 0.8; }
 }
 
 spawn-at-startup "keepassxc"
@@ -160,7 +160,7 @@ binds {
     // Toggle overview, bar and password manager
     Mod+Udiaeresis { toggle-overview; }
     Mod+B { spawn "pkill" "-USR1" "waybar"; }
-    Mod+P { focus-workspace "password-manager"; }
+    Mod+P { spawn "toggle-password-manager"; }
 
     // Move focus
     Mod+A   { focus-column-left; }
