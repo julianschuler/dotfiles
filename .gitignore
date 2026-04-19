@@ -9,6 +9,7 @@ fish/fish_variables
 
 # Exclude aerc account information
 aerc/accounts.conf
+aerc/*folder-map.conf
 
 # Exclude __pycache__ and __init__.py for ranger plugins
 __pycache__
