@@ -72,8 +72,6 @@ Change the `HOOKS=(...)` line in `/etc/mkinitcpio.conf` to
 HOOKS=(base udev autodetect microcode modconf kms keyboard keymap block encrypt filesystems)
 ```
 
-Enable lz4 compression by uncommenting `COMPRESSION=lz4` and setting `COMPRESSION_OPTIONS=(-9)`.
-
 The initramfs is regenerated later in section 3.8.
 
 ### Root password (3.7)
@@ -149,12 +147,10 @@ systemctl enable --now reflector.timer
 
 ### Firewall
 
-Configure the firewall to allow only traffic from 192.168.178.0/24 and rate limit ssh.
+Configure the firewall to deny all incoming traffic.
 
 ```sh
 ufw default deny
-ufw allow from 192.168.178.0/24
-ufw limit ssh
 ```
 
 Enable the firewall and show its status.
@@ -207,14 +203,6 @@ chsh -s /bin/fish julian
 ```
 
 Reboot and log in as _julian_.
-
-### Keyboard layout
-
-Set a German keyboard layout with no dead keys and caps mapped to escape for X11 and the virtual console.
-
-```sh
-sudo localectl set-x11-keymap de "" nodeadkeys caps:escape
-```
 
 ### Secure Boot
 
