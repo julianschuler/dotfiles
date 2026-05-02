@@ -1,3 +1,5 @@
+include optional=true "outputs.kdl"
+
 prefer-no-csd
 screenshot-path "~/screenshots/%Y-%m-%d-%H:%M:%S.png"
 
@@ -26,15 +28,6 @@ input {
 layer-rule {
     match namespace="^wallpaper$"
     place-within-backdrop true
-}
-
-output "DP-1" {
-    scale 2
-}
-
-output "DP-2" {
-    mode "2560x1440"
-    scale 1.333
 }
 
 layout {

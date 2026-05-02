@@ -17,3 +17,6 @@ ranger/plugins/__init__.py
 
 # Exlude lazy lock file for nvim
 nvim/lazy-lock.json
+
+# Exclude output config for niri
+niri/outputs.kdl
