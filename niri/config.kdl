@@ -98,10 +98,11 @@ binds {
     XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "s" "5%-"; }
 
     // Programs
-    Mod+F2  { spawn "alacritty" "-e" "nvim"; }
+    Mod+F2  { spawn "alacritty" "-e" "helix"; }
     Mod+F3  { spawn "alacritty" "-e" "aerc"; }
     Mod+F4  { spawn "alacritty" "-e" "btop"; }
     Mod+F5  { spawn "alacritty" "-e" "nmtui"; }
+    Mod+F6  { spawn "alacritty" "-e" "fend"; }
     Mod+F8  { spawn "alacritty"; }
     Mod+F9  { spawn "firefox"; }
     Mod+F10 { spawn "alacritty" "-e" "ranger"; }
