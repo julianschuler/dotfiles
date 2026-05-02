@@ -1,13 +1,48 @@
 [[language]]
+name = "c"
+auto-format = true
+language-servers = ["clangd", "typos"]
+
+[[language]]
 name = "cpp"
 auto-format = true
+language-servers = ["clangd", "typos"]
+
+[[language]]
+name = "python"
+auto-format = true
+language-servers = ["ruff", "pylsp", "typos"]
+
+[[language]]
+name = "rust"
+language-servers = ["rust-analyzer", "typos"]
+
+[[language]]
+name = "git-commit"
+language-servers = ["harper"]
 
 [[language]]
 name = "typst"
 auto-format = true
+language-servers = ["tinymist", "harper"]
 
-[language-server.tinymist.config]
-formatterMode = "typstyle"
+[[language]]
+name = "markdown"
+language-servers = ["mdpls", "harper"]
 
-[language-server.rust-analyzer.config.check]
-command = "clippy"
+[language-server.harper]
+command = "harper-ls"
+args = ["--stdio"]
+config = { harper-ls.linters.SentenceCapitalizatoin = false }
+
+[language-server.mdpls]
+command = "mdpls"
+
+[language-server.tinymist]
+config = { formatterMode = "typstyle" }
+
+[language-server.typos]
+command = "typos-lsp"
+
+[language-server.rust-analyzer]
+config = { check.command = "clippy" }
