@@ -52,6 +52,12 @@ layout {
     }
 }
 
+gestures {
+    hot-corners {
+        off
+    }
+}
+
 overview {
     zoom 0.49
     workspace-shadow {
@@ -166,6 +172,7 @@ binds {
     Mod+R   { focus-monitor-next; }
     Mod+S   { focus-workspace 100; }
     Mod+Tab { focus-workspace-previous; }
+    Mod+Adiaeresis { switch-focus-between-floating-and-tiling; }
 
     // Move columns and windows
     Mod+Period { move-column-left; }
