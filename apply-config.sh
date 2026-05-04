@@ -102,6 +102,7 @@ fi
 if [ "$install_packages" = true ]; then
     print_debug "Installing packages from package.txt using paru..."
     xargs -a "$dot_dir/packages.txt" paru -S --needed
+    xdg-mime default org.pwmt.zathura.desktop application/pdf
     print_debug ""
 fi
 
