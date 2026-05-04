@@ -17,9 +17,11 @@ helix
 keepassxc
 mako
 niri
+openssh
 pavucontrol
 pipewire-pulse
 playerctl
+qt5-wayland
 ranger
 ripgrep
 slurp
@@ -27,6 +29,7 @@ starship
 swaybg
 swayidle
 swaylock-effects
+tealdeer
 ttf-roboto
 ttf-sourcecodepro-nerd
 w3m
