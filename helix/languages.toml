@@ -9,6 +9,14 @@ auto-format = true
 language-servers = ["clangd", "typos"]
 
 [[language]]
+name = "git-commit"
+language-servers = ["harper"]
+
+[[language]]
+name = "markdown"
+language-servers = ["mdpls", "harper"]
+
+[[language]]
 name = "python"
 auto-format = true
 language-servers = ["ruff", "pylsp", "typos"]
@@ -18,17 +26,10 @@ name = "rust"
 language-servers = ["rust-analyzer", "typos"]
 
 [[language]]
-name = "git-commit"
-language-servers = ["harper"]
-
-[[language]]
 name = "typst"
 auto-format = true
 language-servers = ["tinymist", "harper"]
 
-[[language]]
-name = "markdown"
-language-servers = ["mdpls", "harper"]
 
 [language-server.harper]
 command = "harper-ls"
@@ -38,11 +39,11 @@ config = { harper-ls.linters.SentenceCapitalizatoin = false }
 [language-server.mdpls]
 command = "mdpls"
 
+[language-server.rust-analyzer]
+config = { check.command = "clippy" }
+
 [language-server.tinymist]
 config = { formatterMode = "typstyle" }
 
 [language-server.typos]
 command = "typos-lsp"
-
-[language-server.rust-analyzer]
-config = { check.command = "clippy" }
