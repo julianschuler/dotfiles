@@ -101,7 +101,7 @@ fi
 # install packages using paru
 if [ "$install_packages" = true ]; then
     print_debug "Installing packages from package.txt using paru..."
-    paru -S --needed - < "$dot_dir/packages.txt"
+    xargs -a "$dot_dir/packages.txt" paru -S --needed
     print_debug ""
 fi
 
