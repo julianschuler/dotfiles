@@ -44,9 +44,5 @@ zoxide init fish > "$script_dir/conf.d/zoxide.fish"
 # generate aliases
 source "$script_dir/aliases.fish"
 
-# use starship as prompt
-starship init fish | source
-funcsave fish_prompt
-
 # install plugins listed in fish_plugins
 curl -sL https://git.io/fisher | source && fisher update
