@@ -1,5 +1,6 @@
 # general
 abbr -a b bat
+abbr -a br bulk-rename
 abbr -a c z
 abbr -a d pdf
 abbr -a e $EDITOR
@@ -23,6 +24,8 @@ abbr -a a paru
 abbr -a ab 'paru -Bi'
 abbr -a ac 'paru -c'
 abbr -a ad 'paru -D --asdeps'
+abbr -a af 'paru -F'
+abbr -a afy 'paru -Fy'
 abbr -a ag 'paru -Gp'
 abbr -a aq 'paru -Q'
 abbr -a aqe 'paru -Qe'
