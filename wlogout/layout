@@ -1,4 +1,10 @@
 {
+    "label" : "suspend",
+    "action" : "systemctl suspend",
+    "text" : "󰤄",
+    "keybind" : "s"
+}
+{
     "label" : "poweroff",
     "action" : "poweroff",
     "text" : "󰐥",
@@ -9,10 +15,4 @@
     "action" : "reboot",
     "text" : "󰑓",
     "keybind" : "r"
-}
-{
-    "label" : "suspend",
-    "action" : "systemctl suspend",
-    "text" : "󰤄",
-    "keybind" : "s"
 }
