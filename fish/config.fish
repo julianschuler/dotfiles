@@ -4,4 +4,5 @@ status is-login && [ -z "$DISPLAY" -a "$XDG_VTNR" = 1 ] && exec ssh-agent niri-s
 set -l script_dir (realpath (dirname (status -f)))
 source "$script_dir/abbreviations.fish"
 
+fzf --fish | source
 starship init fish | source

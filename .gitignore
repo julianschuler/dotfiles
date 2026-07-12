@@ -1,11 +1,8 @@
 # Fish excludes
 fish/completions
 fish/conf.d
-fish/functions/**
+fish/functions
 fish/fish_variables
-
-# Include fish user key bindings
-!fish/functions/fish_user_key_bindings.fish
 
 # Exclude aerc account information
 aerc/accounts.conf

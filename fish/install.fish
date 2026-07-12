@@ -1,5 +1,4 @@
-# Initial setup for fish.
-# colors
+# Colors
 set -U fish_color_autosuggestion 9C9C9C
 set -U fish_color_cancel \x2dr
 set -U fish_color_command F4F4F4
@@ -28,21 +27,16 @@ set -U fish_pager_color_description B3A06D\x1eyellow
 set -U fish_pager_color_prefix white\x1e\x2d\x2dbold\x1e\x2d\x2dunderline
 set -U fish_pager_color_progress brwhite\x1e\x2d\x2dbackground\x3dcyan
 
-# set EDITOR and add to PATH
+# Set EDITOR, default fzf options and disable fish greeting
 set -Ux EDITOR helix
-fish_add_path "$HOME/documents/scripts"
-
-# disable greeting and default fzf bindings
+set -U FZF_DEFAULT_OPTS "--style full --reverse --height=50%"
+set -U FZF_CTRL_T_OPTS "--preview 'bat -n --color=always {} 2>/dev/null || la --color=always {}'"
 set -U fish_greeting
-set -U FZF_DISABLE_KEYBINDINGS 1
+
+# Generate zoxide config
 set -l script_dir (realpath (dirname (status -f)))
-
-# generate zoxide config
 mkdir -p "$script_dir/conf.d"
-zoxide init fish > "$script_dir/conf.d/zoxide.fish"
+zoxide init fish >"$script_dir/conf.d/zoxide.fish"
 
-# generate aliases
+# Generate aliases
 source "$script_dir/aliases.fish"
-
-# install plugins listed in fish_plugins
-curl -sL https://git.io/fisher | source && fisher update
