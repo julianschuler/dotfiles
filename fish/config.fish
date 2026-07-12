@@ -6,3 +6,14 @@ source "$script_dir/abbreviations.fish"
 
 fzf --fish | source
 starship init fish | source
+
+# Execute a command with the arguments selected by fzf
+function fzf-execute
+    fzf $FZF_DEFAULT_OPTS --preview $FZF_PREVIEW_CMD --print0 | xargs -r -0 $argv[1..]
+    commandline -f repaint
+end
+
+# Edit file
+bind \ce "fzf-execute $EDITOR"
+# Copy absolute file path
+bind \co "fzf-execute realpath | wl-copy"

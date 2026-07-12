@@ -29,8 +29,9 @@ set -U fish_pager_color_progress brwhite\x1e\x2d\x2dbackground\x3dcyan
 
 # Set EDITOR, default fzf options and disable fish greeting
 set -Ux EDITOR helix
-set -U FZF_DEFAULT_OPTS "--style full --reverse --height=50%"
-set -U FZF_CTRL_T_OPTS "--preview 'bat -n --color=always {} 2>/dev/null || la --color=always {}'"
+set -U FZF_DEFAULT_OPTS --style full --reverse --height=50%
+set -U FZF_PREVIEW_CMD "bat -n --color=always {} 2>/dev/null || la --color=always {}"
+set -U FZF_CTRL_T_OPTS --preview \'$FZF_PREVIEW_CMD\'
 set -U fish_greeting
 
 # Generate zoxide config
